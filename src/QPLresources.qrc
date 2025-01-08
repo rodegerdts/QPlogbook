@@ -1,0 +1,16 @@
+<RCC>
+  <qresource>
+    <file>icons/SVG/sort-clean.svg</file>
+    <file>icons/SVG/button-red.svg</file>
+    <file>icons/SVG/document-add.svg</file>
+    <file>icons/SVG/apply.svg</file>
+    <file>icons/SVG/Entry-delete.svg</file>
+    <file>icons/SVG/floppy.svg</file>
+    <file>icons/SVG/edit.svg</file>
+    <file>icons/SVG/Sextantcolor.svg</file>
+    <file>icons/SVG/document-open.svg</file>
+    <file>icons/SVG/preferences-system.svg</file>
+    <file>icons/SVG/Entry-edit.svg</file>
+    <file>icons/SVG/Entry-new.svg</file>
+  </qresource>
+</RCC>

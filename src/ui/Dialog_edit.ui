@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EditDialog</class>
+ <widget class="QDialog" name="EditDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>738</width>
+    <height>604</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Date Time (UTC)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QDateTimeEdit" name="dateTimeEdit">
+         <property name="timeSpec">
+          <enum>Qt::TimeSpec::UTC</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Latitude(°)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="latEdit">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+         </property>
+         <property name="decimals">
+          <number>7</number>
+         </property>
+         <property name="minimum">
+          <double>-90.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>90.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Longitude (°)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QDoubleSpinBox" name="lonEdit">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+         </property>
+         <property name="decimals">
+          <number>6</number>
+         </property>
+         <property name="minimum">
+          <double>-180.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>180.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>Nav. source</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="sourceEdit"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Log (nm)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="logEdit">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::UpDownArrows</enum>
+         </property>
+         <property name="minimum">
+          <number>-1</number>
+         </property>
+         <property name="maximum">
+          <number>10000000</number>
+         </property>
+         <property name="value">
+          <number>-1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Course over Ground (°)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QSpinBox" name="cogEdit">
+         <property name="wrapping">
+          <bool>true</bool>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::UpDownArrows</enum>
+         </property>
+         <property name="minimum">
+          <number>-1</number>
+         </property>
+         <property name="maximum">
+          <number>359</number>
+         </property>
+         <property name="value">
+          <number>-1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="text">
+          <string>Heading</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QSpinBox" name="headingEdit">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::UpDownArrows</enum>
+         </property>
+         <property name="minimum">
+          <number>-1</number>
+         </property>
+         <property name="maximum">
+          <number>359</number>
+         </property>
+         <property name="value">
+          <number>-1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Speed over Ground (kn)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QDoubleSpinBox" name="sogEdit">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-1.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>-1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Speed through water (kn)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QDoubleSpinBox" name="stwEdit">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-1.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>-1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Engine hours</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QDoubleSpinBox" name="engineEdit">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-1.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>1000000.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>-1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <widget class="QPushButton" name="updateButton">
+         <property name="text">
+          <string>update from SK</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>True wind speed (kn)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="twsEdit">
+         <property name="toolTip">
+          <string>TWS in Knots</string>
+         </property>
+         <property name="toolTipDuration">
+          <number>3000</number>
+         </property>
+         <property name="accessibleDescription">
+          <string/>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::LeftToRight</enum>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::UpDownArrows</enum>
+         </property>
+         <property name="specialValueText">
+          <string/>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-1.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>-1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>True wind direction (°)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="twdEdit">
+         <property name="cursor">
+          <cursorShape>ArrowCursor</cursorShape>
+         </property>
+         <property name="minimum">
+          <number>-1</number>
+         </property>
+         <property name="maximum">
+          <number>359</number>
+         </property>
+         <property name="value">
+          <number>-1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>Barometric pressure (hPa)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QDoubleSpinBox" name="pressureEdit">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>0.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>1084.000000000000000</double>
+         </property>
+         <property name="stepType">
+          <enum>QAbstractSpinBox::StepType::DefaultStepType</enum>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_17">
+         <property name="text">
+          <string>Sea state</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QComboBox" name="seastateBox">
+         <property name="currentText">
+          <string>--</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>--</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Calm (glassy) 0m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Calm (rippled) 0 - 0.1m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Smooth (wavelets) 0.1 - 0.5m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Slight 0.5 - 1.25m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Moderate 1.25 - 2.5m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Rough 2.5 - 4m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Very Rough 4 -6m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>High  6 - 9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Very high 9-14m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Phenomenal &gt;14m</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_16">
+         <property name="text">
+          <string>Cloud cover (8th)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QSpinBox" name="cloudcoverSpinBox">
+         <property name="inputMethodHints">
+          <set>Qt::InputMethodHint::ImhDigitsOnly</set>
+         </property>
+         <property name="minimum">
+          <number>-1</number>
+         </property>
+         <property name="maximum">
+          <number>8</number>
+         </property>
+         <property name="stepType">
+          <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+         </property>
+         <property name="value">
+          <number>-1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Visibility</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QComboBox" name="visibilityBox">
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>0</height>
+          </size>
+         </property>
+         <item>
+          <property name="text">
+           <string>--</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Dense Fog &lt;50m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Thick Fog 50-200m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Moderate Fog 200-500m</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Light Fog 0,5-1km</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Thin Fog 1-2km</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Haze 2-4km</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Light Haze 4-10km</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Clear 10-20km</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Very Clear 20-50km</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Exceptionally Clear &gt;50km</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>Crew</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QListWidget" name="crewBox">
+         <property name="maximumSize">
+          <size>
+           <width>220</width>
+           <height>103</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string>New Crew</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QLineEdit" name="crewEdit">
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <widget class="QPushButton" name="addCrewButton">
+         <property name="text">
+          <string>Add Crew</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QPushButton" name="delCrewButton">
+         <property name="text">
+          <string>Delete Crew</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QDoubleSpinBox" name="airtempSpinBox">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-99.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>98.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>-99.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>Air temperature (˚C)</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_14">
+     <property name="text">
+      <string>Text:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="TextEdit"/>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>EditDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>230</x>
+     <y>582</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>EditDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>298</x>
+     <y>588</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
