@@ -1,0 +1,50 @@
+{
+  "boat": {
+    "name": "Inua",
+    "callsign": "LJ9788",
+    "mmsi": 257074950,
+    "loa": 13.4,
+    "hight": 18.0,
+    "beam": 4.0,
+    "draft": 2.0
+  },
+  "path": {
+    "datetime": "navigation.datetime",
+    "position": "navigation.position",
+    "hdop": "navigation.gnss.horizontalDilution",
+    "fixtype": "navigation.gnss.methodQuality",
+    "cog": "navigation.courseOverGroundTrue",
+    "heading": "navigation.headingTrue",
+    "sog": "navigation.speedOverGround",
+    "stw": "navigation.speedThroughWater",
+    "humidity": "environment.outside.humidity",
+    "airpressure": "environment.outside.pressure",
+    "airtemperature": "environment.outside.temperature",
+    "twd": "environment.wind.directionTrue",
+    "tws": "environment.wind.speedOverGround",
+    "log": "navigation.log",
+    "enginehours": "propulsion.*.runTime"
+  },
+  "staticpath": {
+    "callsign": "communication",
+    "mmsi": "mmsi",
+    "name": "name",
+    "loa": "design.length.value",
+    "beam": "design.beam.value",
+    "draft": "design.draft.value",
+    "airhight": "design.airHeight.value"
+  },
+  "aktivekeys": [
+    "humidity",
+    "airpressure",
+    "airtemperature"
+  ],
+  "loginterv": 1.0,
+  "trackinterv": 1.0,
+  "skserver": "192.168.0.70:3000",
+  "servertimeout": 0.1,
+  "qplogfolder": "/Users/enno/Documents/dev/QPlogbook/data/",
+  "sklogfolder": "/Users/enno/Documents/dev/SKlogs",
+  "enableauto": true,
+  "enabletracking": false
+}

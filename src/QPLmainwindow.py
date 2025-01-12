@@ -14,6 +14,7 @@ from point4D import Point4d
 from ui.QPLmainwindow_ui import Ui_MainWindow
 from ui.Dialog_edit_ui import Ui_EditDialog
 from ui.dialog_choice_ui import Ui_DialogChoice
+from ui.Dialog_settings_ui import Ui_DialogSettings
 import SKconnect
 import iofunctions
 
@@ -132,6 +133,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionSave.triggered.connect(self.save_QPlog)
         self.actionOpen.triggered.connect(self.openDialog)
         self.actionAdd.triggered.connect(self.addDialog)
+        self.actionPreferences.triggered.connect(self.openSettings)
         self.actionEdit.triggered.connect(self.openEdit)
         self.actionNew_Entry.triggered.connect(self.openNew)
         self.actionAddEntry.triggered.connect(self.addSKentry)
@@ -219,6 +221,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             pass
         del dlg
+
+
+    def openSettings(self):
+        pref_dlg = SettingsDialog(self, conf)
+        pref_dlg.exec()
+        with open("data/conf.json", "w") as conffile:
+            conffile.write(orjson.dumps(conf, option=orjson.OPT_INDENT_2).decode("utf-8"))
+        del pref_dlg
+
 
     def openNew(self):
         """Open the Edit dialog without data to create a new entry"""
@@ -435,6 +446,104 @@ class EditDialog(Ui_EditDialog, QtWidgets.QDialog):
         self.entry = {}
         self.close()
 
+
+class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
+    def __init__(self, parent=None, conf={}):
+        super().__init__(parent)
+        self.setupUi(self)
+        self.conf = conf
+        self.updatevalues()
+        self.buttonBox.accepted.connect(self.applyValues)
+        self.buttonBox.rejected.connect(self.cancel_edit)
+        self.qplPathButton.clicked.connect(self.qplog_dir)
+        self.sklPathButton.clicked.connect(self.sklog_dir)
+
+
+    def qplog_dir(self):
+        print("qplog")
+        path = QFileDialog.getExistingDirectory(self, "Select Directory")
+        self.lineEdit_qplog_dir.setText(path)
+
+    def sklog_dir(self):
+        path = QFileDialog.getExistingDirectory(self, "Select Directory")
+        self.lineEdit_sklog_dir.setText(path)
+
+    def updatevalues(self):
+        # update the values in the Settings Dialog according to the current configuration file
+        self.lineEdit_name.setText(self.conf["boat"]["name"])
+        self.lineEdit_call_sign.setText(self.conf["boat"]["callsign"])
+        self.spinBox_mmsi.setValue(self.conf["boat"]["mmsi"])
+        self.doubleSpinBox_hight.setValue(self.conf["boat"]["hight"])
+        self.doubleSpinBox_beam.setValue(self.conf["boat"]["beam"])
+        self.doubleSpinBox_loa.setValue(self.conf["boat"]["loa"])
+        self.doubleSpinBox_draft.setValue(self.conf["boat"]["draft"])
+        self.doubleSpinBox_update_interv.setValue(self.conf["loginterv"])
+        self.doubleSpinBox_track_interv.setValue(self.conf["trackinterv"])
+        self.doubleSpinBox_timeout.setValue(self.conf["servertimeout"])
+        self.lineEdit_qplog_dir.setText(self.conf["qplogfolder"])
+        self.lineEdit_sklog_dir.setText(self.conf["sklogfolder"])
+        self.lineEdit_server.setText(self.conf["skserver"])
+
+        self.checkBox_autoentry.setChecked(self.conf["enableauto"])
+        self.checkBox_tracking.setChecked(self.conf["enabletracking"])
+
+        self.lineEdit_datetime.setText(self.conf["path"]["datetime"])
+        self.lineEdit_position.setText(self.conf["path"]["position"])
+        self.lineEdit_log.setText(self.conf["path"]["log"])
+        self.lineEdit_engine.setText(self.conf["path"]["enginehours"])
+        self.lineEdit_sog.setText(self.conf["path"]["sog"])
+        self.lineEdit_cog.setText(self.conf["path"]["cog"])
+        self.lineEdit_heading.setText(self.conf["path"]["heading"])
+        self.lineEdit_stw.setText(self.conf["path"]["stw"])
+        self.lineEdit_tws.setText(self.conf["path"]["tws"])
+        self.lineEdit_twd.setText(self.conf["path"]["twd"])
+        self.lineEdit_temp.setText(self.conf["path"]["airtemperature"])
+        self.lineEdit_airpressure.setText(self.conf["path"]["airpressure"])
+        self.lineEdit_humidity.setText(self.conf["path"]["humidity"])
+        self.lineEdit_hdop.setText(self.conf["path"]["hdop"])
+        self.lineEdit_fix.setText(self.conf["path"]["fixtype"])
+
+
+
+    def applyValues(self):
+        self.conf["boat"]["name"] = self.lineEdit_name.text()
+        self.conf["boat"]["callsign"] = self.lineEdit_call_sign.text()
+        self.conf["boat"]["mmsi"] = self.spinBox_mmsi.value()
+        self.conf["boat"]["hight"] = self.doubleSpinBox_hight.value()
+        self.conf["boat"]["beam"] = self.doubleSpinBox_beam.value()
+        self.conf["boat"]["loa"] = self.doubleSpinBox_loa.value()
+        self.conf["boat"]["draft"] = self.doubleSpinBox_draft.value()
+        self.conf["loginterv"] = self.doubleSpinBox_update_interv.value()
+        self.conf["trackinterv"] = self.doubleSpinBox_track_interv.value()
+        self.conf["servertimeout"] = self.doubleSpinBox_timeout.value()
+        self.conf["qplogfolder"] = self.lineEdit_qplog_dir.text()
+        self.conf["sklogfolder"] = self.lineEdit_sklog_dir.text()
+        self.conf["skserver"] = self.lineEdit_server.text()
+
+        self.conf["enableauto"] = self.checkBox_autoentry.isChecked()
+        self.conf["enabletracking"] = self.checkBox_tracking.isChecked()
+
+        self.conf["path"]["datetime"] = self.lineEdit_datetime.text()
+        self.conf["path"]["position"] = self.lineEdit_position.text()
+        self.conf["path"]["log"] = self.lineEdit_log.text()
+        self.conf["path"]["enginehours"] = self.lineEdit_engine.text()
+        self.conf["path"]["sog"] = self.lineEdit_sog.text()
+        self.conf["path"]["cog"] = self.lineEdit_cog.text()
+        self.conf["path"]["heading"] = self.lineEdit_heading.text()
+        self.conf["path"]["stw"] = self.lineEdit_stw.text()
+        self.conf["path"]["tws"] = self.lineEdit_tws.text()
+        self.conf["path"]["twd"] = self.lineEdit_twd.text()
+        self.conf["path"]["airtemperature"] = self.lineEdit_temp.text()
+        self.conf["path"]["airpressure"] = self.lineEdit_airpressure.text()
+        self.conf["path"]["humidity"] = self.lineEdit_humidity.text()
+        self.conf["path"]["hdop"] = self.lineEdit_hdop.text()
+        self.conf["path"]["fixtype"] = self.lineEdit_fix.text()
+        self.close()
+        
+        
+
+    def cancel_edit(self):
+        self.close()
 
 
 app = QtWidgets.QApplication(sys.argv)
