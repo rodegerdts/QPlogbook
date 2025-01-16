@@ -34,16 +34,40 @@
     "draft": "design.draft.value",
     "airhight": "design.airHeight.value"
   },
-  "aktivekeys": [
-    "humidity",
+  "activekeys": [
+    "Time",
+    "Position",
+    "log",
+    "enginehours",
+    "sog",
+    "cog",
+    "heading"
+  ],
+  "showkeys": [
+    "log",
+    "enginehours",
+    "sog",
+    "cog",
+    "heading",
+    "stw",
+    "tws",
+    "twd",
+    "airtemperature",
     "airpressure",
-    "airtemperature"
+    "humidity",
+    "hdop",
+    "fixtype",
+    "seastate",
+    "cloudcover",
+    "visibility",
+    "crewNames",
+    "text"
   ],
   "loginterv": 1.0,
   "trackinterv": 1.0,
-  "skserver": "192.168.0.70:3000",
+  "skserver": "openplotter.local:3000",
   "servertimeout": 0.1,
-  "qplogfolder": "/Users/enno/Documents/dev/QPlogbook/data/",
+  "qplogfolder": "/Users/enno/Documents/dev/QPlogbook/log",
   "sklogfolder": "/Users/enno/Documents/dev/SKlogs",
   "enableauto": true,
   "enabletracking": false

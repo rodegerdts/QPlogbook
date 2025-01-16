@@ -21,32 +21,52 @@ import iofunctions
 
 
 
-
-def saveLog(safeName):
-    f = safeName[0]
-    with open(f, 'w') as file:
-        if safeName[1] == "YAML(*.yml)":
-            file.write(yaml.dump(QPlog, sort_keys=False)) 
-        if safeName[1] == "JSON(*.json)":
-            file.write(orjson.dumps(QPlog, option=orjson.OPT_INDENT_2).decode("utf-8"))
-
-
 # Variables:
+conf_file = os.path.dirname(os.path.realpath(__file__)) + "/" + "data/conf.json"
 
-headers = ["Time", "Position", "log", "enginehours", "airpressure", "airtemperature", "cog", "sog", "heading", "text"]
-currentfile = "/Users/enno/Documents/dev/QPlogbook/data/qptestlog.json"
+currentfile = "/Users/enno/Documents/dev/QPlogbook/src/data/qptestlog.json"
 
-with open("data/conf.json", "r") as conffile:
+keys_to_head = {
+        "log": "Log\n(nm)",
+        "enginehours": "Engine\n(h)",
+        "cog": "COG",
+        "sog": "SOG\n(kts)",
+        "stw": "STW",
+        "heading": "Heading",
+        "airpressure": "Baro \n(hPa)",
+        "airtemperature": "Airtemp \n(°C)",
+        "twd": "TWD",
+        "tws": "TWS\n(kts)",
+        "humidity": "Humidity\n(%)",
+        "text": "text",
+        "fixtype": "Fix",
+        "hdop": "HDOP\n(m)",
+        "visibility": "Vis.",
+        "cloudcover": "Cloud\n(8th)",
+        "seastate": "Sea",
+        "crewNames": "Crew",
+}   
+
+with open(conf_file, "r") as conffile:
         conf = orjson.loads(conffile.read())
+
+def toheaders(conf):
+    headers = ["Time", "Position"]
+    for key in conf["showkeys"]:
+        headers.append(keys_to_head[key])
+    return headers
+
+def h_to_key(head):
+    head_to_key = {v: k for k, v in keys_to_head.items()}
 
 # testvariables:
 
 QPlog = []
-QPlog = iofunctions.getQPlog("/Users/enno/Documents/dev/QPlogbook/data/log/2024-08.json")  
+QPlog = iofunctions.getQPlog("/Users/enno/Documents/dev/QPlogbook/src/data/qptestlog.json")  
 # QPlog =importandclean.cleanup(QPlog)     
 
 
-# Qt (pyside6) related stuff:
+# Qt Mainwindow and Model:
 
 class QPlogModel(QAbstractTableModel):
     """the data model for use with QtableView"""
@@ -54,6 +74,7 @@ class QPlogModel(QAbstractTableModel):
         super().__init__()
         self._data = data
         self._headers = headers
+        self.head_to_key = {v: k for k, v in keys_to_head.items()}
 
     def data(self, index, role):
         column = index.column()
@@ -62,6 +83,8 @@ class QPlogModel(QAbstractTableModel):
         column_key = dictkey = self._headers[column]
         if dictkey == "Time" or dictkey == "Position":
             dictkey = "point"
+        else:
+            dictkey = self.head_to_key[dictkey]
 
         if role == Qt.DisplayRole:
             try:
@@ -125,7 +148,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
 
-        self.model = QPlogModel(QPlog, headers)
+        self.model = QPlogModel(QPlog, toheaders(conf))
         self.logTableView.setModel(self.model)
         self.logTableView.resizeRowsToContents()
         self.logTableView.resizeColumnsToContents()
@@ -142,6 +165,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def openDialog(self):
+        """Open a File Dialog to open a new log file replacing the current log"""
         fileName = QFileDialog.getOpenFileName(self, "Open File",
                                                 "",
                                                 "JSON files (*.json)")
@@ -153,6 +177,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def addDialog(self):
+        """Open a File Dialog to add a log file to the current logbook"""
         fileName = QFileDialog.getOpenFileName(self, "Open File",
                                                 "",
                                                 "JSON files (*.json)")
@@ -165,12 +190,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
 
-    def saveasDialog(self):
-        path = self.active_folder
-        safeName = QFileDialog.getSaveFileName(self, "Save Log", path, "YAML(*.yml);; JSON(*.json)")
-        saveLog(safeName)
+    # def saveasDialog(self):
+    #     path = self.active_folder
+    #     safeName = QFileDialog.getSaveFileName(self, "Save Log", path, "YAML(*.yml);; JSON(*.json)")
+    #     saveLog(safeName)
 
     def save_QPlog(self):
+        """ Save the current log to the active Folder splits the log into monthly files and promps
+        the user to save or merge the files"""
         to_save = iofunctions.splitmonthly(QPlog)
         for key in to_save:
             try:
@@ -224,11 +251,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def openSettings(self):
+        """Open the Settings Dialog"""
         pref_dlg = SettingsDialog(self, conf)
         pref_dlg.exec()
-        with open("data/conf.json", "w") as conffile:
+        with open(conf_file, "w") as conffile:
             conffile.write(orjson.dumps(conf, option=orjson.OPT_INDENT_2).decode("utf-8"))
         del pref_dlg
+        self.model = QPlogModel(QPlog, toheaders(conf))
+        self.logTableView.setModel(self.model)
+        self.logTableView.resizeRowsToContents()
+        self.logTableView.resizeColumnsToContents()
 
 
     def openNew(self):
@@ -252,6 +284,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             pass
 
     def deleteEntry(self):
+        """Delete the currently highlited entry"""
         index = self.logTableView.currentIndex().row()
         del QPlog[index]
         self.model.layoutChanged.emit()
@@ -503,6 +536,39 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.lineEdit_hdop.setText(self.conf["path"]["hdop"])
         self.lineEdit_fix.setText(self.conf["path"]["fixtype"])
 
+        self.checkBox_log.setChecked(True) if "log" in self.conf["activekeys"] else self.checkBox_log.setChecked(False)
+        self.checkBox_engine.setChecked(True) if "enginehours" in self.conf["activekeys"] else self.checkBox_engine.setChecked(False)
+        self.checkBox_sog.setChecked(True) if "sog" in self.conf["activekeys"] else self.checkBox_sog.setChecked(False)
+        self.checkBox_cog.setChecked(True) if "cog" in self.conf["activekeys"] else self.checkBox_cog.setChecked(False)
+        self.checkBox_heading.setChecked(True) if "heading" in self.conf["activekeys"] else self.checkBox_heading.setChecked(False)
+        self.checkBox_stw.setChecked(True) if "stw" in self.conf["activekeys"] else self.checkBox_stw.setChecked(False)
+        self.checkBox_tws.setChecked(True) if "tws" in self.conf["activekeys"] else self.checkBox_tws.setChecked(False)
+        self.checkBox_twd.setChecked(True) if "twd" in self.conf["activekeys"] else self.checkBox_twd.setChecked(False)
+        self.checkBox_temp.setChecked(True) if "airtemperature" in self.conf["activekeys"] else self.checkBox_temp.setChecked(False)
+        self.checkBox_airpressure.setChecked(True) if "airpressure" in self.conf["activekeys"] else self.checkBox_airpressure.setChecked(False)
+        self.checkBox_humidity.setChecked(True) if "humidity" in self.conf["activekeys"] else self.checkBox_humidity.setChecked(False)
+        self.checkBox_hdop.setChecked(True) if "hdop" in self.conf["activekeys"] else self.checkBox_hdop.setChecked(False)
+        self.checkBox_fix.setChecked(True) if "fixtype" in self.conf["activekeys"] else self.checkBox_fix.setChecked(False)
+
+        self.checkBox_s_log.setChecked(True) if "log" in self.conf["showkeys"] else self.checkBox_s_log.setChecked(False)
+        self.checkBox_s_engine.setChecked(True) if "enginehours" in self.conf["showkeys"] else self.checkBox_s_engine.setChecked(False)
+        self.checkBox_s_sog.setChecked(True) if "sog" in self.conf["showkeys"] else self.checkBox_s_sog.setChecked(False)
+        self.checkBox_s_cog.setChecked(True) if "cog" in self.conf["showkeys"] else self.checkBox_s_cog.setChecked(False)
+        self.checkBox_s_heading.setChecked(True) if "heading" in self.conf["showkeys"] else self.checkBox_s_heading.setChecked(False)
+        self.checkBox_s_stw.setChecked(True) if "stw" in self.conf["showkeys"] else self.checkBox_s_stw.setChecked(False)
+        self.checkBox_s_tws.setChecked(True) if "tws" in self.conf["showkeys"] else self.checkBox_s_tws.setChecked(False)
+        self.checkBox_s_twd.setChecked(True) if "twd" in self.conf["showkeys"] else self.checkBox_s_twd.setChecked(False)
+        self.checkBox_s_temp.setChecked(True) if "airtemperature" in self.conf["showkeys"] else self.checkBox_s_temp.setChecked(False)
+        self.checkBox_s_airpressure.setChecked(True) if "airpressure" in self.conf["showkeys"] else self.checkBox_s_airpressure.setChecked(False)
+        self.checkBox_s_humidity.setChecked(True) if "humidity" in self.conf["showkeys"] else self.checkBox_s_humidity.setChecked(False)
+        self.checkBox_s_hdop.setChecked(True) if "hdop" in self.conf["showkeys"] else self.checkBox_s_hdop.setChecked(False)
+        self.checkBox_s_fix.setChecked(True) if "fixtype" in self.conf["showkeys"] else self.checkBox_s_fix.setChecked(False)
+        self.checkBox_s_seastate.setChecked(True) if "seastate" in self.conf["showkeys"] else self.checkBox_s_seastate.setChecked(False)
+        self.checkBox_s_cloud.setChecked(True) if "cloudcover" in self.conf["showkeys"] else self.checkBox_s_cloud.setChecked(False)
+        self.checkBox_s_visibility.setChecked(True) if "visibility" in self.conf["showkeys"] else self.checkBox_s_visibility.setChecked(False)
+        self.checkBox_s_crew.setChecked(True) if "crewNames" in self.conf["showkeys"] else self.checkBox_s_crew.setChecked(False)
+        self.checkBox_s_text.setChecked(True) if "text" in self.conf["showkeys"] else self.checkBox_s_text.setChecked(False)
+
 
 
     def applyValues(self):
@@ -538,7 +604,43 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["path"]["humidity"] = self.lineEdit_humidity.text()
         self.conf["path"]["hdop"] = self.lineEdit_hdop.text()
         self.conf["path"]["fixtype"] = self.lineEdit_fix.text()
+
+        self.conf["activekeys"] = ["Time", "Position"]
+        if self.checkBox_log.isChecked(): self.conf["activekeys"].append("log")
+        if self.checkBox_engine.isChecked(): self.conf["activekeys"].append("enginehours")
+        if self.checkBox_sog.isChecked(): self.conf["activekeys"].append("sog")
+        if self.checkBox_cog.isChecked(): self.conf["activekeys"].append("cog")
+        if self.checkBox_heading.isChecked(): self.conf["activekeys"].append("heading")
+        if self.checkBox_stw.isChecked(): self.conf["activekeys"].append("stw")
+        if self.checkBox_tws.isChecked(): self.conf["activekeys"].append("tws")
+        if self.checkBox_twd.isChecked(): self.conf["activekeys"].append("twd")
+        if self.checkBox_temp.isChecked(): self.conf["activekeys"].append("airtemperature")
+        if self.checkBox_airpressure.isChecked(): self.conf["activekeys"].append("airpressure")
+        if self.checkBox_humidity.isChecked(): self.conf["activekeys"].append("humidity")
+        if self.checkBox_hdop.isChecked(): self.conf["activekeys"].append("hdop")
+        if self.checkBox_fix.isChecked(): self.conf["activekeys"].append("fixtype")
+
+        self.conf["showkeys"] = []
+        if self.checkBox_s_log.isChecked(): self.conf["showkeys"].append("log")
+        if self.checkBox_s_engine.isChecked(): self.conf["showkeys"].append("enginehours")
+        if self.checkBox_s_sog.isChecked(): self.conf["showkeys"].append("sog")
+        if self.checkBox_s_cog.isChecked(): self.conf["showkeys"].append("cog")
+        if self.checkBox_s_heading.isChecked(): self.conf["showkeys"].append("heading")
+        if self.checkBox_s_stw.isChecked(): self.conf["showkeys"].append("stw")
+        if self.checkBox_s_tws.isChecked(): self.conf["showkeys"].append("tws")
+        if self.checkBox_s_twd.isChecked(): self.conf["showkeys"].append("twd")
+        if self.checkBox_s_temp.isChecked(): self.conf["showkeys"].append("airtemperature")
+        if self.checkBox_s_airpressure.isChecked(): self.conf["showkeys"].append("airpressure")
+        if self.checkBox_s_humidity.isChecked(): self.conf["showkeys"].append("humidity")
+        if self.checkBox_s_hdop.isChecked(): self.conf["showkeys"].append("hdop")
+        if self.checkBox_s_fix.isChecked(): self.conf["showkeys"].append("fixtype")
+        if self.checkBox_s_seastate.isChecked(): self.conf["showkeys"].append("seastate")
+        if self.checkBox_s_cloud.isChecked(): self.conf["showkeys"].append("cloudcover")
+        if self.checkBox_s_visibility.isChecked(): self.conf["showkeys"].append("visibility")
+        if self.checkBox_s_crew.isChecked(): self.conf["showkeys"].append("crewNames")
+        if self.checkBox_s_text.isChecked(): self.conf["showkeys"].append("text")
         self.close()
+
         
         
 

@@ -48,7 +48,7 @@ def getSKdecposition(server):
 
 def getSKpath(config):
     """Returns a dictionary for all signalK paths configured in the configuratin file"""
-    server = config["server"]
+    server = config["skserver"]
     sto = config["servertimeout"]
     out = {}
     for key in config["path"]:
