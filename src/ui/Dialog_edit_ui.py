@@ -39,7 +39,7 @@ class Ui_EditDialog(object):
 
         self.dateTimeEdit = QDateTimeEdit(EditDialog)
         self.dateTimeEdit.setObjectName(u"dateTimeEdit")
-        self.dateTimeEdit.setTimeSpec(Qt.TimeSpec.UTC)
+        self.dateTimeEdit.setTimeSpec(Qt.TimeSpec.LocalTime)
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.dateTimeEdit)
 
@@ -133,6 +133,7 @@ class Ui_EditDialog(object):
         self.sogEdit.setObjectName(u"sogEdit")
         self.sogEdit.setDecimals(1)
         self.sogEdit.setMinimum(-1.000000000000000)
+        self.sogEdit.setSingleStep(0.100000000000000)
         self.sogEdit.setValue(-1.000000000000000)
 
         self.formLayout.setWidget(7, QFormLayout.FieldRole, self.sogEdit)
@@ -146,7 +147,7 @@ class Ui_EditDialog(object):
         self.stwEdit.setObjectName(u"stwEdit")
         self.stwEdit.setDecimals(1)
         self.stwEdit.setMinimum(-1.000000000000000)
-        self.stwEdit.setSingleStep(0.000000000000000)
+        self.stwEdit.setSingleStep(0.100000000000000)
         self.stwEdit.setValue(-1.000000000000000)
 
         self.formLayout.setWidget(8, QFormLayout.FieldRole, self.stwEdit)
@@ -187,6 +188,7 @@ class Ui_EditDialog(object):
         self.twsEdit.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.UpDownArrows)
         self.twsEdit.setDecimals(1)
         self.twsEdit.setMinimum(-1.000000000000000)
+        self.twsEdit.setSingleStep(0.100000000000000)
         self.twsEdit.setValue(-1.000000000000000)
 
         self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.twsEdit)
@@ -315,6 +317,7 @@ class Ui_EditDialog(object):
         self.airtempSpinBox.setDecimals(1)
         self.airtempSpinBox.setMinimum(-99.000000000000000)
         self.airtempSpinBox.setMaximum(98.000000000000000)
+        self.airtempSpinBox.setSingleStep(0.100000000000000)
         self.airtempSpinBox.setValue(-99.000000000000000)
 
         self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.airtempSpinBox)

@@ -1,0 +1,137 @@
+[
+    {
+      "point": {
+        "lat": 66.7972793,
+        "lon": 13.4532821,
+        "time": "2024-08-20 11:03:12+00:00"
+      },
+      "text": "Sailing",
+      "fix_type": "GPS",
+      "log": 7974.2,
+      "cog": 49,
+      "heading": 51,
+      "sog": 6.8,
+      "stw": 7.1,
+      "air_pressure": 1004.14,
+      "tws": 2.8,
+      "twd": 59
+    },
+    {
+      "point": {
+        "lat": 66.8451454,
+        "lon": 13.5365294,
+        "time": "2024-08-20 11:51:12+00:00"
+      },
+      "text": "Stopped",
+      "fix_type": "GPS+SBAS/WAAS",
+      "log": 7979.4,
+      "cog": 292,
+      "heading": 298,
+      "sog": 0.4,
+      "stw": 0,
+      "air_pressure": 1003.31,
+      "tws": 3.3,
+      "twd": 187
+    },
+    {
+      "point": {
+        "lat": 65.4751716,
+        "lon": 12.204125,
+        "time": "2024-08-13 09:43:06+00:00"
+      },
+      "text": "Sailing",
+      "fix_type": "GPS",
+      "log": 7844.8,
+      "cog": 313,
+      "heading": 319,
+      "sog": 6.4,
+      "stw": 6.6,
+      "air_pressure": 1030.79
+    },
+    {
+      "point": {
+        "lat": 65.501879,
+        "lon": 12.1845552,
+        "time": "2024-08-12 10:00:58+00:00"
+      },
+      "text": "",
+      "fix_type": "GPS+SBAS/WAAS",
+      "log": 7846.6,
+      "cog": 333,
+      "heading": 329,
+      "sog": 6.3,
+      "stw": 6.3,
+      "air_pressure": 1014.79,
+      "tws": 12.4,
+      "twd": 301
+    },
+    {
+      "point": {
+        "lat": 65.5915067,
+        "lon": 12.106603,
+        "time": "2024-08-12 11:00:57+00:00"
+      },
+      "text": "",
+      "fix_type": "GPS+SBAS/WAAS",
+      "log": 7852.4,
+      "cog": 348,
+      "heading": 338,
+      "sog": 3.6,
+      "stw": 3.6,
+      "air_pressure": 1015.34,
+      "tws": 5.7,
+      "twd": 293
+    },
+    {
+      "point": {
+        "lat": 65.68787560256312,
+        "lon": 12.143606349222216,
+        "time": "2024-08-12 12:00:58+00:00"
+      },
+      "text": "",
+      "fix_type": "GPS",
+      "log": 7858.3,
+      "cog": 360,
+      "heading": 339,
+      "sog": 5.9,
+      "stw": 6.2,
+      "air_pressure": 1015.45,
+      "tws": 12.4,
+      "twd": 304
+    },
+    {
+      "point": {
+        "lat": 65.7231144,
+        "lon": 11.9400771,
+        "time": "2024-08-12 13:00:57+00:00"
+      },
+      "text": "",
+      "fix_type": "GPS",
+      "log": 7864.4,
+      "cog": 229,
+      "heading": 232,
+      "sog": 6.6,
+      "stw": 6.7,
+      "air_pressure": 1015.72,
+      "tws": 9.6,
+      "twd": 286
+    },
+    {
+      "point": {
+        "lat": 65.7130537,
+        "lon": 11.9188522,
+        "time": "2024-08-12 13:15:30+00:00"
+      },
+      "text": "Vega Gardsøya, 1049,0h",
+      "fix_type": "GPS+SBAS/WAAS",
+      "log": 7865.4,
+      "enginehours": 1049.0,
+      "cog": 268,
+      "heading": 186,
+      "sog": 0.1,
+      "stw": 0,
+      "air_pressure": 1015.97,
+      "tws": 7.7,
+      "twd": 302
+    }
+  ]

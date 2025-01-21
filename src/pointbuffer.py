@@ -1,13 +1,14 @@
 # import math
 # from geopy.exc import GeopyError
 from datetime import datetime, timedelta
+from time import sleep
 # from geographiclib.geodesic import Geodesic
 # from geopy.geocoders import Nominatim
 from point4D import Point4d
 import json
 import requests
-import gpxpy
-import gpxpy.gpx
+# import gpxpy
+# import gpxpy.gpx
 
 
 
@@ -42,17 +43,17 @@ class PointBuffer:
         return self.data
     
 
-def get_sog(pointlist, age=0):
+def get_sog(pointlist, age=0, averaging=0):
     lst = pointlist
-    if len(lst) >= age+1:
-        return lst[len(lst)-age-1].getSOG(lst[len(lst)-age-2])
+    if len(lst) >= age + averaging + 1:
+        return lst[len(lst)-age-1].getSOG(lst[len(lst)-age-2-averaging])
     else: 
         return None
 
-def get_cog(pointlist, age=0):
+def get_cog(pointlist, age=0, averaging=0):
     lst = pointlist
-    if len(lst) >= age+1:
-        return lst[len(lst)-age-1].getCOG(lst[len(lst)-age-2])
+    if len(lst) >= age + averaging + 1:
+        return lst[len(lst)-age-1].getCOG(lst[len(lst)-age-2-averaging])
     else: 
         return None
 
@@ -98,14 +99,34 @@ def getSKpoint4D(config):
         timeout=0.1,
         verify=False,
     )
+    hdopresp = requests.get(
+        f"http://{server}/signalk/v1/api/vessels/self/{position}/value",
+        timeout=0.1,
+        verify=False,
+    )
+
     posdata = json.loads(posresp.content)
-    if posdata["latitude"] == 0 and posdata["longitude"] == 0:
+    hdopdata = json.loads(hdopresp.content)
+    if posdata["latitude"] == 0 and posdata["longitude"] == 0 or hdopdata > 5:
         return None
         print("no gps position yet")
     else:
         p = Point4d(time, posdata["latitude"], posdata["longitude"])
         return p
+  
+  
 
+def getStatus(pointlist, status):
+    """ Returns the status of the vessel based on the last points in the pointlist """
+    if len(pointlist) < 3:
+        pass
+    elif get_sog(pointlist, 0, 0) < 0.5 and get_sog(pointlist, 1, 0) < 0.5 and get_sog(pointlist, 2, 0) < 0.5:
+        status = "stopped"
+    elif get_sog(pointlist, 0, 0) >= 0.5 and get_sog(pointlist, 1, 0) >= 0.5 and get_sog(pointlist, 2, 0) >= 0.5:
+        status = "moving"
+    else:
+        pass
+    return status
 
 
 
@@ -117,18 +138,32 @@ if __name__=='__main__':
     p = Point4d(time1, 67.29335, 14.39792)
     x=PointBuffer(6)
     d = 0
-    for i in range(100):
+    stat = "not defined"
+    for i in range(10):
         x.append(p)     
         d = 1/60
         lat = p.lat + d
         lon = p.lon 
-        time = p.time + timedelta(minutes = 60)
-        p = Point4d(time, lat, lon)
+        ptime = p.time + timedelta(minutes = 1)
+        p = Point4d(ptime, lat, lon)
+        stat = getStatus(x.getdata(), stat)
+        print(stat)
+        sleep(1)
+    for i in range(10):
+        x.append(p)     
+        d = 1/60
+        lat = p.lat 
+        lon = p.lon 
+        ptime = p.time + timedelta(minutes = 1)
+        p = Point4d(ptime, lat, lon)
+        stat = getStatus(x.getdata(), stat)
+        print(stat)
+        sleep(1)
 
-    print(x.getdata())
-    print(get_sog(x.getdata(), 4))
-    print(get_sog(x.getdata()))
-    gpxtrack = get_gpx(x.getdata())
-    append_gpx(x.getdata(), gpxtrack)
-    print(gpxtrack.to_xml())
+    # print(x.getdata())
+    # print(get_sog(x.getdata(), 4))
+    # print(get_sog(x.getdata()))
+    # gpxtrack = get_gpx(x.getdata())
+    # append_gpx(x.getdata(), gpxtrack)
+    # print(gpxtrack.to_xml())
 

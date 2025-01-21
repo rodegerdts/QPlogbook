@@ -1,28 +1,39 @@
 from multiprocessing import Value
 import os
-import sys
+import sys, signal
 import yaml
 import orjson
 import math
 import copy
+from datetime import datetime, timezone
+from apscheduler.schedulers.qt import QtScheduler
+
+# import PySide6 modules
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtWidgets import QFileDialog
-from PySide6.QtCore import Qt, QAbstractTableModel
-from datetime import datetime, timezone
-from point4D import Point4d
+from PySide6.QtCore import Qt, QAbstractTableModel, QTimer
 
+# import userinterface
 from ui.QPLmainwindow_ui import Ui_MainWindow
 from ui.Dialog_edit_ui import Ui_EditDialog
 from ui.dialog_choice_ui import Ui_DialogChoice
 from ui.Dialog_settings_ui import Ui_DialogSettings
+
+# import local modules
+from point4D import Point4d
 import SKconnect
 import iofunctions
-
-
+import pointbuffer as pb
 
 
 # Variables:
 conf_file = os.path.dirname(os.path.realpath(__file__)) + "/" + "data/conf.json"
+
+QPlog = []
+
+buffer = pb.PointBuffer(60)
+
+status = "undefined"
 
 currentfile = "/Users/enno/Documents/dev/QPlogbook/src/data/qptestlog.json"
 
@@ -47,8 +58,14 @@ keys_to_head = {
         "crewNames": "Crew",
 }   
 
+
 with open(conf_file, "r") as conffile:
         conf = orjson.loads(conffile.read())
+
+autolog = True if conf["enableauto"] else False
+
+
+# Functions:
 
 def toheaders(conf):
     headers = ["Time", "Position"]
@@ -61,7 +78,6 @@ def h_to_key(head):
 
 # testvariables:
 
-QPlog = []
 QPlog = iofunctions.getQPlog("/Users/enno/Documents/dev/QPlogbook/src/data/qptestlog.json")  
 # QPlog =importandclean.cleanup(QPlog)     
 
@@ -162,6 +178,37 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionAddEntry.triggered.connect(self.addSKentry)
         self.actionDelete_Entry.triggered.connect(self.deleteEntry)
         self.actionSort.triggered.connect(self.sortandclean)
+        self.actionQuit.triggered.connect(app.quit, Qt.QueuedConnection)
+
+        self.actionstartstopp.setChecked(autolog)
+        self.actionstartstopp.toggled.connect(self.toggle_autolog)
+        self.scheduler = QtScheduler()
+        self.scheduler.add_job(self.auto_entry_status, id="track", trigger="cron", second=f"*/{conf['trackinterv']}")
+        self.scheduler.add_job(self.auto_entry, id="entry", trigger="cron", minute=f"*/{conf['loginterv']}")
+        self.scheduler.start()
+
+        self.status_label = QtWidgets.QLabel("Starting up")
+        self.auto_entry_label = QtWidgets.QLabel("Auto Entry: ON")
+        self.statusbar.addWidget(self.status_label)
+        self.statusbar.addPermanentWidget(self.auto_entry_label)
+
+    def closeEvent(self, event):
+        """code to clean up on closing the main window"""
+        cl = self.save_QPlog()
+        if cl == 1:
+            event.ignore()
+        else:
+            event.accept()
+
+    def toggle_autolog(self):
+        """Slot for the actionstartstopp action to toggle the automatic logging"""
+        global autolog
+        autolog = self.actionstartstopp.isChecked()
+        if autolog:
+            self.auto_entry_label.setText("Auto Entry: ON")
+        else:
+            self.auto_entry_label.setText("Auto Entry: OFF")
+        print(autolog)
 
 
     def openDialog(self):
@@ -213,6 +260,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         if choice.do == "overwrite":
                             with open(f"{conf["qplogfolder"]}/{key}.json", "w") as file:
                                 file.write(iofunctions.serialize_log(to_save[key]))
+                            return 0
                         elif choice.do == "merge":
                             with open(f"{conf["qplogfolder"]}/{key}.json", "r") as file:
                                 oldlog = iofunctions.deserialize_log(file.read())
@@ -220,14 +268,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                             oldlog = iofunctions.cleanup(oldlog)
                             with open(f"{conf["qplogfolder"]}/{key}.json", "w") as file:
                                 file.write(iofunctions.serialize_log(oldlog))
+                            return 0
                         elif choice.do == "discard":
-                            pass
+                            return 0
                         elif choice.do == "saveas":
                             self.savename = QFileDialog.getSaveFileName(self, "Save Log", conf["qplogfolder"], "JSON(*.json)")
                             with open(self.savename[0], "w") as file:
                                 file.write(iofunctions.serialize_log(to_save[key]))
                         elif choice.do == "cancel":
-                            pass
+                            return 1
                         else:
                             pass
             except FileNotFoundError:
@@ -274,10 +323,31 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             pass
         del dlg
     
-    def addSKentry(self):
-        """Add a new entry to the logbook with the current values from the SignalK server"""
-        entry = SKconnect.getSKpath(conf)
+    def auto_entry(self):
+        if pb.getStatus(buffer.getdata(), status) == "moving" and autolog:
+            self.addSKentry()
+
+    def auto_entry_status(self):
+        global status
+        old_status = pb.getStatus(buffer.getdata(), status)
+        buffer.append(SKconnect.getSKpoint4D(conf))
+        pointlist = buffer.getdata()
+        status = pb.getStatus(pointlist, status)
+        self.status_label.setText(f" Status: {status}")
+        print(status)
+        if status == "moving" and (old_status == "stopped" or old_status == "undefined"):
+            self.addSKentry(text="moving")
+        elif status == "stopped" and old_status == "moving":
+            self.addSKentry(text="stopped")
+        else:
+            pass
+
+    def addSKentry(self, **kwargs):
+        """Add a new entry to the logbook with the current values from the SignalK server
+        and additional values from the kwargs"""
+        entry = SKconnect.getSKpath(conf)        
         if entry:
+            entry.update(kwargs)
             QPlog.append(entry)
             self.model.layoutChanged.emit()
         else:
@@ -376,6 +446,7 @@ class EditDialog(Ui_EditDialog, QtWidgets.QDialog):
         """Update the dialog with the values from the current entry"""
         if isinstance(self.entry["point"], Point4d):
             self.dateTimeEdit.setDateTime(self.entry["point"].time)
+            print(self.entry["point"].time)
             self.latEdit.setValue(self.entry["point"].lat)
             self.lonEdit.setValue(self.entry["point"].lon)
             st = self.dateTimeEdit.dateTime()
@@ -510,8 +581,8 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.doubleSpinBox_beam.setValue(self.conf["boat"]["beam"])
         self.doubleSpinBox_loa.setValue(self.conf["boat"]["loa"])
         self.doubleSpinBox_draft.setValue(self.conf["boat"]["draft"])
-        self.doubleSpinBox_update_interv.setValue(self.conf["loginterv"])
-        self.doubleSpinBox_track_interv.setValue(self.conf["trackinterv"])
+        self.spinBox_update_interv.setValue(self.conf["loginterv"])
+        self.spinBox_track_interv.setValue(self.conf["trackinterv"])
         self.doubleSpinBox_timeout.setValue(self.conf["servertimeout"])
         self.lineEdit_qplog_dir.setText(self.conf["qplogfolder"])
         self.lineEdit_sklog_dir.setText(self.conf["sklogfolder"])
@@ -579,12 +650,14 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["boat"]["beam"] = self.doubleSpinBox_beam.value()
         self.conf["boat"]["loa"] = self.doubleSpinBox_loa.value()
         self.conf["boat"]["draft"] = self.doubleSpinBox_draft.value()
-        self.conf["loginterv"] = self.doubleSpinBox_update_interv.value()
-        self.conf["trackinterv"] = self.doubleSpinBox_track_interv.value()
+        self.conf["loginterv"] = self.spinBox_update_interv.value()
+        self.conf["trackinterv"] = self.spinBox_track_interv.value()
         self.conf["servertimeout"] = self.doubleSpinBox_timeout.value()
         self.conf["qplogfolder"] = self.lineEdit_qplog_dir.text()
         self.conf["sklogfolder"] = self.lineEdit_sklog_dir.text()
         self.conf["skserver"] = self.lineEdit_server.text()
+
+        window.scheduler.reschedule_job("track", trigger="cron", second=f"*/{conf['trackinterv']}")
 
         self.conf["enableauto"] = self.checkBox_autoentry.isChecked()
         self.conf["enabletracking"] = self.checkBox_tracking.isChecked()
@@ -641,14 +714,51 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         if self.checkBox_s_text.isChecked(): self.conf["showkeys"].append("text")
         self.close()
 
-        
-        
+              
 
     def cancel_edit(self):
         self.close()
 
 
+def save_and_merge():
+    """ Merges the current log into the active Folder and 
+    splits the log into monthly files without user interaction"""
+    to_save = iofunctions.splitmonthly(QPlog)
+    for key in to_save:
+        try:
+            with open(f"{conf["qplogfolder"]}/{key}.json", "r") as file:
+                oldjson = file.read()
+                newjson = iofunctions.serialize_log(to_save[key])
+                if oldjson == newjson:
+                    pass
+                else:               
+                    with open(f"{conf["qplogfolder"]}/{key}.json", "r") as file:
+                        oldlog = iofunctions.deserialize_log(file.read())
+                    oldlog.extend(to_save[key])
+                    oldlog = iofunctions.cleanup(oldlog)
+                    with open(f"{conf["qplogfolder"]}/{key}.json", "w") as file:
+                        file.write(iofunctions.serialize_log(oldlog))
+        except FileNotFoundError:
+            with open(f"{conf["qplogfolder"]}/{key}.json", "w") as file:
+                file.write(iofunctions.serialize_log(to_save[key]))
+
+
+def sig_handler(*args):
+    """Handler for the SIGINT and SIGTERM signals"""
+    save_and_merge()
+    QtWidgets.QApplication.exit()
+
+signal.signal(signal.SIGINT, sig_handler) # Register the handler for the SIGINT signal
+signal.signal(signal.SIGTERM, sig_handler) # Register the handler for the SIGTERM signal
+
+
+# Main Loop:
 app = QtWidgets.QApplication(sys.argv)
+
+# Timer to let the Python interpreter run form time to time to catch signals:
+timer = QTimer()
+timer.start(500)  
+timer.timeout.connect(lambda: None)
 
 window = MainWindow()
 window.show()

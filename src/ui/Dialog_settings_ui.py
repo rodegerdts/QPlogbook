@@ -64,6 +64,7 @@ class Ui_DialogSettings(object):
 
         self.checkBox_autoentry = QCheckBox(self.tab_generel)
         self.checkBox_autoentry.setObjectName(u"checkBox_autoentry")
+        self.checkBox_autoentry.setToolTipDuration(1500)
 
         self.gridLayout_2.addWidget(self.checkBox_autoentry, 4, 2, 1, 1)
 
@@ -80,28 +81,10 @@ class Ui_DialogSettings(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.doubleSpinBox_timeout.sizePolicy().hasHeightForWidth())
         self.doubleSpinBox_timeout.setSizePolicy(sizePolicy1)
+        self.doubleSpinBox_timeout.setSingleStep(0.010000000000000)
         self.doubleSpinBox_timeout.setValue(0.100000000000000)
 
         self.gridLayout_2.addWidget(self.doubleSpinBox_timeout, 6, 1, 1, 1)
-
-        self.doubleSpinBox_update_interv = QDoubleSpinBox(self.tab_generel)
-        self.doubleSpinBox_update_interv.setObjectName(u"doubleSpinBox_update_interv")
-        sizePolicy1.setHeightForWidth(self.doubleSpinBox_update_interv.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox_update_interv.setSizePolicy(sizePolicy1)
-        self.doubleSpinBox_update_interv.setDecimals(1)
-        self.doubleSpinBox_update_interv.setValue(1.000000000000000)
-
-        self.gridLayout_2.addWidget(self.doubleSpinBox_update_interv, 4, 1, 1, 1)
-
-        self.doubleSpinBox_track_interv = QDoubleSpinBox(self.tab_generel)
-        self.doubleSpinBox_track_interv.setObjectName(u"doubleSpinBox_track_interv")
-        sizePolicy1.setHeightForWidth(self.doubleSpinBox_track_interv.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox_track_interv.setSizePolicy(sizePolicy1)
-        self.doubleSpinBox_track_interv.setDecimals(1)
-        self.doubleSpinBox_track_interv.setStepType(QAbstractSpinBox.StepType.AdaptiveDecimalStepType)
-        self.doubleSpinBox_track_interv.setValue(1.000000000000000)
-
-        self.gridLayout_2.addWidget(self.doubleSpinBox_track_interv, 5, 1, 1, 1)
 
         self.label_27 = QLabel(self.tab_generel)
         self.label_27.setObjectName(u"label_27")
@@ -154,6 +137,7 @@ class Ui_DialogSettings(object):
 
         self.checkBox_tracking = QCheckBox(self.tab_generel)
         self.checkBox_tracking.setObjectName(u"checkBox_tracking")
+        self.checkBox_tracking.setToolTipDuration(1500)
 
         self.gridLayout_2.addWidget(self.checkBox_tracking, 5, 2, 1, 1)
 
@@ -216,6 +200,25 @@ class Ui_DialogSettings(object):
 
         self.gridLayout_2.addWidget(self.label_28, 2, 2, 1, 1)
 
+        self.spinBox_update_interv = QSpinBox(self.tab_generel)
+        self.spinBox_update_interv.setObjectName(u"spinBox_update_interv")
+        sizePolicy1.setHeightForWidth(self.spinBox_update_interv.sizePolicy().hasHeightForWidth())
+        self.spinBox_update_interv.setSizePolicy(sizePolicy1)
+        self.spinBox_update_interv.setMinimum(1)
+        self.spinBox_update_interv.setMaximum(24)
+        self.spinBox_update_interv.setSingleStep(0)
+
+        self.gridLayout_2.addWidget(self.spinBox_update_interv, 4, 1, 1, 1)
+
+        self.spinBox_track_interv = QSpinBox(self.tab_generel)
+        self.spinBox_track_interv.setObjectName(u"spinBox_track_interv")
+        sizePolicy1.setHeightForWidth(self.spinBox_track_interv.sizePolicy().hasHeightForWidth())
+        self.spinBox_track_interv.setSizePolicy(sizePolicy1)
+        self.spinBox_track_interv.setMinimum(1)
+        self.spinBox_track_interv.setMaximum(59)
+
+        self.gridLayout_2.addWidget(self.spinBox_track_interv, 5, 1, 1, 1)
+
         self.gridLayout_2.setColumnStretch(0, 3)
         self.gridLayout_2.setColumnStretch(1, 4)
         self.gridLayout_2.setColumnStretch(2, 3)
@@ -234,12 +237,6 @@ class Ui_DialogSettings(object):
         self.gridLayout_3 = QGridLayout()
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(-1, -1, 17, 12)
-        self.lineEdit_sklog_dir = QLineEdit(self.tab_generel)
-        self.lineEdit_sklog_dir.setObjectName(u"lineEdit_sklog_dir")
-        self.lineEdit_sklog_dir.setMinimumSize(QSize(250, 0))
-
-        self.gridLayout_3.addWidget(self.lineEdit_sklog_dir, 4, 1, 1, 1)
-
         self.label_22 = QLabel(self.tab_generel)
         self.label_22.setObjectName(u"label_22")
 
@@ -251,24 +248,30 @@ class Ui_DialogSettings(object):
 
         self.gridLayout_3.addWidget(self.lineEdit_qplog_dir, 1, 1, 1, 1)
 
-        self.label_23 = QLabel(self.tab_generel)
-        self.label_23.setObjectName(u"label_23")
+        self.lineEdit_sklog_dir = QLineEdit(self.tab_generel)
+        self.lineEdit_sklog_dir.setObjectName(u"lineEdit_sklog_dir")
+        self.lineEdit_sklog_dir.setMinimumSize(QSize(250, 0))
 
-        self.gridLayout_3.addWidget(self.label_23, 4, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.lineEdit_sklog_dir, 4, 1, 1, 1)
+
+        self.qplPathButton = QToolButton(self.tab_generel)
+        self.qplPathButton.setObjectName(u"qplPathButton")
+        icon = QIcon()
+        icon.addFile(u":/icons/SVG/document-open.svg", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.qplPathButton.setIcon(icon)
+
+        self.gridLayout_3.addWidget(self.qplPathButton, 1, 2, 1, 1)
 
         self.sklPathButton = QToolButton(self.tab_generel)
         self.sklPathButton.setObjectName(u"sklPathButton")
-        icon = QIcon()
-        icon.addFile(u":/icons/SVG/document-open.svg", QSize(), QIcon.Mode.Normal, QIcon.State.On)
         self.sklPathButton.setIcon(icon)
 
         self.gridLayout_3.addWidget(self.sklPathButton, 4, 2, 1, 1)
 
-        self.qplPathButton = QToolButton(self.tab_generel)
-        self.qplPathButton.setObjectName(u"qplPathButton")
-        self.qplPathButton.setIcon(icon)
+        self.label_23 = QLabel(self.tab_generel)
+        self.label_23.setObjectName(u"label_23")
 
-        self.gridLayout_3.addWidget(self.qplPathButton, 1, 2, 1, 1)
+        self.gridLayout_3.addWidget(self.label_23, 4, 0, 1, 1)
 
 
         self.horizontalLayout.addLayout(self.gridLayout_3)
@@ -688,7 +691,7 @@ class Ui_DialogSettings(object):
         self.buttonBox.accepted.connect(DialogSettings.accept)
         self.buttonBox.rejected.connect(DialogSettings.reject)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(DialogSettings)
@@ -699,24 +702,33 @@ class Ui_DialogSettings(object):
 #if QT_CONFIG(tooltip)
         self.tabWidget.setToolTip("")
 #endif // QT_CONFIG(tooltip)
-        self.label_31.setText(QCoreApplication.translate("DialogSettings", u"Track interval (min):", None))
+        self.label_31.setText(QCoreApplication.translate("DialogSettings", u"Track frequency (min):", None))
+#if QT_CONFIG(tooltip)
+        self.checkBox_autoentry.setToolTip(QCoreApplication.translate("DialogSettings", u"Enable autoentrys at startup", None))
+#endif // QT_CONFIG(tooltip)
         self.checkBox_autoentry.setText(QCoreApplication.translate("DialogSettings", u"Enable autoentrys ", None))
         self.label_25.setText(QCoreApplication.translate("DialogSettings", u"LOA:", None))
         self.label_27.setText(QCoreApplication.translate("DialogSettings", u"Air Hight", None))
         self.label_19.setText(QCoreApplication.translate("DialogSettings", u"Name:", None))
         self.label_21.setText(QCoreApplication.translate("DialogSettings", u"Settings:", None))
         self.label_30.setText(QCoreApplication.translate("DialogSettings", u"Static Boatdata:", None))
+#if QT_CONFIG(tooltip)
+        self.checkBox_tracking.setToolTip(QCoreApplication.translate("DialogSettings", u"Enable tracking at startup", None))
+#endif // QT_CONFIG(tooltip)
         self.checkBox_tracking.setText(QCoreApplication.translate("DialogSettings", u"Enable tracking", None))
-        self.label_29.setText(QCoreApplication.translate("DialogSettings", u"Update interval (hours):", None))
+        self.label_29.setText(QCoreApplication.translate("DialogSettings", u"Entry frequency (hours):", None))
         self.label_20.setText(QCoreApplication.translate("DialogSettings", u"Call Sign:", None))
         self.label_24.setText(QCoreApplication.translate("DialogSettings", u"MMSI:", None))
         self.label_26.setText(QCoreApplication.translate("DialogSettings", u"Draft:", None))
         self.label_32.setText(QCoreApplication.translate("DialogSettings", u"Server timeout (s):", None))
         self.label_28.setText(QCoreApplication.translate("DialogSettings", u"Beam:", None))
+#if QT_CONFIG(tooltip)
+        self.spinBox_update_interv.setToolTip(QCoreApplication.translate("DialogSettings", u"<html><head/><body><p>This is multibles of hours of the day, not a real interval.</p><p>recomended values are 1, 2, 3, 4, 6, 8, 12 and 24</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_22.setText(QCoreApplication.translate("DialogSettings", u"QPlog directory path:", None))
-        self.label_23.setText(QCoreApplication.translate("DialogSettings", u"SK log directory path", None))
-        self.sklPathButton.setText(QCoreApplication.translate("DialogSettings", u"...", None))
         self.qplPathButton.setText(QCoreApplication.translate("DialogSettings", u"...", None))
+        self.sklPathButton.setText(QCoreApplication.translate("DialogSettings", u"...", None))
+        self.label_23.setText(QCoreApplication.translate("DialogSettings", u"SK log directory path", None))
         self.label_33.setText(QCoreApplication.translate("DialogSettings", u"SK server adress:", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_generel), QCoreApplication.translate("DialogSettings", u"Settings", None))
         self.label_5.setText(QCoreApplication.translate("DialogSettings", u"HDOP:", None))
