@@ -5,6 +5,7 @@ from point4D import Point4d
 from datetime import datetime
 from requests.exceptions import ConnectionError
 import pointbuffer as pb
+import os
 
 
 # Global variables and objects:
@@ -20,15 +21,15 @@ def getSKpoint4D(config):
     try:
         timeresp = requests.get(f"http://{server}/signalk/v1/api/vessels/self/{dt}/value", timeout=0.1, verify=False)
         posresp = requests.get(f"http://{server}/signalk/v1/api/vessels/self/{position}/value", timeout=0.1, verify=False)
-    except ConnectionError:
+    except (ConnectionError, requests.exceptions.ReadTimeout):
         print("Network timeout. SKserver not responding or too slow")
         return None
     timedata = json.loads(timeresp.content)
     time = datetime.fromisoformat(timedata)
     posdata = json.loads(posresp.content)
     if posdata["latitude"] == 0 and posdata["longitude"] == 0:
-        return None
         print("no gps position yet")
+        return None
     else:
         p = Point4d(time, posdata["latitude"], posdata["longitude"])
         return p
@@ -87,21 +88,27 @@ def getSKpath(config):
         out["airpressure"] = out["airpressure"]/100
         out["airtemperature"] = out["airtemperature"] - 273.15
         out["datetime"] = datetime.fromisoformat(out["datetime"])
-        point = Point4d(out["datetime"], out["position"]["longitude"], out["position"]["latitude"])
+        point = Point4d(out["datetime"], out["position"]["latitude"], out["position"]["longitude"])
         for key in ["datetime", "position"]:
             out.pop(key)
-        if out["sog"]:
+        if "sog" in out:
             out["sog"] = round(out["sog"] * 1.94384, 1)
-        if out["cog"]:
+        if "cog" in out:
             out["cog"] = round(out["cog"] * 57.2957, 0)
-        if out["stw"]:
+        if "stw" in out:
             out["stw"] = round(out["stw"] * 1.94384, 1)
-        if out["heading"]:
+        if "heading" in out:
             out["heading"] = round(out["heading"] * 57.2957, 0)
-        if out["tws"]:
+        if "tws" in out:
             out["tws"] = round(out["tws"] * 1.94384, 1)
-        if out["twd"]:
+        if "twd" in out:
             out["twd"] = round(out["twd"] * 57.2957, 0)
+        if "airtemperature" in out:
+            out["airtemperature"] = round(out["airtemperature"], 1)
+        if "airpressure" in out:
+            out["airpressure"] = round(out["airpressure"], 1)
+        if "humidity" in out:
+            out["humidity"] = round(out["humidity"] *100, 0)
         nout = {"point": point}
         nout.update(out)
         return nout
@@ -154,7 +161,8 @@ def convertpos(lat, long):
 
 
 if __name__=='__main__':
-    with open("data/conf.json", "r") as f:
+    conf_file = os.path.dirname(os.path.realpath(__file__)) + "/" + "data/conf.json"
+    with open(conf_file, "r") as f:
         conf = json.loads(f.read())
 
     # mytime = getSKtime("192.168.0.70:3000")

@@ -207,7 +207,7 @@
           </widget>
          </item>
          <item row="5" column="2">
-          <widget class="QCheckBox" name="checkBox_tracking">
+          <widget class="QCheckBox" name="checkBox_evententrys">
            <property name="toolTip">
             <string>Enable tracking at startup</string>
            </property>
@@ -215,7 +215,7 @@
             <number>1500</number>
            </property>
            <property name="text">
-            <string>Enable tracking</string>
+            <string>Enable event entrys</string>
            </property>
           </widget>
          </item>

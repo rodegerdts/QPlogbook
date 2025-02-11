@@ -135,11 +135,11 @@ class Ui_DialogSettings(object):
 
         self.gridLayout_2.addWidget(self.doubleSpinBox_hight, 2, 1, 1, 1)
 
-        self.checkBox_tracking = QCheckBox(self.tab_generel)
-        self.checkBox_tracking.setObjectName(u"checkBox_tracking")
-        self.checkBox_tracking.setToolTipDuration(1500)
+        self.checkBox_evententrys = QCheckBox(self.tab_generel)
+        self.checkBox_evententrys.setObjectName(u"checkBox_evententrys")
+        self.checkBox_evententrys.setToolTipDuration(1500)
 
-        self.gridLayout_2.addWidget(self.checkBox_tracking, 5, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.checkBox_evententrys, 5, 2, 1, 1)
 
         self.doubleSpinBox_beam = QDoubleSpinBox(self.tab_generel)
         self.doubleSpinBox_beam.setObjectName(u"doubleSpinBox_beam")
@@ -713,9 +713,9 @@ class Ui_DialogSettings(object):
         self.label_21.setText(QCoreApplication.translate("DialogSettings", u"Settings:", None))
         self.label_30.setText(QCoreApplication.translate("DialogSettings", u"Static Boatdata:", None))
 #if QT_CONFIG(tooltip)
-        self.checkBox_tracking.setToolTip(QCoreApplication.translate("DialogSettings", u"Enable tracking at startup", None))
+        self.checkBox_evententrys.setToolTip(QCoreApplication.translate("DialogSettings", u"Enable tracking at startup", None))
 #endif // QT_CONFIG(tooltip)
-        self.checkBox_tracking.setText(QCoreApplication.translate("DialogSettings", u"Enable tracking", None))
+        self.checkBox_evententrys.setText(QCoreApplication.translate("DialogSettings", u"Enable event entrys", None))
         self.label_29.setText(QCoreApplication.translate("DialogSettings", u"Entry frequency (hours):", None))
         self.label_20.setText(QCoreApplication.translate("DialogSettings", u"Call Sign:", None))
         self.label_24.setText(QCoreApplication.translate("DialogSettings", u"MMSI:", None))

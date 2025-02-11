@@ -76,6 +76,7 @@
    <addaction name="actionAddEntry"/>
    <addaction name="actionDelete_Entry"/>
    <addaction name="actionAstro"/>
+   <addaction name="actionDead_Reconing"/>
    <addaction name="actionPreferences"/>
    <addaction name="actionstartstopp"/>
   </widget>
@@ -260,6 +261,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionDead_Reconing">
+   <property name="icon">
+    <iconset resource="../QPLresources.qrc">
+     <normaloff>:/icons/SVG/deadreconing.svg</normaloff>:/icons/SVG/deadreconing.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Dead Reconing</string>
+   </property>
+   <property name="toolTip">
+    <string>Add new dead reconing position</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>

@@ -362,6 +362,278 @@ z\xd5\xee\xaa8\x07\xc9\xc7g6\x91\x97\xd2\xd3!I\
 ==\xc5\x132\x22\xc8/\x18x}\xf7\xcd\xb1\xdb`\
 \xa88}E>K\xcf\xc6\x07\x1bi\xab\xfb\x01\xff\xb2\
 \xf4?\xff\xf6\xbf\xca+\xca\x1f\
+\x00\x00\x10\xd8\
+<\
+?xml version=\x221.\
+0\x22 encoding=\x22UTF\
+-8\x22 standalone=\x22\
+no\x22?>\x0a<!DOCTYPE \
+svg PUBLIC \x22-//W\
+3C//DTD SVG 1.1/\
+/EN\x22 \x22http://www\
+.w3.org/Graphics\
+/SVG/1.1/DTD/svg\
+11.dtd\x22>\x0a<svg wi\
+dth=\x22100%\x22 heigh\
+t=\x22100%\x22 viewBox\
+=\x220 0 48 48\x22 ver\
+sion=\x221.1\x22 xmlns\
+=\x22http://www.w3.\
+org/2000/svg\x22 xm\
+lns:xlink=\x22http:\
+//www.w3.org/199\
+9/xlink\x22 xml:spa\
+ce=\x22preserve\x22 xm\
+lns:serif=\x22http:\
+//www.serif.com/\
+\x22 style=\x22fill-ru\
+le:evenodd;clip-\
+rule:evenodd;str\
+oke-linecap:roun\
+d;stroke-linejoi\
+n:round;stroke-m\
+iterlimit:10;\x22>\x0a\
+    <g>\x0a        \
+<g id=\x22path8660\x22\
+ transform=\x22matr\
+ix(0.848172,-0.0\
+00736584,0.00134\
+455,1.54825,-6.2\
+2443,-17.7347)\x22>\
+\x0a            <pa\
+th d=\x22M40.482,36\
+.421C40.482,41.0\
+28 33.42,44.818 \
+24.837,44.818C16\
+.255,44.818 9.19\
+2,41.028 9.192,3\
+6.421C9.192,31.8\
+15 16.255,28.024\
+ 24.837,28.024C3\
+3.42,28.024 40.4\
+82,31.815 40.482\
+,36.421Z\x22 style=\
+\x22fill:url(#_Radi\
+al1);\x22/>\x0a       \
+ </g>\x0a        <g\
+ id=\x22Layer-1\x22 se\
+rif:id=\x22Layer 1\x22\
+ transform=\x22matr\
+ix(-0.54006,0.52\
+2,0.250788,0.259\
+465,44.5667,-7.9\
+8327)\x22>\x0a        \
+    <g>\x0a        \
+        <g id=\x22p\
+ath86601\x22 serif:\
+id=\x22path8660\x22 tr\
+ansform=\x22matrix(\
+-1.27119,0,3.528\
+25e-17,1.27119,5\
+8.8564,-15.0049)\
+\x22>\x0a             \
+       <path d=\x22\
+M40.482,36.421C4\
+0.482,41.028 33.\
+42,44.818 24.837\
+,44.818C16.255,4\
+4.818 9.192,41.0\
+28 9.192,36.421C\
+9.192,31.815 16.\
+255,28.024 24.83\
+7,28.024C33.42,2\
+8.024 40.482,31.\
+815 40.482,36.42\
+1Z\x22 style=\x22fill:\
+url(#_Radial2);\x22\
+/>\x0a             \
+   </g>\x0a        \
+        <path id\
+=\x22path8643\x22 d=\x22M\
+39.49,15.497L39.\
+49,32.491L26.538\
+,32.491L26.538,4\
+0.974L6.578,23.9\
+74L26.532,6.73L2\
+6.532,15.502L39.\
+49,15.497Z\x22 styl\
+e=\x22fill:url(#_Ra\
+dial3);stroke:rg\
+b(58,115,4);stro\
+ke-width:1px;\x22/>\
+\x0a               \
+ <path id=\x22path8\
+645\x22 d=\x22M25.988,\
+7.978L25.988,16.\
+034L38.931,16.03\
+4L38.931,24.919C\
+22.181,18.669 22\
+.797,30.214 7.54\
+7,23.964L25.988,\
+7.978Z\x22 style=\x22f\
+ill:url(#_Radial\
+4);\x22/>\x0a         \
+       <path id=\
+\x22path8658\x22 d=\x22M3\
+8.476,16.541L38.\
+476,31.463L25.49\
+,31.463L25.49,38\
+.765L8.168,23.96\
+9L25.506,9.064L2\
+5.506,16.546L38.\
+476,16.541Z\x22 sty\
+le=\x22fill:none;st\
+roke:white;strok\
+e-opacity:0.48;s\
+troke-width:1px;\
+stroke-linecap:b\
+utt;stroke-linej\
+oin:miter;\x22/>\x0a  \
+          </g>\x0a \
+       </g>\x0a    \
+    <g transform\
+=\x22matrix(-1.8109\
+6,1.60744,0.7722\
+77,0.870055,94.8\
+292,-80.1568)\x22>\x0a\
+            <g t\
+ransform=\x22matrix\
+(-0.040695,1.422\
+73,0.683533,0.08\
+47039,27.9996,4.\
+19722)\x22>\x0a       \
+         <path d\
+=\x22M13.788,29.792\
+L15.202,36.711L2\
+2.121,38.125L15.\
+202,39.539L13.78\
+8,46.458L12.374,\
+39.539L5.455,38.\
+125L12.374,36.71\
+1L13.788,29.792Z\
+\x22 style=\x22fill:rg\
+b(17,0,255);\x22/>\x0a\
+                \
+<path d=\x22M13.788\
+,29.792L15.202,3\
+6.711L22.121,38.\
+125L15.202,39.53\
+9L13.788,46.458L\
+12.374,39.539L5.\
+455,38.125L12.37\
+4,36.711L13.788,\
+29.792Z\x22 style=\x22\
+fill:rgb(17,0,25\
+5);\x22/>\x0a         \
+   </g>\x0a        \
+    <g transform\
+=\x22matrix(-0.7622\
+91,1.40835,0.676\
+623,1.58666,37.9\
+78,-44.6754)\x22>\x0a \
+               <\
+path d=\x22M11.053,\
+28.146L12.282,34\
+.161L18.297,35.3\
+9L12.282,36.619L\
+11.053,42.634L9.\
+824,36.619L3.809\
+,35.39L9.824,34.\
+161L11.053,28.14\
+6Z\x22 style=\x22fill:\
+rgb(255,3,3);\x22/>\
+\x0a               \
+ <path d=\x22M11.05\
+3,28.146L12.282,\
+34.161L18.297,35\
+.39L12.282,36.61\
+9L11.053,42.634L\
+9.824,36.619L3.8\
+09,35.39L9.824,3\
+4.161L11.053,28.\
+146Z\x22 style=\x22fil\
+l:rgb(255,3,3);\x22\
+/>\x0a            <\
+/g>\x0a        </g>\
+\x0a    </g>\x0a    <d\
+efs>\x0a        <ra\
+dialGradient id=\
+\x22_Radial1\x22 cx=\x220\
+\x22 cy=\x220\x22 r=\x221\x22 g\
+radientUnits=\x22us\
+erSpaceOnUse\x22 gr\
+adientTransform=\
+\x22matrix(15.6447,\
+0,0,8.39689,24.8\
+371,36.4211)\x22><s\
+top offset=\x220\x22 s\
+tyle=\x22stop-color\
+:black;stop-opac\
+ity:0.3\x22/><stop \
+offset=\x221\x22 style\
+=\x22stop-color:bla\
+ck;stop-opacity:\
+0\x22/></radialGrad\
+ient>\x0a        <r\
+adialGradient id\
+=\x22_Radial2\x22 cx=\x22\
+0\x22 cy=\x220\x22 r=\x221\x22 \
+gradientUnits=\x22u\
+serSpaceOnUse\x22 g\
+radientTransform\
+=\x22matrix(15.6447\
+,0,0,8.39689,24.\
+8371,36.4211)\x22><\
+stop offset=\x220\x22 \
+style=\x22stop-colo\
+r:black;stop-opa\
+city:0.3\x22/><stop\
+ offset=\x221\x22 styl\
+e=\x22stop-color:bl\
+ack;stop-opacity\
+:0\x22/></radialGra\
+dient>\x0a        <\
+radialGradient i\
+d=\x22_Radial3\x22 cx=\
+\x220\x22 cy=\x220\x22 r=\x221\x22\
+ gradientUnits=\x22\
+userSpaceOnUse\x22 \
+gradientTransfor\
+m=\x22matrix(-14.29\
+44,3.17401e-15,3\
+.84097e-15,17.29\
+82,24.7841,34.66\
+42)\x22><stop offse\
+t=\x220\x22 style=\x22sto\
+p-color:rgb(115,\
+210,22);stop-opa\
+city:1\x22/><stop o\
+ffset=\x221\x22 style=\
+\x22stop-color:rgb(\
+78,154,6);stop-o\
+pacity:1\x22/></rad\
+ialGradient>\x0a   \
+     <radialGrad\
+ient id=\x22_Radial\
+4\x22 cx=\x220\x22 cy=\x220\x22\
+ r=\x221\x22 gradientU\
+nits=\x22userSpaceO\
+nUse\x22 gradientTr\
+ansform=\x22matrix(\
+-35.1452,-6.4383\
+e-15,-4.8997e-15\
+,26.7464,16.2709\
+,12.2876)\x22><stop\
+ offset=\x220\x22 styl\
+e=\x22stop-color:wh\
+ite;stop-opacity\
+:0.51\x22/><stop of\
+fset=\x221\x22 style=\x22\
+stop-color:white\
+;stop-opacity:0\x22\
+/></radialGradie\
+nt>\x0a    </defs>\x0a\
+</svg>\x0a\
 \x00\x00\x06O\
 \x00\
 \x00\x15\xa6x\xda\xcdX[o\xdb6\x14~\xdf\xaf\xe0\
@@ -4884,6 +5156,10 @@ qt_resource_name = b"\
 \x06o(\x07\
 \x00s\
 \x00o\x00r\x00t\x00-\x00c\x00l\x00e\x00a\x00n\x00.\x00s\x00v\x00g\
+\x00\x10\
+\x0bG\xb3\xa7\
+\x00d\
+\x00e\x00a\x00d\x00r\x00e\x00c\x00o\x00n\x00i\x00n\x00g\x00.\x00s\x00v\x00g\
 \x00\x0a\
 \x07y\xfc\x07\
 \x00f\
@@ -4941,33 +5217,35 @@ qt_resource_struct = b"\
 \x00\x00\x00\x00\x00\x00\x00\x00\
 \x00\x00\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x02\
 \x00\x00\x00\x00\x00\x00\x00\x00\
-\x00\x00\x00\x10\x00\x02\x00\x00\x00\x0d\x00\x00\x00\x03\
+\x00\x00\x00\x10\x00\x02\x00\x00\x00\x0e\x00\x00\x00\x03\
 \x00\x00\x00\x00\x00\x00\x00\x00\
-\x00\x00\x00~\x00\x01\x00\x00\x00\x01\x00\x000\x91\
+\x00\x00\x00\xa4\x00\x01\x00\x00\x00\x01\x00\x00Am\
 \x00\x00\x01\x93}\xd9 \x1c\
-\x00\x00\x01\x92\x00\x01\x00\x00\x00\x01\x00\x00\xf8\xfe\
+\x00\x00\x01\xb8\x00\x01\x00\x00\x00\x01\x00\x01\x09\xda\
 \x00\x00\x01\x93}\xc5\xa4t\
-\x00\x00\x00\xf8\x00\x01\x00\x00\x00\x01\x00\x00\x9f+\
+\x00\x00\x01\x1e\x00\x01\x00\x00\x00\x01\x00\x00\xb0\x07\
 \x00\x00\x01\x93~h)A\
-\x00\x00\x00\xb6\x00\x01\x00\x00\x00\x01\x00\x00i\xe6\
+\x00\x00\x00\xdc\x00\x01\x00\x00\x00\x01\x00\x00z\xc2\
 \x00\x00\x01\x1e\xb1P\x0c\xa0\
 \x00\x00\x00\x1c\x00\x01\x00\x00\x00\x01\x00\x00\x00\x00\
 \x00\x00\x01\x94B\x1f\xd7*\
-\x00\x00\x00X\x00\x00\x00\x00\x00\x01\x00\x00\x1cq\
+\x00\x00\x00~\x00\x00\x00\x00\x00\x01\x00\x00-M\
 \x00\x00\x01\x93~\xb2\x1e\x08\
-\x00\x00\x01\xc4\x00\x01\x00\x00\x00\x01\x00\x01\x02s\
+\x00\x00\x01\xea\x00\x01\x00\x00\x00\x01\x00\x01\x13O\
 \x00\x00\x01\x93~\x9a\x14y\
-\x00\x00\x00>\x00\x01\x00\x00\x00\x01\x00\x00\x16\x1e\
+\x00\x00\x00d\x00\x01\x00\x00\x00\x01\x00\x00&\xfa\
 \x00\x00\x01\x93~e\xf9\x19\
-\x00\x00\x00\xa0\x00\x01\x00\x00\x00\x01\x00\x00\x5c\xda\
+\x00\x00\x00\xc6\x00\x01\x00\x00\x00\x01\x00\x00m\xb6\
 \x00\x00\x01\x93}\xb9\x02\xe6\
-\x00\x00\x00\xd8\x00\x01\x00\x00\x00\x01\x00\x00t\xf3\
+\x00\x00\x00>\x00\x00\x00\x00\x00\x01\x00\x00\x16\x1e\
+\x00\x00\x01\x94\xf1+\xda\x92\
+\x00\x00\x00\xfe\x00\x01\x00\x00\x00\x01\x00\x00\x85\xcf\
 \x00\x00\x01\x93~\x0bG\xae\
-\x00\x00\x01l\x00\x00\x00\x00\x00\x01\x00\x00\xe8]\
+\x00\x00\x01\x92\x00\x00\x00\x00\x00\x01\x00\x00\xf99\
 \x00\x00\x01\x94=)\x13m\
-\x00\x00\x01 \x00\x01\x00\x00\x00\x01\x00\x00\xa9Q\
+\x00\x00\x01F\x00\x01\x00\x00\x00\x01\x00\x00\xba-\
 \x00\x00\x01\x93\x82+\xe7\x94\
-\x00\x00\x01F\x00\x01\x00\x00\x00\x01\x00\x00\xd5\xd6\
+\x00\x00\x01l\x00\x01\x00\x00\x00\x01\x00\x00\xe6\xb2\
 \x00\x00\x01\x94=<j\x1c\
 "
 

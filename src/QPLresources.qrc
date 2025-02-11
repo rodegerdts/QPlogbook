@@ -1,5 +1,6 @@
 <RCC>
   <qresource>
+    <file>icons/SVG/deadreconing.svg</file>
     <file>icons/SVG/button-green.svg</file>
     <file>icons/SVG/sort-clean.svg</file>
     <file>icons/SVG/button-red.svg</file>

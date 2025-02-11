@@ -98,6 +98,9 @@ class Point4d:
         def DgMi(decdeg): #convert decimal deg. to deg. decimal min. as found in the nautical almanac
             deg = math.trunc(decdeg)
             decmin = round(abs((decdeg - deg)*60), 1)
+            if decmin == 60.0:
+                deg += 1
+                decmin = 0.0
             return str(deg) + "°" + str(decmin) + "′"
 
         if self.lon < 0 :
