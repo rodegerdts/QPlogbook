@@ -77,9 +77,9 @@ def dr_pos(sog, cog, t1, t2, lat, lon):
     #print(f"d_lat:{math.degrees(d_lat)}")
     d_lon = math.radians(d/60) * math.sin(cog) / math.cos(lat)
     #print(f"d_lon:{math.degrees(d_lon)}")
-    lat += d_lat
-    lon += d_lon
-    return (math.degrees(lat), math.degrees(lon))
+    lat_out = d_lat + lat
+    lon_out = d_lon + lon
+    return (math.degrees(lat_out), math.degrees(lon_out))
 
 
 def corrections(Hs, hoe=0, temp=15, press=1013, ie=0):
@@ -301,7 +301,7 @@ class SightsModel(QAbstractListModel):
 
 
 class CelNavUi(QWidget, Ui_CelNavigation):
-    def __init__(self, log=None, logmodel=None, lastpoint=None):
+    def __init__(self, log=None, logmodel=None, lastpoint=None, indexerror=0, hoe=0):
         super().__init__()
         self.setupUi(self)
         self.sights = []
@@ -311,12 +311,15 @@ class CelNavUi(QWidget, Ui_CelNavigation):
         self.sights_model = SightsModel(self.sights)
         self.listView_sights.setModel(self.sights_model)
         self.log = log
-        self.indexerror = 0
+        self.indexerror = indexerror
         self.pressure = 1013.25
         self.temperature = 15
-        self.hoe = 0
+        self.hoe = hoe
         self.logmodel = logmodel
         self.lastpoint = lastpoint
+
+        self.doubleSpinBox_indexerror.setValue(self.indexerror)
+        self.doubleSpinBox_hoe.setValue(self.hoe)
 
         self.button_new.clicked.connect(self.new_sight)
         self.button_calculateFix.clicked.connect(self.calculate_fix)

@@ -7,6 +7,7 @@ import math
 import copy
 from datetime import datetime, timezone
 from apscheduler.schedulers.qt import QtScheduler
+from glob import glob
 
 # import PySide6 modules
 from PySide6 import QtWidgets, QtGui
@@ -25,6 +26,7 @@ import SKconnect
 import iofunctions
 import pointbuffer as pb
 import celnav as cn
+import deadreconing as dr
 
 
 # Variables:
@@ -35,8 +37,6 @@ QPlog = []
 buffer = pb.PointBuffer(15)
 
 status = "undefined"
-
-currentfile = "/Users/enno/Documents/dev/QPlogbook/src/data/qptestlog.json"
 
 keys_to_head = {
         "log": "Log\n(nm)",
@@ -63,12 +63,24 @@ keys_to_head = {
 with open(conf_file, "r") as conffile:
         conf = orjson.loads(conffile.read())
 
-QPlog_folder = conf["qplogfolder"]
+def loadlastlog(logdir):
+    """Load log files from the 2 most recent mobths in the log directory if they exist"""
+    loglist = glob(f"{logdir}/*.json")
+    loglist.sort()
+    if len(loglist) == 0:
+        return []
+    elif len(loglist) == 1:
+        return iofunctions.getQPlog(loglist[0])
+    else:
+        lastlog = iofunctions.getQPlog(loglist[len(loglist)-1])
+        lastlog.extend(iofunctions.getQPlog(loglist[len(loglist)-2]))
+        iofunctions.cleanup(lastlog)
+        return lastlog
 
 
-autolog = conf["enableauto"] 
+
 eventlog = conf["enableeventlog"]
-auto_on = True
+auto_on = not(conf["manualmode"])
 
 # Functions:
 
@@ -82,9 +94,9 @@ def h_to_key(head):
     head_to_key = {v: k for k, v in keys_to_head.items()}
 
 # testvariables:
+  
 
-QPlog = iofunctions.getQPlog("/Users/enno/Documents/dev/QPlogbook/src/data/qptestlog.json")  
-# QPlog =importandclean.cleanup(QPlog)     
+QPlog = loadlastlog(conf["qplogfolder"])
 
 
 # Qt Mainwindow and Model:
@@ -183,14 +195,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionAddEntry.triggered.connect(self.addSKentry)
         self.actionDelete_Entry.triggered.connect(self.deleteEntry)
         self.actionSort.triggered.connect(self.sortandclean)
+        self.actionDeadReconing.triggered.connect(self.openDR)
         self.actionAstro.triggered.connect(self.openCelNav)
         self.actionQuit.triggered.connect(app.quit, Qt.QueuedConnection)
 
         self.actionstartstopp.setChecked(auto_on)
         self.actionstartstopp.toggled.connect(self.toggle_autolog)
         self.scheduler = QtScheduler()
-        self.scheduler.add_job(self.auto_entry_status, id="track", trigger="cron", second=f"*/{conf['trackinterv']}")
-        self.scheduler.add_job(self.auto_entry, id="entry", trigger="cron", minute=f"*/{conf['loginterv']}")
+        self.scheduler.add_job(self.auto_entry_status, id="track", trigger="cron", minute=f"*/{conf['trackinterv']}")
+        self.scheduler.add_job(self.auto_entry, id="entry", trigger="cron", hour=f"*/{conf['loginterv']}")
         self.scheduler.start()
 
         self.status_label = QtWidgets.QLabel("Starting up")
@@ -241,10 +254,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.model.layoutChanged.emit() 
 
 
+    def openDR(self):
+        """Open the Dead Reckoning Dialog"""
+        self.sortandclean()
+        point = QPlog[len(QPlog)-1]["point"]
+        dr_dlg = dr.DeadReckoning(self, point)
+        if dr_dlg.exec() == QtWidgets.QDialog.Accepted:
+            new_entry = dr_dlg.get_entry()
+            QPlog.append(new_entry)
+            self.model.layoutChanged.emit()
+        else:
+            pass
+
+
+
     def openCelNav(self, checked):
         """Open the CelNav Window"""
         if self.cellnav_window is None:
-            self.cellnav_window = cn.CelNavUi(QPlog, self.model, QPlog[len(QPlog)-1]["point"])
+            self.cellnav_window = cn.CelNavUi(QPlog, self.model, QPlog[len(QPlog)-1]["point"], conf["indexerror"], conf["hightofeye"])
             self.cellnav_window.show()
         else:
             self.cellnav_window.close()
@@ -339,24 +366,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     def auto_entry(self):
         """Add a new entry to the logbook in regular interfals"""
-        if pb.getStatus(buffer.getdata(), status) == "moving" and autolog:
-            self.addSKentry(status="auto")
+        if auto_on and conf["enableauto"]:
+            if pb.getStatus(buffer.getdata(), status) == "moving":
+                self.addSKentry(status="auto")
 
     def auto_entry_status(self):
         """Add a new entry to the logbook when navigation status changes"""
-        global status
-        old_status = pb.getStatus(buffer.getdata(), status)
-        buffer.append(SKconnect.getSKpoint4D(conf))
-        pointlist = buffer.getdata()
-        status = pb.getStatus(pointlist, status)
-        self.status_label.setText(f" Status: {status}")
-        print(status)
-        if status == "moving" and eventlog and auto_on and (old_status == "stopped" or old_status == "undefined"):
-            pt = pointlist[len(pointlist)-5]
-            self.addSKentry(status="moving", point=pt, text=pt.getplace())
-        elif status == "stopped" and old_status == "moving" and eventlog and auto_on:
-            pt = pointlist[len(pointlist)-1]
-            self.addSKentry(status="stopped", text=pt.getplace())
+        if conf["enableeventlog"] and auto_on:
+            global status
+            old_status = pb.getStatus(buffer.getdata(), status)
+            buffer.append(SKconnect.getSKpoint4D(conf))
+            pointlist = buffer.getdata()
+            status = pb.getStatus(pointlist, status)
+            self.status_label.setText(f" Status: {status}")
+            #print(status)
+            if status == "moving" and (old_status == "stopped" or old_status == "undefined"):
+                pt = pointlist[len(pointlist)-5]
+                self.addSKentry(status="moving", point=pt, text=pt.getplace())
+            elif status == "stopped" and old_status == "moving":
+                pt = pointlist[len(pointlist)-1]
+                self.addSKentry(status="stopped", text=pt.getplace())
+            else:
+                pass
         else:
             pass
 
@@ -605,9 +636,12 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.lineEdit_qplog_dir.setText(self.conf["qplogfolder"])
         self.lineEdit_sklog_dir.setText(self.conf["sklogfolder"])
         self.lineEdit_server.setText(self.conf["skserver"])
+        self.doubleSpinBox_indexerror.setValue(self.conf["indexerror"])
+        self.doubleSpinBox_hoe.setValue(self.conf["hightofeye"])
 
         self.checkBox_autoentry.setChecked(self.conf["enableauto"])
         self.checkBox_evententrys.setChecked(self.conf["enableeventlog"])
+        self.checkBox_manualmode.setChecked(self.conf["manualmode"])
 
         self.lineEdit_datetime.setText(self.conf["path"]["datetime"])
         self.lineEdit_position.setText(self.conf["path"]["position"])
@@ -674,11 +708,14 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["qplogfolder"] = self.lineEdit_qplog_dir.text()
         self.conf["sklogfolder"] = self.lineEdit_sklog_dir.text()
         self.conf["skserver"] = self.lineEdit_server.text()
+        self.conf["indexerror"] = self.doubleSpinBox_indexerror.value()
+        self.conf["hightofeye"] = self.doubleSpinBox_hoe.value()
 
         m_window.scheduler.reschedule_job("track", trigger="cron", second=f"*/{conf['trackinterv']}")
 
         self.conf["enableauto"] = self.checkBox_autoentry.isChecked()
         self.conf["enableeventlog"] = self.checkBox_evententrys.isChecked()
+        self.conf["manualmode"] = self.checkBox_manualmode.isChecked()
 
         self.conf["path"]["datetime"] = self.lineEdit_datetime.text()
         self.conf["path"]["position"] = self.lineEdit_position.text()

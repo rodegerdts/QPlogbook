@@ -34,7 +34,8 @@ class Point4d:
         """Substraction of two points retuns a tuple with dist. in meter and timedelta."""
         self.g = geod.Inverse(self.lat, self.lon, other.lat, other.lon) 
         dist = self.g["s12"]
-        return (dist, abs(self.time - other.time))
+        cog = self.g['azi1']
+        return (dist, abs(self.time - other.time), cog)
 
     def update(self, time, lat, lon):        
         self.time = time

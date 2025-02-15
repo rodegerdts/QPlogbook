@@ -17,7 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QAbstractSpinBox, QApplication, QCheckBox,
     QDialog, QDialogButtonBox, QDoubleSpinBox, QFormLayout,
-    QGridLayout, QHBoxLayout, QLabel, QLayout,
+    QGridLayout, QGroupBox, QHBoxLayout, QLabel,
     QLineEdit, QSizePolicy, QSpinBox, QTabWidget,
     QToolButton, QVBoxLayout, QWidget)
 import QPLresources_rc
@@ -26,9 +26,16 @@ class Ui_DialogSettings(object):
     def setupUi(self, DialogSettings):
         if not DialogSettings.objectName():
             DialogSettings.setObjectName(u"DialogSettings")
-        DialogSettings.resize(930, 602)
-        self.verticalLayout = QVBoxLayout(DialogSettings)
-        self.verticalLayout.setObjectName(u"verticalLayout")
+        DialogSettings.resize(907, 602)
+        self.gridLayout_2 = QGridLayout(DialogSettings)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.buttonBox = QDialogButtonBox(DialogSettings)
+        self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setOrientation(Qt.Orientation.Horizontal)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
+
+        self.gridLayout_2.addWidget(self.buttonBox, 2, 0, 1, 1)
+
         self.tabWidget = QTabWidget(DialogSettings)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setToolTipDuration(-1)
@@ -36,256 +43,249 @@ class Ui_DialogSettings(object):
         self.tab_generel.setObjectName(u"tab_generel")
         self.verticalLayout_3 = QVBoxLayout(self.tab_generel)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.gridLayout_2 = QGridLayout()
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.gridLayout_2.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
-        self.gridLayout_2.setHorizontalSpacing(0)
-        self.gridLayout_2.setContentsMargins(-1, -1, 0, 0)
-        self.label_31 = QLabel(self.tab_generel)
-        self.label_31.setObjectName(u"label_31")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_31.sizePolicy().hasHeightForWidth())
-        self.label_31.setSizePolicy(sizePolicy)
-        self.label_31.setMaximumSize(QSize(16777215, 40))
-        self.label_31.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+        self.gridLayout_3 = QGridLayout()
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.groupBox = QGroupBox(self.tab_generel)
+        self.groupBox.setObjectName(u"groupBox")
+        self.formLayout_2 = QFormLayout(self.groupBox)
+        self.formLayout_2.setObjectName(u"formLayout_2")
+        self.label_19 = QLabel(self.groupBox)
+        self.label_19.setObjectName(u"label_19")
+        self.label_19.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout_2.addWidget(self.label_31, 5, 0, 1, 1)
+        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.label_19)
 
-        self.spinBox_mmsi = QSpinBox(self.tab_generel)
+        self.lineEdit_name = QLineEdit(self.groupBox)
+        self.lineEdit_name.setObjectName(u"lineEdit_name")
+
+        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.lineEdit_name)
+
+        self.label_20 = QLabel(self.groupBox)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.formLayout_2.setWidget(1, QFormLayout.LabelRole, self.label_20)
+
+        self.lineEdit_call_sign = QLineEdit(self.groupBox)
+        self.lineEdit_call_sign.setObjectName(u"lineEdit_call_sign")
+
+        self.formLayout_2.setWidget(1, QFormLayout.FieldRole, self.lineEdit_call_sign)
+
+        self.label_24 = QLabel(self.groupBox)
+        self.label_24.setObjectName(u"label_24")
+        self.label_24.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.label_24)
+
+        self.spinBox_mmsi = QSpinBox(self.groupBox)
         self.spinBox_mmsi.setObjectName(u"spinBox_mmsi")
         self.spinBox_mmsi.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.spinBox_mmsi.setMinimum(100000000)
         self.spinBox_mmsi.setMaximum(999999999)
         self.spinBox_mmsi.setSingleStep(1)
 
-        self.gridLayout_2.addWidget(self.spinBox_mmsi, 1, 5, 1, 1)
+        self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.spinBox_mmsi)
 
-        self.checkBox_autoentry = QCheckBox(self.tab_generel)
-        self.checkBox_autoentry.setObjectName(u"checkBox_autoentry")
-        self.checkBox_autoentry.setToolTipDuration(1500)
-
-        self.gridLayout_2.addWidget(self.checkBox_autoentry, 4, 2, 1, 1)
-
-        self.label_25 = QLabel(self.tab_generel)
-        self.label_25.setObjectName(u"label_25")
-        self.label_25.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_25, 2, 4, 1, 1)
-
-        self.doubleSpinBox_timeout = QDoubleSpinBox(self.tab_generel)
-        self.doubleSpinBox_timeout.setObjectName(u"doubleSpinBox_timeout")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.doubleSpinBox_timeout.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox_timeout.setSizePolicy(sizePolicy1)
-        self.doubleSpinBox_timeout.setSingleStep(0.010000000000000)
-        self.doubleSpinBox_timeout.setValue(0.100000000000000)
-
-        self.gridLayout_2.addWidget(self.doubleSpinBox_timeout, 6, 1, 1, 1)
-
-        self.label_27 = QLabel(self.tab_generel)
+        self.label_27 = QLabel(self.groupBox)
         self.label_27.setObjectName(u"label_27")
         self.label_27.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout_2.addWidget(self.label_27, 2, 0, 1, 1)
+        self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.label_27)
 
-        self.doubleSpinBox_loa = QDoubleSpinBox(self.tab_generel)
-        self.doubleSpinBox_loa.setObjectName(u"doubleSpinBox_loa")
-        sizePolicy1.setHeightForWidth(self.doubleSpinBox_loa.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox_loa.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_2.addWidget(self.doubleSpinBox_loa, 2, 5, 1, 1)
-
-        self.label_19 = QLabel(self.tab_generel)
-        self.label_19.setObjectName(u"label_19")
-        self.label_19.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_19, 1, 0, 1, 1)
-
-        self.doubleSpinBox_draft = QDoubleSpinBox(self.tab_generel)
-        self.doubleSpinBox_draft.setObjectName(u"doubleSpinBox_draft")
-        sizePolicy1.setHeightForWidth(self.doubleSpinBox_draft.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox_draft.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_2.addWidget(self.doubleSpinBox_draft, 2, 7, 1, 1)
-
-        self.label_21 = QLabel(self.tab_generel)
-        self.label_21.setObjectName(u"label_21")
-        sizePolicy.setHeightForWidth(self.label_21.sizePolicy().hasHeightForWidth())
-        self.label_21.setSizePolicy(sizePolicy)
-        self.label_21.setMaximumSize(QSize(16777215, 40))
-        self.label_21.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing)
-
-        self.gridLayout_2.addWidget(self.label_21, 3, 0, 1, 1)
-
-        self.label_30 = QLabel(self.tab_generel)
-        self.label_30.setObjectName(u"label_30")
-        sizePolicy1.setHeightForWidth(self.label_30.sizePolicy().hasHeightForWidth())
-        self.label_30.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_2.addWidget(self.label_30, 0, 1, 1, 1)
-
-        self.doubleSpinBox_hight = QDoubleSpinBox(self.tab_generel)
+        self.doubleSpinBox_hight = QDoubleSpinBox(self.groupBox)
         self.doubleSpinBox_hight.setObjectName(u"doubleSpinBox_hight")
-        sizePolicy1.setHeightForWidth(self.doubleSpinBox_hight.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox_hight.setSizePolicy(sizePolicy1)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.doubleSpinBox_hight.sizePolicy().hasHeightForWidth())
+        self.doubleSpinBox_hight.setSizePolicy(sizePolicy)
 
-        self.gridLayout_2.addWidget(self.doubleSpinBox_hight, 2, 1, 1, 1)
+        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.doubleSpinBox_hight)
 
-        self.checkBox_evententrys = QCheckBox(self.tab_generel)
-        self.checkBox_evententrys.setObjectName(u"checkBox_evententrys")
-        self.checkBox_evententrys.setToolTipDuration(1500)
-
-        self.gridLayout_2.addWidget(self.checkBox_evententrys, 5, 2, 1, 1)
-
-        self.doubleSpinBox_beam = QDoubleSpinBox(self.tab_generel)
-        self.doubleSpinBox_beam.setObjectName(u"doubleSpinBox_beam")
-        sizePolicy1.setHeightForWidth(self.doubleSpinBox_beam.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox_beam.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_2.addWidget(self.doubleSpinBox_beam, 2, 3, 1, 1)
-
-        self.label_29 = QLabel(self.tab_generel)
-        self.label_29.setObjectName(u"label_29")
-        sizePolicy.setHeightForWidth(self.label_29.sizePolicy().hasHeightForWidth())
-        self.label_29.setSizePolicy(sizePolicy)
-        self.label_29.setMaximumSize(QSize(16777215, 40))
-        self.label_29.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_29, 4, 0, 1, 1)
-
-        self.label_20 = QLabel(self.tab_generel)
-        self.label_20.setObjectName(u"label_20")
-        self.label_20.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_20, 1, 2, 1, 1)
-
-        self.label_24 = QLabel(self.tab_generel)
-        self.label_24.setObjectName(u"label_24")
-        self.label_24.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_24, 1, 4, 1, 1)
-
-        self.label_26 = QLabel(self.tab_generel)
-        self.label_26.setObjectName(u"label_26")
-        self.label_26.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_26, 2, 6, 1, 1)
-
-        self.label_32 = QLabel(self.tab_generel)
-        self.label_32.setObjectName(u"label_32")
-        sizePolicy.setHeightForWidth(self.label_32.sizePolicy().hasHeightForWidth())
-        self.label_32.setSizePolicy(sizePolicy)
-        self.label_32.setMaximumSize(QSize(16777215, 40))
-        self.label_32.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_32, 6, 0, 1, 1)
-
-        self.lineEdit_name = QLineEdit(self.tab_generel)
-        self.lineEdit_name.setObjectName(u"lineEdit_name")
-
-        self.gridLayout_2.addWidget(self.lineEdit_name, 1, 1, 1, 1)
-
-        self.lineEdit_call_sign = QLineEdit(self.tab_generel)
-        self.lineEdit_call_sign.setObjectName(u"lineEdit_call_sign")
-
-        self.gridLayout_2.addWidget(self.lineEdit_call_sign, 1, 3, 1, 1)
-
-        self.label_28 = QLabel(self.tab_generel)
+        self.label_28 = QLabel(self.groupBox)
         self.label_28.setObjectName(u"label_28")
         self.label_28.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout_2.addWidget(self.label_28, 2, 2, 1, 1)
+        self.formLayout_2.setWidget(4, QFormLayout.LabelRole, self.label_28)
 
-        self.spinBox_update_interv = QSpinBox(self.tab_generel)
+        self.doubleSpinBox_beam = QDoubleSpinBox(self.groupBox)
+        self.doubleSpinBox_beam.setObjectName(u"doubleSpinBox_beam")
+        sizePolicy.setHeightForWidth(self.doubleSpinBox_beam.sizePolicy().hasHeightForWidth())
+        self.doubleSpinBox_beam.setSizePolicy(sizePolicy)
+
+        self.formLayout_2.setWidget(4, QFormLayout.FieldRole, self.doubleSpinBox_beam)
+
+        self.label_25 = QLabel(self.groupBox)
+        self.label_25.setObjectName(u"label_25")
+        self.label_25.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.formLayout_2.setWidget(5, QFormLayout.LabelRole, self.label_25)
+
+        self.doubleSpinBox_loa = QDoubleSpinBox(self.groupBox)
+        self.doubleSpinBox_loa.setObjectName(u"doubleSpinBox_loa")
+        sizePolicy.setHeightForWidth(self.doubleSpinBox_loa.sizePolicy().hasHeightForWidth())
+        self.doubleSpinBox_loa.setSizePolicy(sizePolicy)
+
+        self.formLayout_2.setWidget(5, QFormLayout.FieldRole, self.doubleSpinBox_loa)
+
+        self.label_26 = QLabel(self.groupBox)
+        self.label_26.setObjectName(u"label_26")
+        self.label_26.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.formLayout_2.setWidget(6, QFormLayout.LabelRole, self.label_26)
+
+        self.doubleSpinBox_draft = QDoubleSpinBox(self.groupBox)
+        self.doubleSpinBox_draft.setObjectName(u"doubleSpinBox_draft")
+        sizePolicy.setHeightForWidth(self.doubleSpinBox_draft.sizePolicy().hasHeightForWidth())
+        self.doubleSpinBox_draft.setSizePolicy(sizePolicy)
+
+        self.formLayout_2.setWidget(6, QFormLayout.FieldRole, self.doubleSpinBox_draft)
+
+
+        self.gridLayout_3.addWidget(self.groupBox, 0, 1, 1, 1)
+
+        self.groupBox_3 = QGroupBox(self.tab_generel)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.formLayout = QFormLayout(self.groupBox_3)
+        self.formLayout.setObjectName(u"formLayout")
+        self.label_29 = QLabel(self.groupBox_3)
+        self.label_29.setObjectName(u"label_29")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label_29.sizePolicy().hasHeightForWidth())
+        self.label_29.setSizePolicy(sizePolicy1)
+        self.label_29.setMaximumSize(QSize(16777215, 40))
+        self.label_29.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_29)
+
+        self.spinBox_update_interv = QSpinBox(self.groupBox_3)
         self.spinBox_update_interv.setObjectName(u"spinBox_update_interv")
-        sizePolicy1.setHeightForWidth(self.spinBox_update_interv.sizePolicy().hasHeightForWidth())
-        self.spinBox_update_interv.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.spinBox_update_interv.sizePolicy().hasHeightForWidth())
+        self.spinBox_update_interv.setSizePolicy(sizePolicy)
         self.spinBox_update_interv.setMinimum(1)
         self.spinBox_update_interv.setMaximum(24)
         self.spinBox_update_interv.setSingleStep(0)
 
-        self.gridLayout_2.addWidget(self.spinBox_update_interv, 4, 1, 1, 1)
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.spinBox_update_interv)
 
-        self.spinBox_track_interv = QSpinBox(self.tab_generel)
+        self.label_31 = QLabel(self.groupBox_3)
+        self.label_31.setObjectName(u"label_31")
+        sizePolicy1.setHeightForWidth(self.label_31.sizePolicy().hasHeightForWidth())
+        self.label_31.setSizePolicy(sizePolicy1)
+        self.label_31.setMaximumSize(QSize(16777215, 40))
+        self.label_31.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_31)
+
+        self.spinBox_track_interv = QSpinBox(self.groupBox_3)
         self.spinBox_track_interv.setObjectName(u"spinBox_track_interv")
-        sizePolicy1.setHeightForWidth(self.spinBox_track_interv.sizePolicy().hasHeightForWidth())
-        self.spinBox_track_interv.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.spinBox_track_interv.sizePolicy().hasHeightForWidth())
+        self.spinBox_track_interv.setSizePolicy(sizePolicy)
         self.spinBox_track_interv.setMinimum(1)
         self.spinBox_track_interv.setMaximum(59)
 
-        self.gridLayout_2.addWidget(self.spinBox_track_interv, 5, 1, 1, 1)
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.spinBox_track_interv)
 
-        self.gridLayout_2.setColumnStretch(0, 3)
-        self.gridLayout_2.setColumnStretch(1, 4)
-        self.gridLayout_2.setColumnStretch(2, 3)
-        self.gridLayout_2.setColumnStretch(3, 3)
-        self.gridLayout_2.setColumnStretch(4, 3)
-        self.gridLayout_2.setColumnStretch(5, 4)
-        self.gridLayout_2.setColumnStretch(6, 3)
-        self.gridLayout_2.setColumnStretch(7, 3)
+        self.label_32 = QLabel(self.groupBox_3)
+        self.label_32.setObjectName(u"label_32")
+        sizePolicy1.setHeightForWidth(self.label_32.sizePolicy().hasHeightForWidth())
+        self.label_32.setSizePolicy(sizePolicy1)
+        self.label_32.setMaximumSize(QSize(16777215, 40))
+        self.label_32.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.verticalLayout_3.addLayout(self.gridLayout_2)
+        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_32)
 
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setSpacing(12)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, -1, -1, -1)
-        self.gridLayout_3 = QGridLayout()
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.gridLayout_3.setContentsMargins(-1, -1, 17, 12)
-        self.label_22 = QLabel(self.tab_generel)
+        self.doubleSpinBox_timeout = QDoubleSpinBox(self.groupBox_3)
+        self.doubleSpinBox_timeout.setObjectName(u"doubleSpinBox_timeout")
+        sizePolicy.setHeightForWidth(self.doubleSpinBox_timeout.sizePolicy().hasHeightForWidth())
+        self.doubleSpinBox_timeout.setSizePolicy(sizePolicy)
+        self.doubleSpinBox_timeout.setSingleStep(0.010000000000000)
+        self.doubleSpinBox_timeout.setValue(0.100000000000000)
+
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.doubleSpinBox_timeout)
+
+        self.checkBox_autoentry = QCheckBox(self.groupBox_3)
+        self.checkBox_autoentry.setObjectName(u"checkBox_autoentry")
+        self.checkBox_autoentry.setToolTipDuration(1500)
+
+        self.formLayout.setWidget(5, QFormLayout.LabelRole, self.checkBox_autoentry)
+
+        self.checkBox_evententrys = QCheckBox(self.groupBox_3)
+        self.checkBox_evententrys.setObjectName(u"checkBox_evententrys")
+        self.checkBox_evententrys.setToolTipDuration(1500)
+
+        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.checkBox_evententrys)
+
+        self.checkBox_manualmode = QCheckBox(self.groupBox_3)
+        self.checkBox_manualmode.setObjectName(u"checkBox_manualmode")
+
+        self.formLayout.setWidget(6, QFormLayout.LabelRole, self.checkBox_manualmode)
+
+
+        self.gridLayout_3.addWidget(self.groupBox_3, 1, 2, 1, 1)
+
+        self.groupBox_2 = QGroupBox(self.tab_generel)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.formLayout_3 = QFormLayout(self.groupBox_2)
+        self.formLayout_3.setObjectName(u"formLayout_3")
+        self.label_22 = QLabel(self.groupBox_2)
         self.label_22.setObjectName(u"label_22")
 
-        self.gridLayout_3.addWidget(self.label_22, 1, 0, 1, 1)
+        self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.label_22)
 
-        self.lineEdit_qplog_dir = QLineEdit(self.tab_generel)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.lineEdit_qplog_dir = QLineEdit(self.groupBox_2)
         self.lineEdit_qplog_dir.setObjectName(u"lineEdit_qplog_dir")
         self.lineEdit_qplog_dir.setMinimumSize(QSize(250, 0))
 
-        self.gridLayout_3.addWidget(self.lineEdit_qplog_dir, 1, 1, 1, 1)
+        self.horizontalLayout_2.addWidget(self.lineEdit_qplog_dir)
 
-        self.lineEdit_sklog_dir = QLineEdit(self.tab_generel)
-        self.lineEdit_sklog_dir.setObjectName(u"lineEdit_sklog_dir")
-        self.lineEdit_sklog_dir.setMinimumSize(QSize(250, 0))
-
-        self.gridLayout_3.addWidget(self.lineEdit_sklog_dir, 4, 1, 1, 1)
-
-        self.qplPathButton = QToolButton(self.tab_generel)
+        self.qplPathButton = QToolButton(self.groupBox_2)
         self.qplPathButton.setObjectName(u"qplPathButton")
         icon = QIcon()
         icon.addFile(u":/icons/SVG/document-open.svg", QSize(), QIcon.Mode.Normal, QIcon.State.On)
         self.qplPathButton.setIcon(icon)
 
-        self.gridLayout_3.addWidget(self.qplPathButton, 1, 2, 1, 1)
+        self.horizontalLayout_2.addWidget(self.qplPathButton)
 
-        self.sklPathButton = QToolButton(self.tab_generel)
+
+        self.formLayout_3.setLayout(0, QFormLayout.FieldRole, self.horizontalLayout_2)
+
+        self.label_23 = QLabel(self.groupBox_2)
+        self.label_23.setObjectName(u"label_23")
+
+        self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.label_23)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.lineEdit_sklog_dir = QLineEdit(self.groupBox_2)
+        self.lineEdit_sklog_dir.setObjectName(u"lineEdit_sklog_dir")
+        self.lineEdit_sklog_dir.setMinimumSize(QSize(250, 0))
+
+        self.horizontalLayout_3.addWidget(self.lineEdit_sklog_dir)
+
+        self.sklPathButton = QToolButton(self.groupBox_2)
         self.sklPathButton.setObjectName(u"sklPathButton")
         self.sklPathButton.setIcon(icon)
 
-        self.gridLayout_3.addWidget(self.sklPathButton, 4, 2, 1, 1)
-
-        self.label_23 = QLabel(self.tab_generel)
-        self.label_23.setObjectName(u"label_23")
-
-        self.gridLayout_3.addWidget(self.label_23, 4, 0, 1, 1)
+        self.horizontalLayout_3.addWidget(self.sklPathButton)
 
 
-        self.horizontalLayout.addLayout(self.gridLayout_3)
+        self.formLayout_3.setLayout(1, QFormLayout.FieldRole, self.horizontalLayout_3)
 
-        self.label_33 = QLabel(self.tab_generel)
+        self.label_33 = QLabel(self.groupBox_2)
         self.label_33.setObjectName(u"label_33")
-        sizePolicy.setHeightForWidth(self.label_33.sizePolicy().hasHeightForWidth())
-        self.label_33.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.label_33.sizePolicy().hasHeightForWidth())
+        self.label_33.setSizePolicy(sizePolicy1)
         self.label_33.setMaximumSize(QSize(16777215, 40))
         self.label_33.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.horizontalLayout.addWidget(self.label_33)
+        self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.label_33)
 
-        self.lineEdit_server = QLineEdit(self.tab_generel)
+        self.lineEdit_server = QLineEdit(self.groupBox_2)
         self.lineEdit_server.setObjectName(u"lineEdit_server")
         self.lineEdit_server.setEnabled(True)
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
@@ -297,15 +297,46 @@ class Ui_DialogSettings(object):
         self.lineEdit_server.setMaximumSize(QSize(16777215, 16777215))
         self.lineEdit_server.setClearButtonEnabled(False)
 
-        self.horizontalLayout.addWidget(self.lineEdit_server)
-
-        self.formLayout = QFormLayout()
-        self.formLayout.setObjectName(u"formLayout")
-
-        self.horizontalLayout.addLayout(self.formLayout)
+        self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.lineEdit_server)
 
 
-        self.verticalLayout_3.addLayout(self.horizontalLayout)
+        self.gridLayout_3.addWidget(self.groupBox_2, 0, 2, 1, 1)
+
+        self.groupBox_4 = QGroupBox(self.tab_generel)
+        self.groupBox_4.setObjectName(u"groupBox_4")
+        self.formLayout_4 = QFormLayout(self.groupBox_4)
+        self.formLayout_4.setObjectName(u"formLayout_4")
+        self.label_21 = QLabel(self.groupBox_4)
+        self.label_21.setObjectName(u"label_21")
+
+        self.formLayout_4.setWidget(0, QFormLayout.LabelRole, self.label_21)
+
+        self.doubleSpinBox_indexerror = QDoubleSpinBox(self.groupBox_4)
+        self.doubleSpinBox_indexerror.setObjectName(u"doubleSpinBox_indexerror")
+        self.doubleSpinBox_indexerror.setDecimals(1)
+        self.doubleSpinBox_indexerror.setMaximum(98.000000000000000)
+        self.doubleSpinBox_indexerror.setSingleStep(0.100000000000000)
+
+        self.formLayout_4.setWidget(0, QFormLayout.FieldRole, self.doubleSpinBox_indexerror)
+
+        self.label_30 = QLabel(self.groupBox_4)
+        self.label_30.setObjectName(u"label_30")
+
+        self.formLayout_4.setWidget(1, QFormLayout.LabelRole, self.label_30)
+
+        self.doubleSpinBox_hoe = QDoubleSpinBox(self.groupBox_4)
+        self.doubleSpinBox_hoe.setObjectName(u"doubleSpinBox_hoe")
+        self.doubleSpinBox_hoe.setDecimals(1)
+        self.doubleSpinBox_hoe.setMaximum(99.000000000000000)
+        self.doubleSpinBox_hoe.setSingleStep(0.100000000000000)
+
+        self.formLayout_4.setWidget(1, QFormLayout.FieldRole, self.doubleSpinBox_hoe)
+
+
+        self.gridLayout_3.addWidget(self.groupBox_4, 1, 1, 1, 1)
+
+
+        self.verticalLayout_3.addLayout(self.gridLayout_3)
 
         self.tabWidget.addTab(self.tab_generel, "")
         self.tab_SKkeys = QWidget()
@@ -660,8 +691,8 @@ class Ui_DialogSettings(object):
 
         self.checkBox_s_crew = QCheckBox(self.gridLayoutWidget)
         self.checkBox_s_crew.setObjectName(u"checkBox_s_crew")
-        sizePolicy1.setHeightForWidth(self.checkBox_s_crew.sizePolicy().hasHeightForWidth())
-        self.checkBox_s_crew.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.checkBox_s_crew.sizePolicy().hasHeightForWidth())
+        self.checkBox_s_crew.setSizePolicy(sizePolicy)
 
         self.gridLayout.addWidget(self.checkBox_s_crew, 4, 4, 1, 1)
 
@@ -677,14 +708,7 @@ class Ui_DialogSettings(object):
 
         self.tabWidget.addTab(self.tab_SKkeys, "")
 
-        self.verticalLayout.addWidget(self.tabWidget)
-
-        self.buttonBox = QDialogButtonBox(DialogSettings)
-        self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setOrientation(Qt.Orientation.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
-
-        self.verticalLayout.addWidget(self.buttonBox)
+        self.gridLayout_2.addWidget(self.tabWidget, 0, 0, 1, 1)
 
 
         self.retranslateUi(DialogSettings)
@@ -702,34 +726,48 @@ class Ui_DialogSettings(object):
 #if QT_CONFIG(tooltip)
         self.tabWidget.setToolTip("")
 #endif // QT_CONFIG(tooltip)
+        self.groupBox.setTitle(QCoreApplication.translate("DialogSettings", u"Static Boatdata", None))
+        self.label_19.setText(QCoreApplication.translate("DialogSettings", u"Name:", None))
+        self.label_20.setText(QCoreApplication.translate("DialogSettings", u"Call Sign:", None))
+        self.label_24.setText(QCoreApplication.translate("DialogSettings", u"MMSI:", None))
+        self.label_27.setText(QCoreApplication.translate("DialogSettings", u"Air Hight", None))
+        self.doubleSpinBox_hight.setSuffix(QCoreApplication.translate("DialogSettings", u"m", None))
+        self.label_28.setText(QCoreApplication.translate("DialogSettings", u"Beam:", None))
+        self.doubleSpinBox_beam.setSuffix(QCoreApplication.translate("DialogSettings", u"m", None))
+        self.label_25.setText(QCoreApplication.translate("DialogSettings", u"LOA:", None))
+        self.doubleSpinBox_loa.setSuffix(QCoreApplication.translate("DialogSettings", u"m", None))
+        self.label_26.setText(QCoreApplication.translate("DialogSettings", u"Draft:", None))
+        self.doubleSpinBox_draft.setSuffix(QCoreApplication.translate("DialogSettings", u"m", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("DialogSettings", u"other settings", None))
+        self.label_29.setText(QCoreApplication.translate("DialogSettings", u"Entry frequency (hours):", None))
+#if QT_CONFIG(tooltip)
+        self.spinBox_update_interv.setToolTip(QCoreApplication.translate("DialogSettings", u"<html><head/><body><p>This is multibles of hours of the day, not a real interval.</p><p>recomended values are 1, 2, 3, 4, 6, 8, 12 and 24</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.spinBox_update_interv.setSuffix(QCoreApplication.translate("DialogSettings", u"h", None))
         self.label_31.setText(QCoreApplication.translate("DialogSettings", u"Track frequency (min):", None))
+        self.spinBox_track_interv.setSuffix(QCoreApplication.translate("DialogSettings", u"min", None))
+        self.label_32.setText(QCoreApplication.translate("DialogSettings", u"Server timeout (s):", None))
+        self.doubleSpinBox_timeout.setSuffix(QCoreApplication.translate("DialogSettings", u"s", None))
 #if QT_CONFIG(tooltip)
         self.checkBox_autoentry.setToolTip(QCoreApplication.translate("DialogSettings", u"Enable autoentrys at startup", None))
 #endif // QT_CONFIG(tooltip)
         self.checkBox_autoentry.setText(QCoreApplication.translate("DialogSettings", u"Enable autoentrys ", None))
-        self.label_25.setText(QCoreApplication.translate("DialogSettings", u"LOA:", None))
-        self.label_27.setText(QCoreApplication.translate("DialogSettings", u"Air Hight", None))
-        self.label_19.setText(QCoreApplication.translate("DialogSettings", u"Name:", None))
-        self.label_21.setText(QCoreApplication.translate("DialogSettings", u"Settings:", None))
-        self.label_30.setText(QCoreApplication.translate("DialogSettings", u"Static Boatdata:", None))
 #if QT_CONFIG(tooltip)
         self.checkBox_evententrys.setToolTip(QCoreApplication.translate("DialogSettings", u"Enable tracking at startup", None))
 #endif // QT_CONFIG(tooltip)
         self.checkBox_evententrys.setText(QCoreApplication.translate("DialogSettings", u"Enable event entrys", None))
-        self.label_29.setText(QCoreApplication.translate("DialogSettings", u"Entry frequency (hours):", None))
-        self.label_20.setText(QCoreApplication.translate("DialogSettings", u"Call Sign:", None))
-        self.label_24.setText(QCoreApplication.translate("DialogSettings", u"MMSI:", None))
-        self.label_26.setText(QCoreApplication.translate("DialogSettings", u"Draft:", None))
-        self.label_32.setText(QCoreApplication.translate("DialogSettings", u"Server timeout (s):", None))
-        self.label_28.setText(QCoreApplication.translate("DialogSettings", u"Beam:", None))
-#if QT_CONFIG(tooltip)
-        self.spinBox_update_interv.setToolTip(QCoreApplication.translate("DialogSettings", u"<html><head/><body><p>This is multibles of hours of the day, not a real interval.</p><p>recomended values are 1, 2, 3, 4, 6, 8, 12 and 24</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
+        self.checkBox_manualmode.setText(QCoreApplication.translate("DialogSettings", u"Start in Manual Mode", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("DialogSettings", u"Paths", None))
         self.label_22.setText(QCoreApplication.translate("DialogSettings", u"QPlog directory path:", None))
         self.qplPathButton.setText(QCoreApplication.translate("DialogSettings", u"...", None))
-        self.sklPathButton.setText(QCoreApplication.translate("DialogSettings", u"...", None))
         self.label_23.setText(QCoreApplication.translate("DialogSettings", u"SK log directory path", None))
+        self.sklPathButton.setText(QCoreApplication.translate("DialogSettings", u"...", None))
         self.label_33.setText(QCoreApplication.translate("DialogSettings", u"SK server adress:", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("DialogSettings", u"Celescial Navigation", None))
+        self.label_21.setText(QCoreApplication.translate("DialogSettings", u"Index Error:", None))
+        self.doubleSpinBox_indexerror.setSuffix(QCoreApplication.translate("DialogSettings", u"\u00b4", None))
+        self.label_30.setText(QCoreApplication.translate("DialogSettings", u"Height of Eye:", None))
+        self.doubleSpinBox_hoe.setSuffix(QCoreApplication.translate("DialogSettings", u"m", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_generel), QCoreApplication.translate("DialogSettings", u"Settings", None))
         self.label_5.setText(QCoreApplication.translate("DialogSettings", u"HDOP:", None))
         self.checkBox_sog.setText("")
