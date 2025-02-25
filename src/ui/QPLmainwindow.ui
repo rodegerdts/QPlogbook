@@ -68,6 +68,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionSave"/>
+   <addaction name="actionPrintPDF"/>
    <addaction name="actionOpen"/>
    <addaction name="actionAdd"/>
    <addaction name="actionSort"/>
@@ -161,7 +162,7 @@
     <string>Astro</string>
    </property>
    <property name="toolTip">
-    <string>Celestial Fix</string>
+    <string>Celestial Navigation</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
@@ -275,7 +276,25 @@
     <string>Dead Reconing</string>
    </property>
    <property name="toolTip">
-    <string>Add new dead reconing position</string>
+    <string>Calculate new dead reconing position</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionPrintPDF">
+   <property name="icon">
+    <iconset resource="../QPLresources.qrc">
+     <normaloff>:/icons/SVG/print-PDF.svg</normaloff>:/icons/SVG/print-PDF.svg</iconset>
+   </property>
+   <property name="text">
+    <string>PrintPDF</string>
+   </property>
+   <property name="toolTip">
+    <string>Export Logbook to PDF</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>

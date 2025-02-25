@@ -2840,6 +2840,735 @@ aT\xfc\xbd\xeaay\xb7\x1a\xe2\xd7\x84\xca\x83\x14?\
 \xb9.\xa3>\xee\xa0\x88,&=\xd8>\xf9\xa9\x11\xbe\
 \xcf\x1ei\x98\xfe\xb3G\xaf\xbf}\xfa\xb7\x7f\xf3\x9f\xf8\
 \x89\x0bK\
+\x00\x00-e\
+<\
+?xml version=\x221.\
+0\x22 encoding=\x22UTF\
+-8\x22 standalone=\x22\
+no\x22?>\x0a<!DOCTYPE \
+svg PUBLIC \x22-//W\
+3C//DTD SVG 1.1/\
+/EN\x22 \x22http://www\
+.w3.org/Graphics\
+/SVG/1.1/DTD/svg\
+11.dtd\x22>\x0a<svg wi\
+dth=\x22100%\x22 heigh\
+t=\x22100%\x22 viewBox\
+=\x220 0 48 48\x22 ver\
+sion=\x221.1\x22 xmlns\
+=\x22http://www.w3.\
+org/2000/svg\x22 xm\
+lns:xlink=\x22http:\
+//www.w3.org/199\
+9/xlink\x22 xml:spa\
+ce=\x22preserve\x22 xm\
+lns:serif=\x22http:\
+//www.serif.com/\
+\x22 style=\x22fill-ru\
+le:evenodd;clip-\
+rule:evenodd;\x22>\x0a\
+    <g id=\x22Layer\
+-1\x22 serif:id=\x22La\
+yer 1\x22>\x0a        \
+<g id=\x22g5022\x22 tr\
+ansform=\x22matrix(\
+0.0241141,0,0,0.\
+019292,45.4895,3\
+9.7523)\x22>\x0a      \
+      <rect id=\x22\
+rect4173\x22 x=\x22-15\
+59.25\x22 y=\x22-150.6\
+97\x22 width=\x221339.\
+63\x22 height=\x22478.\
+357\x22 style=\x22fill\
+:url(#_Linear1);\
+\x22/>\x0a            \
+<path id=\x22path50\
+58\x22 d=\x22M-219.619\
+,-150.68L-219.61\
+9,327.65C-76.745\
+,328.551 125.781\
+,220.481 125.781\
+,88.454C125.781,\
+-43.572 -33.655,\
+-150.68 -219.619\
+,-150.68Z\x22 style\
+=\x22fill:url(#_Rad\
+ial2);fill-rule:\
+nonzero;\x22/>\x0a    \
+        <path id\
+=\x22path5018\x22 d=\x22M\
+-1559.25,-150.68\
+L-1559.25,327.65\
+C-1702.13,328.55\
+1 -1904.65,220.4\
+81 -1904.65,88.4\
+54C-1904.65,-43.\
+572 -1745.22,-15\
+0.68 -1559.25,-1\
+50.68Z\x22 style=\x22f\
+ill:url(#_Radial\
+3);fill-rule:non\
+zero;\x22/>\x0a       \
+ </g>\x0a        <p\
+ath id=\x22rect4652\
+\x22 d=\x22M43.188,37.\
+712L43.188,40.72\
+6C43.188,41.671 \
+42.421,42.438 41\
+.476,42.438L6.46\
+2,42.438C5.517,4\
+2.438 4.75,41.67\
+1 4.75,40.726L4.\
+75,37.712C4.75,3\
+6.767 5.517,36 6\
+.462,36L41.476,3\
+6C42.421,36 43.1\
+88,36.767 43.188\
+,37.712Z\x22 style=\
+\x22fill:url(#_Line\
+ar4);stroke:rgb(\
+89,89,89);stroke\
+-width:1px;\x22/>\x0a \
+       <path id=\
+\x22rect4609\x22 d=\x22M7\
+.131,21.5L40.871\
+,21.5C41.256,21.\
+5 41.748,21.788 \
+42.051,22.224C42\
+.354,22.66 43.78\
+8,24.834 44.109,\
+25.298C44.431,25\
+.762 44.502,26.2\
+02 44.502,26.774\
+L44.502,38.851C4\
+4.502,39.765 43.\
+77,40.5 42.861,4\
+0.5L5.14,40.5C4.\
+231,40.5 3.499,3\
+9.765 3.499,38.8\
+51L3.499,26.774C\
+3.499,26.28 3.6,\
+25.572 3.946,25.\
+121C4.381,24.552\
+ 5.55,22.573 5.8\
+58,22.153C6.166,\
+21.733 6.732,21.\
+5 7.131,21.5Z\x22 s\
+tyle=\x22fill:url(#\
+_Linear5);fill-r\
+ule:nonzero;stro\
+ke:rgb(103,103,1\
+03);stroke-width\
+:1px;\x22/>\x0a       \
+ <path id=\x22path4\
+718\x22 d=\x22M7.747,2\
+2C7.254,22 6.62,\
+22.131 6.36,22.5\
+33L4.54,25.347C4\
+.247,25.8 4.574,\
+26.868 5.455,26.\
+868L42.364,26.86\
+8C43.556,26.868 \
+43.56,25.863 43.\
+279,25.435L41.54\
+6,22.797C41.231,\
+22.318 41.117,22\
+ 40.332,22L7.747\
+,22Z\x22 style=\x22fil\
+l:rgb(251,251,25\
+1);\x22/>\x0a        <\
+path id=\x22path475\
+0\x22 d=\x22M7.6,22.47\
+3L40.375,22.473C\
+40.74,22.473 41.\
+206,22.745 41.49\
+4,23.157C41.782,\
+23.569 42.788,25\
+.184 43.093,25.6\
+23C43.399,26.061\
+ 43.528,26.477 4\
+3.528,27.018L43.\
+528,38.282C43.52\
+8,39.146 43.395,\
+39.529 42.533,39\
+.529L5.531,39.52\
+9C4.668,39.529 4\
+.473,39.146 4.47\
+3,38.282L4.473,2\
+7.018C4.473,26.5\
+51 4.693,25.881 \
+5.02,25.455C5.43\
+3,24.917 6.101,2\
+3.487 6.393,23.0\
+9C6.686,22.693 7\
+.222,22.473 7.6,\
+22.473Z\x22 style=\x22\
+fill:none;fill-r\
+ule:nonzero;stro\
+ke:url(#_Linear6\
+);stroke-width:0\
+.95px;\x22/>\x0a      \
+  <path id=\x22rect\
+15391\x22 d=\x22M11.67\
+2,4.51L36.313,4.\
+51C36.964,4.51 3\
+7.488,5.02 37.48\
+8,5.653L37.488,2\
+4.348L10.498,24.\
+348L10.498,5.653\
+C10.498,5.02 11.\
+022,4.51 11.672,\
+4.51Z\x22 style=\x22fi\
+ll:url(#_Linear7\
+);fill-rule:nonz\
+ero;stroke:rgb(1\
+37,137,137);stro\
+ke-width:1px;str\
+oke-linecap:roun\
+d;\x22/>\x0a        <p\
+ath id=\x22rect1566\
+0\x22 d=\x22M36.452,5.\
+676L36.452,24.15\
+9C36.452,24.256 \
+36.373,24.336 36\
+.275,24.336L11.6\
+74,24.336C11.577\
+,24.336 11.498,2\
+4.256 11.498,24.\
+159L11.498,5.676\
+C11.498,5.578 11\
+.577,5.499 11.67\
+4,5.499L36.275,5\
+.499C36.373,5.49\
+9 36.452,5.578 3\
+6.452,5.676Z\x22 st\
+yle=\x22fill:none;s\
+troke:url(#_Line\
+ar8);stroke-widt\
+h:1px;stroke-lin\
+ecap:round;strok\
+e-linejoin:round\
+;\x22/>\x0a        <pa\
+th id=\x22rect4678\x22\
+ d=\x22M40.625,29.0\
+87L40.625,30.851\
+C40.625,31.796 3\
+9.858,32.563 38.\
+913,32.563L8.587\
+,32.563C7.642,32\
+.563 6.875,31.79\
+6 6.875,30.851L6\
+.875,29.087C6.87\
+5,28.142 7.642,2\
+7.375 8.587,27.3\
+75L38.913,27.375\
+C39.858,27.375 4\
+0.625,28.142 40.\
+625,29.087Z\x22 sty\
+le=\x22fill:url(#_L\
+inear9);stroke:u\
+rl(#_Linear10);s\
+troke-width:1px;\
+\x22/>\x0a        <g i\
+d=\x22path4696\x22 tra\
+nsform=\x22matrix(1\
+,0,0,1,0,2)\x22>\x0a  \
+          <path \
+d=\x22M10.872,27.62\
+6C10.872,28.33 1\
+0.293,28.908 9.5\
+9,28.908C8.887,2\
+8.908 8.309,28.3\
+3 8.309,27.626C8\
+.309,26.923 8.88\
+7,26.345 9.59,26\
+.345C10.293,26.3\
+45 10.872,26.923\
+ 10.872,27.626Z\x22\
+ style=\x22fill:url\
+(#_Radial11);fil\
+l-rule:nonzero;\x22\
+/>\x0a        </g>\x0a\
+        <path id\
+=\x22path4731\x22 d=\x22M\
+11.744,25.416L37\
+.306,25.479C37.9\
+94,25.48 38.294,\
+25.108 38.244,24\
+.479L38.119,22.9\
+16L39.985,22.916\
+C40.797,22.916 4\
+0.975,23.109 41.\
+172,23.479L41.67\
+2,24.416C42.199,\
+25.404 43.484,26\
+.39 42.17,26.39C\
+37.668,26.39 13.\
+994,26.041 11.74\
+4,25.416Z\x22 style\
+=\x22fill:url(#_Lin\
+ear12);\x22/>\x0a     \
+   <path id=\x22pat\
+h4760\x22 d=\x22M42.93\
+8,26.75L4.813,26\
+.75\x22 style=\x22fill\
+:none;stroke:whi\
+te;stroke-width:\
+1px;stroke-linec\
+ap:round;stroke-\
+linejoin:round;\x22\
+/>\x0a        <g id\
+=\x22g4849\x22 transfo\
+rm=\x22matrix(1,0,0\
+,1,0,2)\x22>\x0a      \
+      <g opacity\
+=\x220.44\x22>\x0a       \
+         <rect i\
+d=\x22rect4831\x22 x=\x22\
+14\x22 y=\x225\x22 width=\
+\x2219\x22 height=\x221\x22 \
+style=\x22fill-opac\
+ity:0.29;\x22/>\x0a   \
+             <re\
+ct id=\x22rect4833\x22\
+ x=\x2214\x22 y=\x227\x22 wi\
+dth=\x2219\x22 height=\
+\x221\x22 style=\x22fill-\
+opacity:0.29;\x22/>\
+\x0a               \
+ <rect id=\x22rect4\
+835\x22 x=\x2214\x22 y=\x229\
+\x22 width=\x2219\x22 hei\
+ght=\x221\x22 style=\x22f\
+ill-opacity:0.29\
+;\x22/>\x0a           \
+     <rect id=\x22r\
+ect4837\x22 x=\x2214\x22 \
+y=\x2211\x22 width=\x2219\
+\x22 height=\x221\x22 sty\
+le=\x22fill-opacity\
+:0.29;\x22/>\x0a      \
+          <rect \
+id=\x22rect4839\x22 x=\
+\x2214\x22 y=\x2213\x22 widt\
+h=\x2211\x22 height=\x221\
+\x22 style=\x22fill-op\
+acity:0.29;\x22/>\x0a \
+               <\
+rect id=\x22rect484\
+3\x22 x=\x2214\x22 y=\x2217\x22\
+ width=\x2219\x22 heig\
+ht=\x221\x22 style=\x22fi\
+ll-opacity:0.29;\
+\x22/>\x0a            \
+    <rect id=\x22re\
+ct4845\x22 x=\x2214\x22 y\
+=\x2219\x22 width=\x2219\x22\
+ height=\x221\x22 styl\
+e=\x22fill-opacity:\
+0.29;\x22/>\x0a       \
+     </g>\x0a      \
+  </g>\x0a        <\
+g transform=\x22mat\
+rix(0.37593,0,0,\
+0.387532,0.77674\
+,-0.933004)\x22>\x0a  \
+          <path \
+d=\x22M86.42,8.847C\
+94.881,6.736 86.\
+806,35.706 75.76\
+2,57.336C64.792,\
+78.819 52.269,95\
+.822 39.434,99.0\
+6C35.287,100.107\
+ 29.611,97.45 30\
+.998,94.8C36.235\
+,84.783 63.291,7\
+9.901 72.386,78.\
+352C85.522,76.11\
+4 113.69,71.665 \
+115.979,77.211C1\
+17.394,80.641 11\
+4.021,83.455 111\
+.402,84.362C104.\
+668,86.694 97.07\
+1,68.854 92.34,5\
+7.142C87.609,45.\
+43 75.461,11.583\
+ 86.42,8.847Z\x22 s\
+tyle=\x22fill:white\
+;fill-opacity:0;\
+\x22/>\x0a            \
+<path d=\x22M63.905\
+,82.944C58.671,9\
+0.079 53.065,95.\
+85 47.445,99.142\
+C41.368,102.703 \
+36.523,103.509 3\
+1.65,101.178C30.\
+159,100.464 25.5\
+16,97.533 28.421\
+,92.733C30.633,8\
+9.08 36.257,83.0\
+25 59.914,77.829\
+C64.136,72.134 6\
+9.023,64.473 74.\
+403,54.184C77.88\
+2,47.53 80.87,40\
+.735 83.199,34.5\
+26C81.337,27.008\
+ 80.164,19.462 8\
+1.092,14.372C82.\
+125,8.704 85.406\
+,8.114 86.162,7.\
+874L86.155,7.847\
+C86.581,7.778 93\
+.447,5.32 90.57,\
+21.852C89.791,26\
+.324 88.512,31.3\
+56 86.821,36.664\
+C87.223,37.997 8\
+7.664,39.395 88.\
+148,40.864C91.17\
+4,50.051 96.378,\
+63.137 101.314,7\
+2.145C114.683,71\
+.606 119.013,74.\
+049 118.669,79.1\
+97C118.367,83.72\
+1 112.348,88.27 \
+107.654,86.219C1\
+05.934,85.468 10\
+3.383,84.004 99.\
+518,77.336C89.13\
+2,78.165 75.129,\
+80.446 63.905,82\
+.944ZM53.586,85.\
+544C52.74,85.791\
+ 51.942,86.037 5\
+1.199,86.279C39.\
+608,90.056 36.03\
+8,93.275 34.496,\
+95.382C37.005,96\
+.842 40.316,95.7\
+07 43.467,93.953\
+C44.062,93.621 4\
+7.72,91.912 53.5\
+86,85.544ZM85.14\
+6,41.633C81.047,\
+53.182 75.227,65\
+.577 68.545,76.1\
+24C74.055,75.143\
+ 80.332,74.21 87\
+.491,73.35C90.96\
+8,72.932 94.097,\
+72.618 96.906,72\
+.406C94.838,68.1\
+89 92.464,62.638\
+ 89.734,55.298C8\
+8.451,51.848 86.\
+734,46.963 85.14\
+6,41.633ZM86.684\
+,9.801L86.689,9.\
+818C86.561,9.863\
+ 80.216,10.007 8\
+4.921,29.69C88.5\
+31,18.959 89.771\
+,10.851 87.608,9\
+.853C87.321,9.72\
+ 86.986,9.789 86\
+.684,9.801ZM104.\
+261,77.053C106.7\
+87,80.809 109.09\
+5,82.938 110.811\
+,82.221C112.407,\
+81.555 114.435,7\
+9.937 113.825,78\
+.238C113.807,78.\
+189 113.736,78.1\
+35 113.767,78.09\
+2C113.768,78.091\
+ 113.769,78.089 \
+113.77,78.088C11\
+3.745,78.087 113\
+.714,78.076 113.\
+673,78.048C112.3\
+72,77.16 108.94,\
+76.885 104.261,7\
+7.053ZM113.874,7\
+8.039C113.928,78\
+.027 113.985,78.\
+018 114.014,77.9\
+78C113.949,77.99\
+1 113.908,78.016\
+ 113.874,78.039Z\
+\x22 style=\x22fill:rg\
+b(255,0,0);\x22/>\x0a \
+       </g>\x0a    \
+</g>\x0a    <defs>\x0a\
+        <linearG\
+radient id=\x22_Lin\
+ear1\x22 x1=\x220\x22 y1=\
+\x220\x22 x2=\x221\x22 y2=\x220\
+\x22 gradientUnits=\
+\x22userSpaceOnUse\x22\
+ gradientTransfo\
+rm=\x22matrix(2.929\
+09e-14,478.357,-\
+478.357,2.92909e\
+-14,-1051.94,-15\
+0.697)\x22><stop of\
+fset=\x220\x22 style=\x22\
+stop-color:black\
+;stop-opacity:0\x22\
+/><stop offset=\x22\
+0.5\x22 style=\x22stop\
+-color:black;sto\
+p-opacity:0.4\x22/>\
+<stop offset=\x221\x22\
+ style=\x22stop-col\
+or:black;stop-op\
+acity:0\x22/></line\
+arGradient>\x0a    \
+    <radialGradi\
+ent id=\x22_Radial2\
+\x22 cx=\x220\x22 cy=\x220\x22 \
+r=\x221\x22 gradientUn\
+its=\x22userSpaceOn\
+Use\x22 gradientTra\
+nsform=\x22matrix(3\
+25,0,0,230.737,-\
+211.146,85.6679)\
+\x22><stop offset=\x22\
+0\x22 style=\x22stop-c\
+olor:black;stop-\
+opacity:0.4\x22/><s\
+top offset=\x221\x22 s\
+tyle=\x22stop-color\
+:black;stop-opac\
+ity:0\x22/></radial\
+Gradient>\x0a      \
+  <radialGradien\
+t id=\x22_Radial3\x22 \
+cx=\x220\x22 cy=\x220\x22 r=\
+\x221\x22 gradientUnit\
+s=\x22userSpaceOnUs\
+e\x22 gradientTrans\
+form=\x22matrix(-32\
+5,0,0,230.737,-1\
+567.72,85.6679)\x22\
+><stop offset=\x220\
+\x22 style=\x22stop-co\
+lor:black;stop-o\
+pacity:0.4\x22/><st\
+op offset=\x221\x22 st\
+yle=\x22stop-color:\
+black;stop-opaci\
+ty:0\x22/></radialG\
+radient>\x0a       \
+ <linearGradient\
+ id=\x22_Linear4\x22 x\
+1=\x220\x22 y1=\x220\x22 x2=\
+\x221\x22 y2=\x220\x22 gradi\
+entUnits=\x22userSp\
+aceOnUse\x22 gradie\
+ntTransform=\x22mat\
+rix(39.4375,0,0,\
+39.4375,4.25,39.\
+2188)\x22><stop off\
+set=\x220\x22 style=\x22s\
+top-color:rgb(14\
+2,141,135);stop-\
+opacity:1\x22/><sto\
+p offset=\x220.28\x22 \
+style=\x22stop-colo\
+r:rgb(203,201,19\
+3);stop-opacity:\
+1\x22/><stop offset\
+=\x221\x22 style=\x22stop\
+-color:rgb(142,1\
+41,135);stop-opa\
+city:1\x22/></linea\
+rGradient>\x0a     \
+   <linearGradie\
+nt id=\x22_Linear5\x22\
+ x1=\x220\x22 y1=\x220\x22 x\
+2=\x221\x22 y2=\x220\x22 gra\
+dientUnits=\x22user\
+SpaceOnUse\x22 grad\
+ientTransform=\x22m\
+atrix(39.2509,0,\
+0,39.2509,4.3184\
+4,40.3438)\x22><sto\
+p offset=\x220\x22 sty\
+le=\x22stop-color:r\
+gb(220,220,218);\
+stop-opacity:1\x22/\
+><stop offset=\x221\
+\x22 style=\x22stop-co\
+lor:rgb(186,185,\
+183);stop-opacit\
+y:1\x22/></linearGr\
+adient>\x0a        \
+<linearGradient \
+id=\x22_Linear6\x22 x1\
+=\x220\x22 y1=\x220\x22 x2=\x22\
+1\x22 y2=\x220\x22 gradie\
+ntUnits=\x22userSpa\
+ceOnUse\x22 gradien\
+tTransform=\x22matr\
+ix(0.148799,17.5\
+555,-17.5555,0.1\
+48799,23.0195,23\
+.7853)\x22><stop of\
+fset=\x220\x22 style=\x22\
+stop-color:white\
+;stop-opacity:0.\
+12\x22/><stop offse\
+t=\x220.1\x22 style=\x22s\
+top-color:white;\
+stop-opacity:1\x22/\
+><stop offset=\x221\
+\x22 style=\x22stop-co\
+lor:white;stop-o\
+pacity:0\x22/></lin\
+earGradient>\x0a   \
+     <linearGrad\
+ient id=\x22_Linear\
+7\x22 x1=\x220\x22 y1=\x220\x22\
+ x2=\x221\x22 y2=\x220\x22 g\
+radientUnits=\x22us\
+erSpaceOnUse\x22 gr\
+adientTransform=\
+\x22matrix(-0.25239\
+6,23.1969,-23.19\
+69,-0.252396,23.\
+7404,8.06194)\x22><\
+stop offset=\x220\x22 \
+style=\x22stop-colo\
+r:rgb(224,224,22\
+4);stop-opacity:\
+1\x22/><stop offset\
+=\x220.41\x22 style=\x22s\
+top-color:white;\
+stop-opacity:1\x22/\
+><stop offset=\x220\
+.53\x22 style=\x22stop\
+-color:rgb(205,2\
+05,205);stop-opa\
+city:1\x22/><stop o\
+ffset=\x221\x22 style=\
+\x22stop-color:rgb(\
+73,73,73);stop-o\
+pacity:1\x22/></lin\
+earGradient>\x0a   \
+     <linearGrad\
+ient id=\x22_Linear\
+8\x22 x1=\x220\x22 y1=\x220\x22\
+ x2=\x221\x22 y2=\x220\x22 g\
+radientUnits=\x22us\
+erSpaceOnUse\x22 gr\
+adientTransform=\
+\x22matrix(-0.06393\
+04,-4.95306,4.95\
+306,-0.0639304,2\
+4.7313,23.4934)\x22\
+><stop offset=\x220\
+\x22 style=\x22stop-co\
+lor:white;stop-o\
+pacity:0\x22/><stop\
+ offset=\x221\x22 styl\
+e=\x22stop-color:rg\
+b(248,248,248);s\
+top-opacity:1\x22/>\
+</linearGradient\
+>\x0a        <linea\
+rGradient id=\x22_L\
+inear9\x22 x1=\x220\x22 y\
+1=\x220\x22 x2=\x221\x22 y2=\
+\x220\x22 gradientUnit\
+s=\x22userSpaceOnUs\
+e\x22 gradientTrans\
+form=\x22matrix(2.7\
+1717e-16,-4.4374\
+8,4.43748,2.7171\
+7e-16,24.5,29.28\
+12)\x22><stop offse\
+t=\x220\x22 style=\x22sto\
+p-color:rgb(247,\
+246,245);stop-op\
+acity:1\x22/><stop \
+offset=\x221\x22 style\
+=\x22stop-color:rgb\
+(247,246,245);st\
+op-opacity:0\x22/><\
+/linearGradient>\
+\x0a        <linear\
+Gradient id=\x22_Li\
+near10\x22 x1=\x220\x22 y\
+1=\x220\x22 x2=\x221\x22 y2=\
+\x220\x22 gradientUnit\
+s=\x22userSpaceOnUs\
+e\x22 gradientTrans\
+form=\x22matrix(-0.\
+0625042,-3.56248\
+,3.56248,-0.0625\
+042,23.0625,31.8\
+437)\x22><stop offs\
+et=\x220\x22 style=\x22st\
+op-color:rgb(102\
+,102,102);stop-o\
+pacity:1\x22/><stop\
+ offset=\x221\x22 styl\
+e=\x22stop-color:bl\
+ack;stop-opacity\
+:0\x22/></linearGra\
+dient>\x0a        <\
+radialGradient i\
+d=\x22_Radial11\x22 cx\
+=\x220\x22 cy=\x220\x22 r=\x221\
+\x22 gradientUnits=\
+\x22userSpaceOnUse\x22\
+ gradientTransfo\
+rm=\x22matrix(2.122\
+7,0,0,2.1227,9.1\
+2955,26.9256)\x22><\
+stop offset=\x220\x22 \
+style=\x22stop-colo\
+r:rgb(255,255,25\
+3);stop-opacity:\
+1\x22/><stop offset\
+=\x220.5\x22 style=\x22st\
+op-color:rgb(187\
+,187,185);stop-o\
+pacity:1\x22/><stop\
+ offset=\x221\x22 styl\
+e=\x22stop-color:bl\
+ack;stop-opacity\
+:1\x22/></radialGra\
+dient>\x0a        <\
+linearGradient i\
+d=\x22_Linear12\x22 x1\
+=\x220\x22 y1=\x220\x22 x2=\x22\
+1\x22 y2=\x220\x22 gradie\
+ntUnits=\x22userSpa\
+ceOnUse\x22 gradien\
+tTransform=\x22matr\
+ix(0.119214,5.35\
+216,-5.35216,0.1\
+19214,27.9787,23\
+.5281)\x22><stop of\
+fset=\x220\x22 style=\x22\
+stop-color:black\
+;stop-opacity:0.\
+09\x22/><stop offse\
+t=\x221\x22 style=\x22sto\
+p-color:black;st\
+op-opacity:0\x22/><\
+/linearGradient>\
+\x0a    </defs>\x0a</s\
+vg>\x0a\
 \x00\x00\x0a\x22\
 \x00\
 \x00,bx\xda\xedZmo\x1b\xb9\x11\xfe~\xbfb\
@@ -5184,6 +5913,10 @@ qt_resource_name = b"\
 \x0c\x81cg\
 \x00E\
 \x00n\x00t\x00r\x00y\x00-\x00n\x00e\x00w\x00.\x00s\x00v\x00g\
+\x00\x0d\
+\x0b\xa9\xf5G\
+\x00p\
+\x00r\x00i\x00n\x00t\x00-\x00P\x00D\x00F\x00.\x00s\x00v\x00g\
 \x00\x11\
 \x01\xa6\xc9\x07\
 \x00d\
@@ -5217,13 +5950,13 @@ qt_resource_struct = b"\
 \x00\x00\x00\x00\x00\x00\x00\x00\
 \x00\x00\x00\x00\x00\x02\x00\x00\x00\x01\x00\x00\x00\x02\
 \x00\x00\x00\x00\x00\x00\x00\x00\
-\x00\x00\x00\x10\x00\x02\x00\x00\x00\x0e\x00\x00\x00\x03\
+\x00\x00\x00\x10\x00\x02\x00\x00\x00\x0f\x00\x00\x00\x03\
 \x00\x00\x00\x00\x00\x00\x00\x00\
 \x00\x00\x00\xa4\x00\x01\x00\x00\x00\x01\x00\x00Am\
 \x00\x00\x01\x93}\xd9 \x1c\
-\x00\x00\x01\xb8\x00\x01\x00\x00\x00\x01\x00\x01\x09\xda\
+\x00\x00\x01\xd8\x00\x01\x00\x00\x00\x01\x00\x017C\
 \x00\x00\x01\x93}\xc5\xa4t\
-\x00\x00\x01\x1e\x00\x01\x00\x00\x00\x01\x00\x00\xb0\x07\
+\x00\x00\x01>\x00\x01\x00\x00\x00\x01\x00\x00\xddp\
 \x00\x00\x01\x93~h)A\
 \x00\x00\x00\xdc\x00\x01\x00\x00\x00\x01\x00\x00z\xc2\
 \x00\x00\x01\x1e\xb1P\x0c\xa0\
@@ -5231,7 +5964,7 @@ qt_resource_struct = b"\
 \x00\x00\x01\x94B\x1f\xd7*\
 \x00\x00\x00~\x00\x00\x00\x00\x00\x01\x00\x00-M\
 \x00\x00\x01\x93~\xb2\x1e\x08\
-\x00\x00\x01\xea\x00\x01\x00\x00\x00\x01\x00\x01\x13O\
+\x00\x00\x02\x0a\x00\x01\x00\x00\x00\x01\x00\x01@\xb8\
 \x00\x00\x01\x93~\x9a\x14y\
 \x00\x00\x00d\x00\x01\x00\x00\x00\x01\x00\x00&\xfa\
 \x00\x00\x01\x93~e\xf9\x19\
@@ -5239,13 +5972,15 @@ qt_resource_struct = b"\
 \x00\x00\x01\x93}\xb9\x02\xe6\
 \x00\x00\x00>\x00\x00\x00\x00\x00\x01\x00\x00\x16\x1e\
 \x00\x00\x01\x94\xf1+\xda\x92\
+\x00\x00\x01\x1e\x00\x00\x00\x00\x00\x01\x00\x00\xb0\x07\
+\x00\x00\x01\x953g\xa1\x10\
 \x00\x00\x00\xfe\x00\x01\x00\x00\x00\x01\x00\x00\x85\xcf\
 \x00\x00\x01\x93~\x0bG\xae\
-\x00\x00\x01\x92\x00\x00\x00\x00\x00\x01\x00\x00\xf99\
+\x00\x00\x01\xb2\x00\x00\x00\x00\x00\x01\x00\x01&\xa2\
 \x00\x00\x01\x94=)\x13m\
-\x00\x00\x01F\x00\x01\x00\x00\x00\x01\x00\x00\xba-\
+\x00\x00\x01f\x00\x01\x00\x00\x00\x01\x00\x00\xe7\x96\
 \x00\x00\x01\x93\x82+\xe7\x94\
-\x00\x00\x01l\x00\x01\x00\x00\x00\x01\x00\x00\xe6\xb2\
+\x00\x00\x01\x8c\x00\x01\x00\x00\x00\x01\x00\x01\x14\x1b\
 \x00\x00\x01\x94=<j\x1c\
 "
 

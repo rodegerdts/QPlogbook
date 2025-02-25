@@ -54,18 +54,17 @@
     "twd",
     "airtemperature",
     "airpressure",
-    "humidity",
-    "text"
+    "place"
   ],
   "loginterv": 1,
   "trackinterv": 10,
   "skserver": "openplotter.local:3000",
   "servertimeout": 0.1,
   "qplogfolder": "/Users/enno/Documents/dev/QPlogbook/log",
-  "sklogfolder": "/Users/enno/Documents/dev/SKlogs",
+  "sklogfolder": "",
   "enableauto": false,
   "enableeventlog": false,
-  "manualmode": false,
+  "manualmode": true,
   "indexerror": 0.2,
   "hightofeye": 2.1
 }

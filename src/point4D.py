@@ -79,7 +79,7 @@ class Point4d:
             decmin = abs((decdeg - deg)*60)
             min = abs(math.trunc((decdeg - deg)*60))
             sec = round((decmin - min) * 60 , 1)
-            return str(deg) + "° " + str(min) + "′ " + str(sec) + '''″'''
+            return str(deg) + "° " + str(min) + "' " + str(sec) + '''″'''
 
         if self.lon < 0 :
             we = "W"
@@ -102,7 +102,8 @@ class Point4d:
             if decmin == 60.0:
                 deg += 1
                 decmin = 0.0
-            return str(deg) + "°" + str(decmin) + "′"
+            #return str(deg) + "°" + str(decmin) + "'"
+            return f"{deg:03d}°{decmin:0>{4}.1f}'"
 
         if self.lon < 0 :
             we = "W"

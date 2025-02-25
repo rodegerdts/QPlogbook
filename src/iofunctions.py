@@ -45,7 +45,7 @@ def getSKlog(path: str) -> list:
 
 
 def importdir(path):
-    """Reads and concatenates all yaml files in a directory into a log
+    """Reads and concatenates all SKlogbook yaml files in a directory into a log
     
     Args:
         
@@ -146,6 +146,18 @@ def splitmonthly(log):
     return logs
         
 
+def splitdayly(log):
+    """Splits a logbook into a dictionary of monthly logs"""
+    logs = {}
+    for i in log:
+        month = i["point"].time.strftime("%Y-%m-%d")
+        if month in logs:
+            logs[month].append(i)
+        else:
+            logs[month] = [i]
+    return logs
+
+
 
 # -----------------------------------------------------------------------------------------
 # Cleanup functions:
@@ -230,27 +242,27 @@ def cleanup(log):
 # testing:
 
 if __name__=='__main__':
-    d1 =  {"a": 1, "b": 2, "c": 3, "g": {"e": 5, "f": 6}, "k": ["Karin", "Enno", "Steffi"]}
-    d2 =  {"a": 1.1, "b": 2.2, "d": 4.4, "i": {"e": 5.5, "h": 7.7, "n": ""}, "j": {}, "k": ["Karin", "Enno", "Klaus"], "l": {"m": ""}}
-    time1 = datetime.fromisoformat('2024-10-27T12:48:47.000Z')
-    time2 = datetime.fromisoformat('2024-10-27T12:59:47.000Z')
-    time3 = datetime.fromisoformat('2024-10-27T12:59:50.000Z')
-    pp =  Point4d(time3, 67.28411, 14.35660)
-    ppp = Point4d(time2, 67.28411, 14.35651)
-    p = Point4d(time1, 67.29335, 14.39792)
-    d1["point"] = pp
-    d2["point"] = ppp
-    list1 = [d1, d2]
-    basedir = os.getcwd()
-    # print(basedir)
-    # dic = importdir(basedir)
-    # dic = getSKlog("/Users/enno/Documents/dev/VScode/VSCpython/testlog.yml")
-    # dic = getQPlog("/Users/enno/Documents/dev/VScode/VSCpython/QPlogbook/data/qptestlog.json")
-    # dic = merge_entrys(d1, d2)
-    # di = flatten(dic[2])
-    # di = logmap(dic, keymap)
-    d = cleanup(list1)
-    print(d)
+    # d1 =  {"a": 1, "b": 2, "c": 3, "g": {"e": 5, "f": 6}, "k": ["Karin", "Enno", "Steffi"]}
+    # d2 =  {"a": 1.1, "b": 2.2, "d": 4.4, "i": {"e": 5.5, "h": 7.7, "n": ""}, "j": {}, "k": ["Karin", "Enno", "Klaus"], "l": {"m": ""}}
+    # time1 = datetime.fromisoformat('2024-10-27T12:48:47.000Z')
+    # time2 = datetime.fromisoformat('2024-10-27T12:59:47.000Z')
+    # time3 = datetime.fromisoformat('2024-10-27T12:59:50.000Z')
+    # pp =  Point4d(time3, 67.28411, 14.35660)
+    # ppp = Point4d(time2, 67.28411, 14.35651)
+    # p = Point4d(time1, 67.29335, 14.39792)
+    # d1["point"] = pp
+    # d2["point"] = ppp
+    # list1 = [d1, d2]
+    # basedir = os.getcwd()
+    # # print(basedir)
+    # # dic = importdir(basedir)
+    # # dic = getSKlog("/Users/enno/Documents/dev/VScode/VSCpython/testlog.yml")
+    dic = getQPlog("/Users/enno/Documents/dev/QPlogbook/log/2024-08.json")
+    # # dic = merge_entrys(d1, d2)
+    # # di = flatten(dic[2])
+    # # di = logmap(dic, keymap)
+    # d = cleanup(list1)
+    # print(d)
     # print(list1[0]["point"] == list1[1]["point"])
     
     # serial = serialize_log(d)
@@ -267,4 +279,4 @@ if __name__=='__main__':
     # # orjson_file = orjson.dumps(di, option=orjson.OPT_INDENT_2)
     # print(d)
     # print(orjson_file.decode("utf-8"))
-    # print(dic)
+    print(dic)

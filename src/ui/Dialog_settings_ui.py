@@ -706,6 +706,11 @@ class Ui_DialogSettings(object):
 
         self.gridLayout.addWidget(self.checkBox_s_text, 5, 4, 1, 1)
 
+        self.checkBox_s_place = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_place.setObjectName(u"checkBox_s_place")
+
+        self.gridLayout.addWidget(self.checkBox_s_place, 6, 4, 1, 1)
+
         self.tabWidget.addTab(self.tab_SKkeys, "")
 
         self.gridLayout_2.addWidget(self.tabWidget, 0, 0, 1, 1)
@@ -715,7 +720,7 @@ class Ui_DialogSettings(object):
         self.buttonBox.accepted.connect(DialogSettings.accept)
         self.buttonBox.rejected.connect(DialogSettings.reject)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(DialogSettings)
@@ -829,6 +834,7 @@ class Ui_DialogSettings(object):
         self.checkBox_s_crew.setText(QCoreApplication.translate("DialogSettings", u"Crew", None))
         self.checkBox_s_visibility.setText(QCoreApplication.translate("DialogSettings", u"Visibility", None))
         self.checkBox_s_text.setText(QCoreApplication.translate("DialogSettings", u"Text", None))
+        self.checkBox_s_place.setText(QCoreApplication.translate("DialogSettings", u"Place", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_SKkeys), QCoreApplication.translate("DialogSettings", u"Signal K Paths", None))
     # retranslateUi
 

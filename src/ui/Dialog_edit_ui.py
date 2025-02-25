@@ -25,7 +25,7 @@ class Ui_EditDialog(object):
     def setupUi(self, EditDialog):
         if not EditDialog.objectName():
             EditDialog.setObjectName(u"EditDialog")
-        EditDialog.resize(738, 604)
+        EditDialog.resize(762, 755)
         self.verticalLayout = QVBoxLayout(EditDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
@@ -327,6 +327,17 @@ class Ui_EditDialog(object):
 
         self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.label_18)
 
+        self.label_21 = QLabel(EditDialog)
+        self.label_21.setObjectName(u"label_21")
+
+        self.formLayout_2.setWidget(11, QFormLayout.LabelRole, self.label_21)
+
+        self.lineEdit_place = QLineEdit(EditDialog)
+        self.lineEdit_place.setObjectName(u"lineEdit_place")
+        self.lineEdit_place.setMinimumSize(QSize(220, 0))
+
+        self.formLayout_2.setWidget(11, QFormLayout.FieldRole, self.lineEdit_place)
+
 
         self.horizontalLayout.addLayout(self.formLayout_2)
 
@@ -415,6 +426,7 @@ class Ui_EditDialog(object):
         self.addCrewButton.setText(QCoreApplication.translate("EditDialog", u"Add Crew", None))
         self.delCrewButton.setText(QCoreApplication.translate("EditDialog", u"Delete Crew", None))
         self.label_18.setText(QCoreApplication.translate("EditDialog", u"Air temperature (\u02daC)", None))
+        self.label_21.setText(QCoreApplication.translate("EditDialog", u"Place name", None))
         self.label_14.setText(QCoreApplication.translate("EditDialog", u"Text:", None))
     # retranslateUi
 
