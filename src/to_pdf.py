@@ -266,7 +266,7 @@ class PDFtable(FPDF):
 class PDF(PDFtable):
     def header(self):
         self.set_font("Helvetica", "I", 11)
-        self.cell(0, 10, f" {boat["name"]}  {boat['callsign']}", 0, new_x="LMARGIN", new_y="NEXT", align='L')
+        self.cell(0, 10, f" {boat['name']}  {boat['callsign']}", 0, new_x="LMARGIN", new_y="NEXT", align='L')
 
     def footer(self):
         self.set_y(-15)
@@ -283,7 +283,7 @@ def  mk_pdf(qplog, conf, fontsize, filename):
     pdf.set_font("Times", size=fontsize)
     for day, log in qplog.items():
         title = log[0]["point"].time.strftime('%d.%m.%Y %A')
-        timezone = f" TZ: UTC{math.trunc(conf["utc_offset"]):+03}:{(abs(conf["utc_offset"]-math.trunc(conf["utc_offset"]))*60):02.0f} "
+        timezone = f" TZ: UTC{math.trunc(conf['utc_offset']):+03}:{(abs(conf['utc_offset']-math.trunc(conf['utc_offset']))*60):02.0f} "
         data = mk_table(log, conf, k_to_h)
 
         pdf.create_table(table_data = data[0], text_data=data[1], title=title, tz=timezone, data_size=fontsize)

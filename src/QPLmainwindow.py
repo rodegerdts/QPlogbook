@@ -218,7 +218,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.status_label = QtWidgets.QLabel("Starting up")
         self.auto_entry_label = QtWidgets.QLabel("Auto Entry: ON")
         self.auto_entry_label.setText("Auto Entry: ON") if auto_on else self.auto_entry_label.setText("Auto Entry: OFF")    
-        self.timezone_label = QtWidgets.QLabel(f"   Timezone: UTC{math.trunc(conf["utc_offset"]):+03}:{(abs(conf["utc_offset"]-math.trunc(conf["utc_offset"]))*60):02.0f} ")
+        self.timezone_label = QtWidgets.QLabel(f"   Timezone: UTC{math.trunc(conf['utc_offset']):+03}:{(abs(conf['utc_offset']-math.trunc(conf['utc_offset']))*60):02.0f} ")
         self.statusbar.addWidget(self.status_label)
         self.statusbar.addWidget(self.timezone_label)
         self.statusbar.addPermanentWidget(self.auto_entry_label)
@@ -325,7 +325,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         to_save = iofunctions.splitmonthly(QPlog)
         for key in to_save:
             try:
-                with open(f"{conf["qplogfolder"]}/{key}.json", "r") as file:
+                with open(f"{conf['qplogfolder']}/{key}.json", "r") as file:
                     #oldlog = iofunctions.deserialize_log(file.read())
                     oldjson = file.read()
                     newjson = iofunctions.serialize_log(to_save[key])
@@ -335,15 +335,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         choice = ChoiceDialog(self, file)
                         choice.exec()
                         if choice.do == "overwrite":
-                            with open(f"{conf["qplogfolder"]}/{key}.json", "w") as file:
+                            with open(f"{conf['qplogfolder']}/{key}.json", "w") as file:
                                 file.write(iofunctions.serialize_log(to_save[key]))
                             return 0
                         elif choice.do == "merge":
-                            with open(f"{conf["qplogfolder"]}/{key}.json", "r") as file:
+                            with open(f"{conf['qplogfolder']}/{key}.json", "r") as file:
                                 oldlog = iofunctions.deserialize_log(file.read())
                             oldlog.extend(to_save[key])
                             oldlog = iofunctions.cleanup(oldlog)
-                            with open(f"{conf["qplogfolder"]}/{key}.json", "w") as file:
+                            with open(f"{conf['qplogfolder']}/{key}.json", "w") as file:
                                 file.write(iofunctions.serialize_log(oldlog))
                             return 0
                         elif choice.do == "discard":
@@ -357,7 +357,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         else:
                             pass
             except FileNotFoundError:
-                with open(f"{conf["qplogfolder"]}/{key}.json", "w") as file:
+                with open(f"{conf['qplogfolder']}/{key}.json", "w") as file:
                     file.write(iofunctions.serialize_log(to_save[key]))
 
 
@@ -387,7 +387,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.logTableView.setModel(self.model)
         self.logTableView.resizeRowsToContents()
         self.logTableView.resizeColumnsToContents()
-        self.timezone_label.setText(f"   Timezone: UTC{math.trunc(conf["utc_offset"]):+03}:{(abs(conf["utc_offset"]-math.trunc(conf["utc_offset"]))*60):02.0f} ")
+        self.timezone_label.setText(f"   Timezone: UTC{math.trunc(conf['utc_offset']):+03}:{(abs(conf['utc_offset']-math.trunc(conf['utc_offset']))*60):02.0f} ")
 
 
     def openNew(self):
@@ -853,20 +853,20 @@ def save_and_merge():
     to_save = iofunctions.splitmonthly(QPlog)
     for key in to_save:
         try:
-            with open(f"{conf["qplogfolder"]}/{key}.json", "r") as file:
+            with open(f"{conf['qplogfolder']}/{key}.json", "r") as file:
                 oldjson = file.read()
                 newjson = iofunctions.serialize_log(to_save[key])
                 if oldjson == newjson:
                     pass
                 else:               
-                    with open(f"{conf["qplogfolder"]}/{key}.json", "r") as file:
+                    with open(f"{conf['qplogfolder']}/{key}.json", "r") as file:
                         oldlog = iofunctions.deserialize_log(file.read())
                     oldlog.extend(to_save[key])
                     oldlog = iofunctions.cleanup(oldlog)
-                    with open(f"{conf["qplogfolder"]}/{key}.json", "w") as file:
+                    with open(f"{conf['qplogfolder']}/{key}.json", "w") as file:
                         file.write(iofunctions.serialize_log(oldlog))
         except FileNotFoundError:
-            with open(f"{conf["qplogfolder"]}/{key}.json", "w") as file:
+            with open(f"{conf['qplogfolder']}/{key}.json", "w") as file:
                 file.write(iofunctions.serialize_log(to_save[key]))
 
 
