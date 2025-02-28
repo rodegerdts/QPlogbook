@@ -154,7 +154,7 @@ class Sight:
         self.t = ts.from_datetime(self.time)
 
     def __str__(self):
-        return f"{self.body} {self.time.strftime("%H:%M:%S")}  Alt: {iofunctions.dg_mi(self.Ha)}"
+        return f"{self.body} {self.time.strftime('%H:%M:%S')}  Alt: {iofunctions.dg_mi(self.Ha)}"
 
     def get_ic_az(self):
         if self.body in starnames:
