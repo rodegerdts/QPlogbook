@@ -1,0 +1,10 @@
+APScheduler==3.11.0
+fpdf2==2.8.2
+geographiclib==2.0
+geopy==2.4.1
+pytest==8.3.4
+traitlets==5.14.3
+pyside6
+skyfield
+pyyamel
+requests
