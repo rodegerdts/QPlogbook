@@ -19,13 +19,14 @@ from PySide6.QtWidgets import (QAbstractButton, QAbstractSpinBox, QApplication, 
     QDateTimeEdit, QDialog, QDialogButtonBox, QDoubleSpinBox,
     QFormLayout, QHBoxLayout, QLabel, QLineEdit,
     QListWidget, QListWidgetItem, QPlainTextEdit, QPushButton,
-    QSizePolicy, QSpinBox, QVBoxLayout, QWidget)
+    QSizePolicy, QSpacerItem, QSpinBox, QVBoxLayout,
+    QWidget)
 
 class Ui_EditDialog(object):
     def setupUi(self, EditDialog):
         if not EditDialog.objectName():
             EditDialog.setObjectName(u"EditDialog")
-        EditDialog.resize(762, 755)
+        EditDialog.resize(834, 754)
         self.verticalLayout = QVBoxLayout(EditDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.horizontalLayout = QHBoxLayout()
@@ -39,7 +40,7 @@ class Ui_EditDialog(object):
 
         self.dateTimeEdit = QDateTimeEdit(EditDialog)
         self.dateTimeEdit.setObjectName(u"dateTimeEdit")
-        self.dateTimeEdit.setTimeSpec(Qt.TimeSpec.LocalTime)
+        self.dateTimeEdit.setTimeSpec(Qt.TimeSpec.UTC)
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.dateTimeEdit)
 
@@ -48,28 +49,10 @@ class Ui_EditDialog(object):
 
         self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_4)
 
-        self.latEdit = QDoubleSpinBox(EditDialog)
-        self.latEdit.setObjectName(u"latEdit")
-        self.latEdit.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
-        self.latEdit.setDecimals(7)
-        self.latEdit.setMinimum(-90.000000000000000)
-        self.latEdit.setMaximum(90.000000000000000)
-
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.latEdit)
-
         self.label_3 = QLabel(EditDialog)
         self.label_3.setObjectName(u"label_3")
 
         self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_3)
-
-        self.lonEdit = QDoubleSpinBox(EditDialog)
-        self.lonEdit.setObjectName(u"lonEdit")
-        self.lonEdit.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
-        self.lonEdit.setDecimals(6)
-        self.lonEdit.setMinimum(-180.000000000000000)
-        self.lonEdit.setMaximum(180.000000000000000)
-
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.lonEdit)
 
         self.label_19 = QLabel(EditDialog)
         self.label_19.setObjectName(u"label_19")
@@ -170,6 +153,80 @@ class Ui_EditDialog(object):
         self.updateButton.setObjectName(u"updateButton")
 
         self.formLayout.setWidget(10, QFormLayout.FieldRole, self.updateButton)
+
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.spinBox_lat_deg = QSpinBox(EditDialog)
+        self.spinBox_lat_deg.setObjectName(u"spinBox_lat_deg")
+        self.spinBox_lat_deg.setMinimumSize(QSize(40, 0))
+        self.spinBox_lat_deg.setMaximumSize(QSize(1600, 16777215))
+        self.spinBox_lat_deg.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinBox_lat_deg.setMinimum(-90)
+        self.spinBox_lat_deg.setMaximum(90)
+
+        self.horizontalLayout_4.addWidget(self.spinBox_lat_deg)
+
+        self.doubleSpinBox_lat_min = QDoubleSpinBox(EditDialog)
+        self.doubleSpinBox_lat_min.setObjectName(u"doubleSpinBox_lat_min")
+        self.doubleSpinBox_lat_min.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.doubleSpinBox_lat_min.setDecimals(3)
+        self.doubleSpinBox_lat_min.setMaximum(59.000000000000000)
+
+        self.horizontalLayout_4.addWidget(self.doubleSpinBox_lat_min)
+
+        self.comboBox_ns = QComboBox(EditDialog)
+        self.comboBox_ns.setObjectName(u"comboBox_ns")
+        self.comboBox_ns.setMaximumSize(QSize(60, 16777215))
+        self.comboBox_ns.setMaxVisibleItems(3)
+
+        self.horizontalLayout_4.addWidget(self.comboBox_ns)
+
+        self.horizontalSpacer_3 = QSpacerItem(0, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_3)
+
+
+        self.formLayout.setLayout(1, QFormLayout.FieldRole, self.horizontalLayout_4)
+
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setSpacing(0)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.spinBox_lon_deg = QSpinBox(EditDialog)
+        self.spinBox_lon_deg.setObjectName(u"spinBox_lon_deg")
+        self.spinBox_lon_deg.setMinimumSize(QSize(40, 0))
+        self.spinBox_lon_deg.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+        self.spinBox_lon_deg.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinBox_lon_deg.setMinimum(-180)
+        self.spinBox_lon_deg.setMaximum(180)
+
+        self.horizontalLayout_5.addWidget(self.spinBox_lon_deg)
+
+        self.doubleSpinBox_lon_min = QDoubleSpinBox(EditDialog)
+        self.doubleSpinBox_lon_min.setObjectName(u"doubleSpinBox_lon_min")
+        self.doubleSpinBox_lon_min.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.doubleSpinBox_lon_min.setDecimals(3)
+        self.doubleSpinBox_lon_min.setMaximum(59.000000000000000)
+
+        self.horizontalLayout_5.addWidget(self.doubleSpinBox_lon_min)
+
+        self.comboBox_we = QComboBox(EditDialog)
+        self.comboBox_we.setObjectName(u"comboBox_we")
+        self.comboBox_we.setMaximumSize(QSize(60, 16777215))
+        self.comboBox_we.setMaxVisibleItems(2)
+
+        self.horizontalLayout_5.addWidget(self.comboBox_we)
+
+        self.horizontalSpacer_4 = QSpacerItem(0, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_4)
+
+
+        self.formLayout.setLayout(2, QFormLayout.FieldRole, self.horizontalLayout_5)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.formLayout.setItem(11, QFormLayout.FieldRole, self.verticalSpacer)
 
 
         self.horizontalLayout.addLayout(self.formLayout)
@@ -367,6 +424,9 @@ class Ui_EditDialog(object):
         self.buttonBox.accepted.connect(EditDialog.accept)
         self.buttonBox.rejected.connect(EditDialog.reject)
 
+        self.comboBox_ns.setCurrentIndex(-1)
+
+
         QMetaObject.connectSlotsByName(EditDialog)
     # setupUi
 
@@ -383,6 +443,11 @@ class Ui_EditDialog(object):
         self.label_8.setText(QCoreApplication.translate("EditDialog", u"Speed through water (kn)", None))
         self.label_6.setText(QCoreApplication.translate("EditDialog", u"Engine hours", None))
         self.updateButton.setText(QCoreApplication.translate("EditDialog", u"update from SK", None))
+        self.spinBox_lat_deg.setSuffix(QCoreApplication.translate("EditDialog", u"\u02da", None))
+        self.doubleSpinBox_lat_min.setSuffix(QCoreApplication.translate("EditDialog", u"\u00b4", None))
+        self.comboBox_ns.setCurrentText("")
+        self.spinBox_lon_deg.setSuffix(QCoreApplication.translate("EditDialog", u"\u02da", None))
+        self.doubleSpinBox_lon_min.setSuffix(QCoreApplication.translate("EditDialog", u"\u00b4", None))
         self.label_10.setText(QCoreApplication.translate("EditDialog", u"True wind speed (kn)", None))
 #if QT_CONFIG(tooltip)
         self.twsEdit.setToolTip(QCoreApplication.translate("EditDialog", u"TWS in Knots", None))

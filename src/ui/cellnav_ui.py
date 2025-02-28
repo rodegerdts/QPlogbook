@@ -25,7 +25,7 @@ class Ui_CelNavigation(object):
     def setupUi(self, CelNavigation):
         if not CelNavigation.objectName():
             CelNavigation.setObjectName(u"CelNavigation")
-        CelNavigation.resize(740, 573)
+        CelNavigation.resize(528, 520)
         self.verticalLayout = QVBoxLayout(CelNavigation)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.gridLayout = QGridLayout()
@@ -136,75 +136,10 @@ class Ui_CelNavigation(object):
 
         self.formLayout_2.setWidget(1, QFormLayout.LabelRole, self.label)
 
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setSpacing(0)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.spinBox_lat_deg = QSpinBox(self.groupBox)
-        self.spinBox_lat_deg.setObjectName(u"spinBox_lat_deg")
-        self.spinBox_lat_deg.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
-        self.spinBox_lat_deg.setMinimum(-90)
-        self.spinBox_lat_deg.setMaximum(90)
-
-        self.horizontalLayout.addWidget(self.spinBox_lat_deg)
-
-        self.doubleSpinBox_lat_min = QDoubleSpinBox(self.groupBox)
-        self.doubleSpinBox_lat_min.setObjectName(u"doubleSpinBox_lat_min")
-        self.doubleSpinBox_lat_min.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
-        self.doubleSpinBox_lat_min.setDecimals(1)
-        self.doubleSpinBox_lat_min.setMaximum(59.000000000000000)
-
-        self.horizontalLayout.addWidget(self.doubleSpinBox_lat_min)
-
-        self.comboBox_ns = QComboBox(self.groupBox)
-        self.comboBox_ns.setObjectName(u"comboBox_ns")
-        self.comboBox_ns.setMaxVisibleItems(3)
-
-        self.horizontalLayout.addWidget(self.comboBox_ns)
-
-        self.horizontalSpacer = QSpacerItem(0, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer)
-
-
-        self.formLayout_2.setLayout(1, QFormLayout.FieldRole, self.horizontalLayout)
-
         self.label_2 = QLabel(self.groupBox)
         self.label_2.setObjectName(u"label_2")
 
         self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.label_2)
-
-        self.horizontalLayout_2 = QHBoxLayout()
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.spinBox_lon_deg = QSpinBox(self.groupBox)
-        self.spinBox_lon_deg.setObjectName(u"spinBox_lon_deg")
-        self.spinBox_lon_deg.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
-        self.spinBox_lon_deg.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
-        self.spinBox_lon_deg.setMinimum(-180)
-        self.spinBox_lon_deg.setMaximum(180)
-
-        self.horizontalLayout_2.addWidget(self.spinBox_lon_deg)
-
-        self.doubleSpinBox_lon_min = QDoubleSpinBox(self.groupBox)
-        self.doubleSpinBox_lon_min.setObjectName(u"doubleSpinBox_lon_min")
-        self.doubleSpinBox_lon_min.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
-        self.doubleSpinBox_lon_min.setDecimals(1)
-        self.doubleSpinBox_lon_min.setMaximum(59.000000000000000)
-
-        self.horizontalLayout_2.addWidget(self.doubleSpinBox_lon_min)
-
-        self.comboBox_we = QComboBox(self.groupBox)
-        self.comboBox_we.setObjectName(u"comboBox_we")
-        self.comboBox_we.setMaxVisibleItems(2)
-
-        self.horizontalLayout_2.addWidget(self.comboBox_we)
-
-        self.horizontalSpacer_2 = QSpacerItem(0, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
-
-
-        self.formLayout_2.setLayout(2, QFormLayout.FieldRole, self.horizontalLayout_2)
 
         self.button_calculateDR = QPushButton(self.groupBox)
         self.button_calculateDR.setObjectName(u"button_calculateDR")
@@ -222,6 +157,76 @@ class Ui_CelNavigation(object):
         self.dateTimeEdit_dr.setTimeSpec(Qt.TimeSpec.UTC)
 
         self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.dateTimeEdit_dr)
+
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.spinBox_lat_deg = QSpinBox(self.groupBox)
+        self.spinBox_lat_deg.setObjectName(u"spinBox_lat_deg")
+        self.spinBox_lat_deg.setMinimumSize(QSize(40, 0))
+        self.spinBox_lat_deg.setMaximumSize(QSize(1600, 16777215))
+        self.spinBox_lat_deg.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinBox_lat_deg.setMinimum(-90)
+        self.spinBox_lat_deg.setMaximum(90)
+
+        self.horizontalLayout.addWidget(self.spinBox_lat_deg)
+
+        self.doubleSpinBox_lat_min = QDoubleSpinBox(self.groupBox)
+        self.doubleSpinBox_lat_min.setObjectName(u"doubleSpinBox_lat_min")
+        self.doubleSpinBox_lat_min.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.doubleSpinBox_lat_min.setDecimals(1)
+        self.doubleSpinBox_lat_min.setMaximum(59.000000000000000)
+
+        self.horizontalLayout.addWidget(self.doubleSpinBox_lat_min)
+
+        self.comboBox_ns = QComboBox(self.groupBox)
+        self.comboBox_ns.setObjectName(u"comboBox_ns")
+        self.comboBox_ns.setMaximumSize(QSize(60, 16777215))
+        self.comboBox_ns.setMaxVisibleItems(3)
+
+        self.horizontalLayout.addWidget(self.comboBox_ns)
+
+        self.horizontalSpacer = QSpacerItem(0, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
+
+        self.formLayout_2.setLayout(1, QFormLayout.FieldRole, self.horizontalLayout)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.spinBox_lon_deg = QSpinBox(self.groupBox)
+        self.spinBox_lon_deg.setObjectName(u"spinBox_lon_deg")
+        self.spinBox_lon_deg.setMinimumSize(QSize(40, 0))
+        self.spinBox_lon_deg.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+        self.spinBox_lon_deg.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.spinBox_lon_deg.setMinimum(-180)
+        self.spinBox_lon_deg.setMaximum(180)
+
+        self.horizontalLayout_2.addWidget(self.spinBox_lon_deg)
+
+        self.doubleSpinBox_lon_min = QDoubleSpinBox(self.groupBox)
+        self.doubleSpinBox_lon_min.setObjectName(u"doubleSpinBox_lon_min")
+        self.doubleSpinBox_lon_min.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.doubleSpinBox_lon_min.setDecimals(1)
+        self.doubleSpinBox_lon_min.setMaximum(59.000000000000000)
+
+        self.horizontalLayout_2.addWidget(self.doubleSpinBox_lon_min)
+
+        self.comboBox_we = QComboBox(self.groupBox)
+        self.comboBox_we.setObjectName(u"comboBox_we")
+        self.comboBox_we.setMaximumSize(QSize(60, 16777215))
+        self.comboBox_we.setMaxVisibleItems(2)
+
+        self.horizontalLayout_2.addWidget(self.comboBox_we)
+
+        self.horizontalSpacer_2 = QSpacerItem(0, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+
+        self.formLayout_2.setLayout(2, QFormLayout.FieldRole, self.horizontalLayout_2)
 
 
         self.gridLayout.addWidget(self.groupBox, 1, 0, 1, 1)
@@ -364,15 +369,15 @@ class Ui_CelNavigation(object):
         self.label_5.setText(QCoreApplication.translate("CelNavigation", u"Hight of Eye", None))
         self.groupBox.setTitle(QCoreApplication.translate("CelNavigation", u"DR position", None))
         self.label.setText(QCoreApplication.translate("CelNavigation", u"Latitude:", None))
-        self.spinBox_lat_deg.setSuffix(QCoreApplication.translate("CelNavigation", u"\u02da", None))
-        self.doubleSpinBox_lat_min.setSuffix(QCoreApplication.translate("CelNavigation", u"\u00b4", None))
-        self.comboBox_ns.setCurrentText("")
         self.label_2.setText(QCoreApplication.translate("CelNavigation", u"Longitude:", None))
-        self.spinBox_lon_deg.setSuffix(QCoreApplication.translate("CelNavigation", u"\u02da", None))
-        self.doubleSpinBox_lon_min.setSuffix(QCoreApplication.translate("CelNavigation", u"\u00b4", None))
         self.button_calculateDR.setText(QCoreApplication.translate("CelNavigation", u"calculateDR", None))
         self.label_11.setText(QCoreApplication.translate("CelNavigation", u"Time", None))
         self.dateTimeEdit_dr.setDisplayFormat(QCoreApplication.translate("CelNavigation", u"dd/MM/yyyy HH:mm:ss", None))
+        self.spinBox_lat_deg.setSuffix(QCoreApplication.translate("CelNavigation", u"\u02da", None))
+        self.doubleSpinBox_lat_min.setSuffix(QCoreApplication.translate("CelNavigation", u"\u00b4", None))
+        self.comboBox_ns.setCurrentText("")
+        self.spinBox_lon_deg.setSuffix(QCoreApplication.translate("CelNavigation", u"\u02da", None))
+        self.doubleSpinBox_lon_min.setSuffix(QCoreApplication.translate("CelNavigation", u"\u00b4", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("CelNavigation", u"Fix", None))
         self.label_12.setText(QCoreApplication.translate("CelNavigation", u"Latiude:", None))
         self.label_13.setText(QCoreApplication.translate("CelNavigation", u"Longitude:", None))

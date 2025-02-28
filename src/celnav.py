@@ -12,9 +12,10 @@ from PySide6.QtCore import Qt, QAbstractListModel, QDateTime
 from PySide6.QtWidgets import QWidget, QDialog, QApplication, QMessageBox, QFileDialog
 from ui.cellnav_ui import Ui_CelNavigation
 from ui.dialog_sight_ui import Ui_DialogSight
+import iofunctions
 
 # Variables and objects
-pl = {"Venus": "venus", "Mars": "mars", "Jupiter": "JUPITER BARYCENTER", "Saturn": "SATURN BARYCENTER",
+pl = {"Venus": "venus", "Mars": "MARS BARYCENTER", "Jupiter": "JUPITER BARYCENTER", "Saturn": "SATURN BARYCENTER",
        "SunUL": "sun", "SunLL": "sun", "MoonUL": "moon", "MoonLL": "moon",
          "Uranus": "URANUS BARYCENTER", "Neptune": "NEPTUNE BARYCENTER", "Pluto": "PLUTO BARYCENTER", "Mercury": "mercury"}
 
@@ -37,18 +38,22 @@ t = ts.utc(2025, 1, 26, 15, 00)
 
 
 
-# Load the JPL ephemeris DE421 (covers 1900-2050).
-planets = load('de421.bsp')
+# Load the JPL ephemeris.
+#planets = load('de421.bsp') # use this if you want to download the ephemeris
+planets = sf.load_file(sf_dir + "/" + 'de440exc.bsp') # a shortened version of de440s.bsp without data from the past.
 
 # load star catalog
-with load.open(hipparcos.URL) as f:
+with load.open(sf_dir + "/hip_main.dat") as f:
     stars = hipparcos.load_dataframe(f)
 
-url2 = ('https://raw.githubusercontent.com/Stellarium/stellarium/master'
-       '/skycultures/modern_iau/star_names.fab')
+# url2 = ('https://raw.githubusercontent.com/Stellarium/stellarium/master'
+#        '/skycultures/modern_iau/star_names.fab')
 
-with load.open(url2) as f2:
+starnamesfile = sf_dir + "/star_names.fab"
+with load.open(starnamesfile) as f2:
     star_names = stellarium.parse_star_names(f2)
+
+#star_names = stellarium.parse_star_names(starnamesfile)
 
 starnames = {}
 for star in star_names:
@@ -69,7 +74,7 @@ astro_folder = conf["qplogfolder"] + "/astro/"
 def dr_pos(sog, cog, t1, t2, lat, lon):
     """Calculates the dead reconing position from the course and speed over ground"""
     d = sog * (t2 - t1).total_seconds() / 3600
-    print(f"d:{d}")
+    #print(f"d:{d}")
     lat = math.radians(lat)
     lon = math.radians(lon)
     cog = math.radians(cog)
@@ -86,60 +91,13 @@ def corrections(Hs, hoe=0, temp=15, press=1013, ie=0):
     """Corect sekstant alitude Hs for index error, dip and refraction.
     No paralax rorrection needed since this is calculated by the skyfield library"""
     D = 0.0293 * math.sqrt(hoe) # dip
-    print(f"D: {D}")
+    #print(f"D: {D}")
     H = Hs + ie - D
     R0 = 0.0167 / math.tan(math.radians(H + 7.32 / (H + 4.32))) # standart refraction
     R = R0 * ( 0.28 * press / (273 + temp)) # correction for temperature and pressure
-    print(f"R0: {R0} R: {R}")
+    #print(f"R0: {R0} R: {R}")
     return H - R # corrected altitude Ho
 
-
-def dg_mi(decdeg): 
-    """convert decimal deg. to deg. decimal min. as found in the nautical almanac"""
-    deg = math.trunc(decdeg)
-    decmin = round(abs((decdeg - deg)*60), 1)
-    if decmin == 60.0:
-        deg += 1
-        decmin = 0.0
-    return str(deg) + "°" + str(decmin) + "'"
-
-
-def dg_min_pos(lat, lon):
-    '''Returns:
-        A tupel of strings in human readable format. (Degrees, deciaml minutes for celstial derived positions)
-    '''
-
-    if lon < 0 :
-        we = "W"
-    else:
-        we = "E"
-    if lat < 0 :
-        ns = "S"
-    else:
-        ns = "N"
-    dgspos = (dg_mi(lat) +  ns, dg_mi(lon) + we)
-    return dgspos
-
-
-def mk_deg(deg, min):
-    '''Returns:
-        A float in decimal degrees from degrees and decimal minutes.
-    '''
-    return deg + min/60
-
-def mk_decpos(deg_lat, min_lat, deg_lon, min_lon, ns, we):
-    '''Returns:
-        A tupel of floats in decimal degrees for degrees and decimal minuts positions.
-    '''
-    if ns == "S":
-        lat = -mk_deg(deg_lat, min_lat)
-    else:
-        lat = mk_deg(deg_lat, min_lat)
-    if we == "W":
-        lon = -mk_deg(deg_lon, min_lon)
-    else:
-        lon = mk_deg(deg_lon, min_lon)
-    return (lat, lon)
 
 
 def serialize_sights(sights):
@@ -196,11 +154,11 @@ class Sight:
         self.t = ts.from_datetime(self.time)
 
     def __str__(self):
-        return f"{self.body} {self.time.strftime("%H:%M:%S")}  Alt: {dg_mi(self.Ha)}"
+        return f"{self.body} {self.time.strftime("%H:%M:%S")}  Alt: {iofunctions.dg_mi(self.Ha)}"
 
     def get_ic_az(self):
         if self.body in starnames:
-            print(f"Star: {self.body}")
+            #print(f"Star: {self.body}")
             self.star = sf.Star.from_dataframe(stars.loc[starnames[self.body]])
             star_data = stars.loc[starnames[self.body]]
             self.magnitude = star_data['magnitude'] 
@@ -255,7 +213,7 @@ class Fix:
                     runningpos = dr_pos(sog, cog, self.sights[0].time, s.time, math.degrees(self.lat), math.degrees(self.lon))
                     s.lon = runningpos[1]
                     s.lat = runningpos[0]
-                print(f"{s.body} {s.time} {dg_mi(s.lat)} {dg_mi(s.lon)}")
+                #print(f"{s.body} {s.time} {dg_mi(s.lat)} {dg_mi(s.lon)}")
 
         for i in range(10):
             update_sights(self)
@@ -304,6 +262,7 @@ class CelNavUi(QWidget, Ui_CelNavigation):
     def __init__(self, log=None, logmodel=None, lastpoint=None, indexerror=0, hoe=0):
         super().__init__()
         self.setupUi(self)
+        self.l_changed()
         self.sights = []
         self.fix = None
         self.sog = 0
@@ -373,14 +332,14 @@ class CelNavUi(QWidget, Ui_CelNavigation):
         self.hoe = self.doubleSpinBox_hoe.value()
 
     def l_changed(self):
-        self.lat, self.lon = mk_decpos(self.spinBox_lat_deg.value(), self.doubleSpinBox_lat_min.value(),
+        self.lat, self.lon = iofunctions.mk_decpos(self.spinBox_lat_deg.value(), self.doubleSpinBox_lat_min.value(),
                                         self.spinBox_lon_deg.value(), self.doubleSpinBox_lon_min.value(),
                                         self.comboBox_ns.currentText(), self.comboBox_we.currentText())
         #print(self.lat, self.lon)
 
     def dr_time_changed(self, qtime):
         self.dr_time = datetime.fromisoformat(qtime.toString(format= Qt.ISODate))
-        print(self.dr_time.isoformat())
+        #print(self.dr_time.isoformat())
 
 
     def calculate_dr(self):
@@ -414,9 +373,9 @@ class CelNavUi(QWidget, Ui_CelNavigation):
 
 
     def calculate_fix(self):
-        print(self.sights)
+        #print(self.sights)
         self.fix = Fix(self.sights, self.sog, self.cog)
-        fix_pos = dg_min_pos(self.fix.fix[1], self.fix.fix[2])
+        fix_pos = iofunctions.dg_min_pos(self.fix.fix[1], self.fix.fix[2])
         self.lineEdit_fix_lat.setText(fix_pos[0])
         self.lineEdit_fix_lon.setText(fix_pos[1])
         self.label_time_of_fix.setText(self.fix.fix[0].strftime("%H:%M:%S"))
@@ -585,7 +544,7 @@ class DialogSight(QDialog, Ui_DialogSight):
         elif self.body == "SunUL" or self.body == "MoonUL":
             sd = 0 - self.sight.semidiameter
         self.alt = corrections(self.hs+sd, self.hoe, self.temperature, self.pressure, self.ie)
-        print(f"Corrected altitude: {self.alt}")
+        #print(f"Corrected altitude: {self.alt}")
         deg = math.trunc(self.alt)
         min = (self.alt - deg) * 60
         self.spinBox_alt_deg.setValue(deg)
@@ -611,12 +570,12 @@ class DialogSight(QDialog, Ui_DialogSight):
         #     self.hc = self.hc - self.sight.semidiameter
         #     print(f"UL: {self.hc} {self.sight.semidiameter}")
         self.label_az.setText(f" Az: {math.trunc(az)}˚")
-        self.label_hc.setText(f" Hc: {dg_mi(self.hc)} mag:{mag}")
+        self.label_hc.setText(f" Hc: {iofunctions.dg_mi(self.hc)} mag:{mag}")
 
     def actoalt(self):
         #self.Hc = self.sight.get_ic_az()[2]
         if self.hc:
-            print(f"actoalt clicked {math.trunc(self.hc)}")
+            #print(f"actoalt clicked {math.trunc(self.hc)}")
             self.spinBox_alt_deg.setValue(math.trunc(self.hc))
             self.spinBox_Hs_deg.setValue(math.trunc(self.hc))
             self.doubleSpinBox_alt_min.setValue((self.hc - math.trunc(self.hc)) * 60)
@@ -628,7 +587,7 @@ class DialogSight(QDialog, Ui_DialogSight):
 
 
     def l_changed(self):
-        self.lat, self.lon = mk_decpos(self.spinBox_lat_deg.value(), self.doubleSpinBox_lat_min.value(),
+        self.lat, self.lon = iofunctions.mk_decpos(self.spinBox_lat_deg.value(), self.doubleSpinBox_lat_min.value(),
                                         self.spinBox_lon_deg.value(), self.doubleSpinBox_lon_min.value(),
                                         self.comboBox_ns.currentText(), self.comboBox_we.currentText())
 

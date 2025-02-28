@@ -2,7 +2,8 @@ from ui.dialog_dr_ui import Ui_DialogDR
 from PySide6.QtWidgets import QDialog
 from PySide6.QtCore import QDateTime, Qt    
 from point4D import Point4d
-from celnav import dr_pos, mk_decpos
+from iofunctions import mk_decpos
+from celnav import dr_pos
 from datetime import datetime, timezone
 import math
 from geographiclib.geodesic import Geodesic
@@ -131,7 +132,7 @@ class DeadReckoning(QDialog, Ui_DialogDR):
         # self.drpos = dr_pos(self.sog, self.cog, self.old_time, self.dr_time, self.old_lat, self.old_lon)
         self.drpos = self.geod.Direct(self.old_lat, self.old_lon, self.cog, self.distancetravelled * 1852)
         self.drpoint = Point4d(self.dr_time, self.drpos["lat2"], self.drpos["lon2"])
-        print(str(self.drpoint))
+        #print(str(self.drpoint))
 
         self.spinBox_delta_h.blockSignals(True)
         self.spinBox_delta_min.blockSignals(True)

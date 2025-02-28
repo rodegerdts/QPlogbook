@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>740</width>
-    <height>573</height>
+    <width>528</width>
+    <height>520</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -197,6 +197,40 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Longitude:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="button_calculateDR">
+          <property name="text">
+           <string>calculateDR</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Time</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDateTimeEdit" name="dateTimeEdit_dr">
+          <property name="currentSection">
+           <enum>QDateTimeEdit::Section::DaySection</enum>
+          </property>
+          <property name="displayFormat">
+           <string>dd/MM/yyyy HH:mm:ss</string>
+          </property>
+          <property name="timeSpec">
+           <enum>Qt::TimeSpec::UTC</enum>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <property name="spacing">
@@ -204,6 +238,18 @@
           </property>
           <item>
            <widget class="QSpinBox" name="spinBox_lat_deg">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>1600</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="buttonSymbols">
              <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
             </property>
@@ -236,6 +282,12 @@
           </item>
           <item>
            <widget class="QComboBox" name="comboBox_ns">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="currentText">
              <string/>
             </property>
@@ -262,13 +314,6 @@
           </item>
          </layout>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Longitude:</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <property name="spacing">
@@ -276,6 +321,12 @@
           </property>
           <item>
            <widget class="QSpinBox" name="spinBox_lon_deg">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
             </property>
@@ -311,6 +362,12 @@
           </item>
           <item>
            <widget class="QComboBox" name="comboBox_we">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="maxVisibleItems">
              <number>2</number>
             </property>
@@ -330,33 +387,6 @@
            </spacer>
           </item>
          </layout>
-        </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="button_calculateDR">
-          <property name="text">
-           <string>calculateDR</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>Time</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QDateTimeEdit" name="dateTimeEdit_dr">
-          <property name="currentSection">
-           <enum>QDateTimeEdit::Section::DaySection</enum>
-          </property>
-          <property name="displayFormat">
-           <string>dd/MM/yyyy HH:mm:ss</string>
-          </property>
-          <property name="timeSpec">
-           <enum>Qt::TimeSpec::UTC</enum>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>

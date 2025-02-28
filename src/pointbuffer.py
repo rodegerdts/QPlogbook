@@ -59,32 +59,32 @@ def get_cog(pointlist, age=0, averaging=0):
         return None
 
 
-def get_gpx(pointlist):
-    gpx = gpxpy.gpx.GPX()
+# GPX tracking test code:
+# def get_gpx(pointlist):
+#     gpx = gpxpy.gpx.GPX()
     
-    gpx_track = gpxpy.gpx.GPXTrack() # Create first track in our GPX:
-    gpx.tracks.append(gpx_track)
+#     gpx_track = gpxpy.gpx.GPXTrack() # Create first track in our GPX:
+#     gpx.tracks.append(gpx_track)
 
-    gpx_segment = gpxpy.gpx.GPXTrackSegment()  # Create first segment in our GPX track:
-    gpx_track.segments.append(gpx_segment)
+#     gpx_segment = gpxpy.gpx.GPXTrackSegment()  # Create first segment in our GPX track:
+#     gpx_track.segments.append(gpx_segment)
 
-    for point in pointlist:
-        tp = gpxpy.gpx.GPXTrackPoint(point.lat, point.lon, time=point.time)
-        gpx_segment.points.append(tp)
+#     for point in pointlist:
+#         tp = gpxpy.gpx.GPXTrackPoint(point.lat, point.lon, time=point.time)
+#         gpx_segment.points.append(tp)
 
-    return gpx
+#     return gpx
 
 
+# def append_gpx(pointlist, gpx):
+#     gpx_track = gpx.tracks[len(gpx.tracks)-1]
 
-def append_gpx(pointlist, gpx):
-    gpx_track = gpx.tracks[len(gpx.tracks)-1]
+#     gpx_segment = gpxpy.gpx.GPXTrackSegment()
+#     gpx_track.segments.append(gpx_segment)
 
-    gpx_segment = gpxpy.gpx.GPXTrackSegment()
-    gpx_track.segments.append(gpx_segment)
-
-    for point in pointlist:
-        tp = gpxpy.gpx.GPXTrackPoint(point.lat, point.lon, time=point.time)
-        gpx_segment.points.append(tp)
+#     for point in pointlist:
+#         tp = gpxpy.gpx.GPXTrackPoint(point.lat, point.lon, time=point.time)
+#         gpx_segment.points.append(tp)
 
 
 
@@ -110,7 +110,7 @@ def getSKpoint4D(config):
     hdopdata = json.loads(hdopresp.content)
     if posdata["latitude"] == 0 and posdata["longitude"] == 0 or hdopdata > 5:
         return None
-        print("no gps position yet")
+        #print("no gps position yet")
     else:
         p = Point4d(time, posdata["latitude"], posdata["longitude"])
         return p
@@ -148,7 +148,7 @@ if __name__=='__main__':
         ptime = p.time + timedelta(minutes = 1)
         p = Point4d(ptime, lat, lon)
         stat = getStatus(x.getdata(), stat)
-        print(stat)
+        #print(stat)
         sleep(1)
     for i in range(10):
         x.append(p)     
@@ -158,7 +158,7 @@ if __name__=='__main__':
         ptime = p.time + timedelta(minutes = 1)
         p = Point4d(ptime, lat, lon)
         stat = getStatus(x.getdata(), stat)
-        print(stat)
+        #print(stat)
         sleep(1)
 
     # print(x.getdata())

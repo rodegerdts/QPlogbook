@@ -59,8 +59,8 @@
  94376|_("Altais") 2
  46750|_("Alterf") 2
  35904|_("Aludra") 2
- 55203|_("Alula Australis") 2
- 55219|_("Alula Borealis") 2
+ 55203|_("Alula_Australis") 2
+ 55219|_("Alula_Borealis") 2
  92946|_("Alya") 2
  32362|_("Alzirr") 2
  29550|_("Amadioha") 2
@@ -72,12 +72,12 @@
  80763|_("Antares") 2
  72845|_("Arcalís") 2
  69673|_("Arcturus") 2
- 95294|_("Arkab Posterior") 2
+ 95294|_("Arkab_Posterior") 2
  95241|_("Arkab Prior") 2
  25985|_("Arneb") 2
  93506|_("Ascella") 2
- 42911|_("Asellus Australis") 2
- 42806|_("Asellus Borealis ") 2
+ 42911|_("Asellus_Australis") 2
+ 42806|_("Asellus_Borealis ") 2
  43109|_("Ashlesha") 2
  45556|_("Aspidiske") 2
  17579|_("Asterope") 2
@@ -92,8 +92,8 @@
  13701|_("Azha") 2
  38170|_("Azmidi") 2
  73136|_("Baekdu") 2
- 87937|_("Barnard's Star") 2
-  8645|_("Baten Kaitos") 2
+ 87937|_("Barnards_Star") 2
+  8645|_("Baten_Kaitos") 2
  20535|_("Beemim") 2
  19587|_("Beid") 2
  95124|_("Belel") 2
@@ -127,13 +127,13 @@
  33719|_("Citalá") 2
   3479|_("Cocibolca") 2
  43587|_("Copernicus") 2
- 63125|_("Cor Caroli") 2
+ 63125|_("CorCaroli") 2
  80463|_("Cujam") 2
  23875|_("Cursa") 2
 100345|_("Dabih") 2
  14879|_("Dalim") 2
 102098|_("Deneb") 2
-107556|_("Deneb Algedi") 2
+107556|_("Deneb_Algedi") 2
  57632|_("Denebola") 2
  64241|_("Diadem") 2
  54158|_("Dingolay") 2
@@ -202,8 +202,8 @@
  69427|_("Kang") 2
  76351|_("Karaka") 2
  90185|_("Kaus_Australis") 2
- 90496|_("Kaus Borealis") 2
- 89931|_("Kaus Media") 2
+ 90496|_("Kaus_Borealis") 2
+ 89931|_("Kaus_Media") 2
  92895|_("Kaveh") 2
  19849|_("Keid") 2
  69974|_("Khambalia") 2
@@ -213,7 +213,7 @@
  80816|_("Kornephoros") 2
  61359|_("Kraz") 2
 108917|_("Kurhah") 2
- 62223|_("La Superba") 2
+ 62223|_("La_Superba") 2
  82396|_("Larawag") 2
  85696|_("Lesath") 2
  97938|_("Libertas") 2
@@ -296,15 +296,15 @@
  17851|_("Pleione") 2
 116084|_("Poerava") 2
  11767|_("Polaris") 2
-104382|_("Polaris Australis") 2
+104382|_("Polaris_Australis") 2
  89341|_("Polis") 2
  37826|_("Pollux") 2
  61941|_("Porrima") 2
  53229|_("Praecipua") 2
- 20205|_("Prima Hyadum") 2
+ 20205|_("Prima_Hyadum") 2
  37279|_("Procyon") 2
  29655|_("Propus") 2
- 70890|_("Proxima Centauri ") 2
+ 70890|_("Proxima_Centauri ") 2
  16537|_("Ran") 2
  17378|_("Rana") 2
  83547|_("Rapeto") 2
@@ -335,7 +335,7 @@
  21594|_("Sceptrum") 2
 113881|_("Scheat") 2
   3179|_("Schedar") 2
- 20455|_("Secunda Hyadum") 2
+ 20455|_("Secunda_Hyadum") 2
   8886|_("Segin") 2
  71075|_("Seginus") 2
  96757|_("Sham") 2
@@ -361,8 +361,8 @@
  57399|_("Taiyangshou") 2
  63076|_("Taiyi") 2
  44127|_("Talitha") 2
- 50801|_("Tania Australis") 2
- 50372|_("Tania Borealis") 2
+ 50801|_("Tania_Australis") 2
+ 50372|_("Tania_Borealis") 2
  38041|_("Tapecue") 2
  97278|_("Tarazed") 2
  40526|_("Tarf") 2
@@ -397,8 +397,8 @@
  82514|_("Xamidimura") 2
  91852|_("Xihe") 2
  69732|_("Xuange") 2
- 79882|_("Yed Posterior") 2
- 79593|_("Yed Prior") 2
+ 79882|_("Yed_Posterior") 2
+ 79593|_("Yed_Prior") 2
  85822|_("Yildun") 2
  60129|_("Zaniah") 2
  18543|_("Zaurak") 2

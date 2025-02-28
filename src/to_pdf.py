@@ -1,6 +1,8 @@
 #from create_table_fpdf2 import PDF as PDFtable
 import iofunctions
 from fpdf import FPDF
+from datetime import datetime, timezone, timedelta
+import math
 
 
 boat= {
@@ -57,7 +59,8 @@ k_to_h = {
 # qplog = iofunctions.getQPlog("/Users/enno/Documents/dev/QPlogbook/log/2024-08.json")
 # qplog = iofunctions.splitdayly(qplog)
 
-def mk_table(log, keys, keys_to_head):
+def mk_table(log, conf, keys_to_head):
+    keys = ["Time", "Position"] + conf["showkeys"]
     data = []
     header = []
     text = ""
@@ -68,7 +71,8 @@ def mk_table(log, keys, keys_to_head):
         row = []
         for key in keys:
             if key == "Time":
-                row.append(entry["point"].time.strftime('%H:%M'))
+                displaytime = entry["point"].time.astimezone(timezone(timedelta(hours=conf["utc_offset"])))
+                row.append(displaytime.strftime('%H:%M'))
             elif key == "Position":
                 pos = entry["point"].getDMpos()
                 row.append(pos[0] + " " + pos[1])
@@ -180,7 +184,7 @@ class PDFtable(FPDF):
         # add title
         if title != '':
             self.cell(0, line_height, title, border=0, align='L')
-            print(self.get_y())
+            #print(self.get_y())
             if tz != '':
                 self.set_font(size=6)
                 self.set_y(self.get_y() + 1)
@@ -271,15 +275,16 @@ class PDF(PDFtable):
 
 
 
-def  mk_pdf(qplog, headers, fontsize, filename):
+def  mk_pdf(qplog, conf, fontsize, filename):
+    #headers = ["Time", "Position"] + conf["showkeys"]
     qplog = iofunctions.splitdayly(qplog)
     pdf = PDF()
     pdf.add_page()
     pdf.set_font("Times", size=fontsize)
     for day, log in qplog.items():
         title = log[0]["point"].time.strftime('%d.%m.%Y %A')
-        timezone = f"TZ: {log[0]["point"].time.tzname()} "
-        data = mk_table(log, headers, k_to_h)
+        timezone = f" TZ: UTC{math.trunc(conf["utc_offset"]):+03}:{(abs(conf["utc_offset"]-math.trunc(conf["utc_offset"]))*60):02.0f} "
+        data = mk_table(log, conf, k_to_h)
 
         pdf.create_table(table_data = data[0], text_data=data[1], title=title, tz=timezone, data_size=fontsize)
 
@@ -300,4 +305,4 @@ if __name__=='__main__':
     with open(conf_file, "r") as conffile:
         conf = orjson.loads(conffile.read())
 
-    mk_pdf(qplog, headers, 8, "test.pdf")
+    mk_pdf(qplog, conf, 8, "test.pdf")

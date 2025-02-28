@@ -223,6 +223,19 @@ class Ui_DialogSettings(object):
 
         self.formLayout.setWidget(6, QFormLayout.LabelRole, self.checkBox_manualmode)
 
+        self.label_36 = QLabel(self.groupBox_3)
+        self.label_36.setObjectName(u"label_36")
+
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_36)
+
+        self.doubleSpinBox_UTCoffset = QDoubleSpinBox(self.groupBox_3)
+        self.doubleSpinBox_UTCoffset.setObjectName(u"doubleSpinBox_UTCoffset")
+        self.doubleSpinBox_UTCoffset.setDecimals(1)
+        self.doubleSpinBox_UTCoffset.setMinimum(-12.000000000000000)
+        self.doubleSpinBox_UTCoffset.setMaximum(12.000000000000000)
+
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.doubleSpinBox_UTCoffset)
+
 
         self.gridLayout_3.addWidget(self.groupBox_3, 1, 2, 1, 1)
 
@@ -720,7 +733,7 @@ class Ui_DialogSettings(object):
         self.buttonBox.accepted.connect(DialogSettings.accept)
         self.buttonBox.rejected.connect(DialogSettings.reject)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(DialogSettings)
@@ -743,7 +756,7 @@ class Ui_DialogSettings(object):
         self.doubleSpinBox_loa.setSuffix(QCoreApplication.translate("DialogSettings", u"m", None))
         self.label_26.setText(QCoreApplication.translate("DialogSettings", u"Draft:", None))
         self.doubleSpinBox_draft.setSuffix(QCoreApplication.translate("DialogSettings", u"m", None))
-        self.groupBox_3.setTitle(QCoreApplication.translate("DialogSettings", u"other settings", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("DialogSettings", u"Other Settings", None))
         self.label_29.setText(QCoreApplication.translate("DialogSettings", u"Entry frequency (hours):", None))
 #if QT_CONFIG(tooltip)
         self.spinBox_update_interv.setToolTip(QCoreApplication.translate("DialogSettings", u"<html><head/><body><p>This is multibles of hours of the day, not a real interval.</p><p>recomended values are 1, 2, 3, 4, 6, 8, 12 and 24</p></body></html>", None))
@@ -762,6 +775,7 @@ class Ui_DialogSettings(object):
 #endif // QT_CONFIG(tooltip)
         self.checkBox_evententrys.setText(QCoreApplication.translate("DialogSettings", u"Enable event entrys", None))
         self.checkBox_manualmode.setText(QCoreApplication.translate("DialogSettings", u"Start in Manual Mode", None))
+        self.label_36.setText(QCoreApplication.translate("DialogSettings", u"Display Timezone UTC offset:", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("DialogSettings", u"Paths", None))
         self.label_22.setText(QCoreApplication.translate("DialogSettings", u"QPlog directory path:", None))
         self.qplPathButton.setText(QCoreApplication.translate("DialogSettings", u"...", None))

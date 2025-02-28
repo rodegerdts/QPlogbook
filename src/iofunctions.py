@@ -3,6 +3,7 @@ import yaml
 import orjson
 import glob
 import os
+import math
 from point4D import Point4d
 from copy import deepcopy
 from datetime import datetime
@@ -235,6 +236,57 @@ def cleanup(log):
                 lst[indx] = merge_entrys(lst[indx], lst[indx+1])
                 lst.pop(indx+1)
     return lst
+
+
+# convert functions:
+
+def dg_mi(decdeg): 
+    """convert decimal deg. to deg. decimal min. as found in the nautical almanac"""
+    deg = math.trunc(decdeg)
+    decmin = round(abs((decdeg - deg)*60), 1)
+    if decmin == 60.0:
+        deg += 1
+        decmin = 0.0
+    return str(deg) + "°" + str(decmin) + "'"
+
+
+def dg_min_pos(lat, lon):
+    '''Returns:
+        A tupel of strings in human readable format. (Degrees, deciaml minutes for celstial derived positions)
+    '''
+
+    if lon < 0 :
+        we = "W"
+    else:
+        we = "E"
+    if lat < 0 :
+        ns = "S"
+    else:
+        ns = "N"
+    dgspos = (dg_mi(lat) +  ns, dg_mi(lon) + we)
+    return dgspos
+
+
+def mk_deg(deg, min):
+    '''Returns:
+        A float in decimal degrees from degrees and decimal minutes.
+    '''
+    return deg + min/60
+
+def mk_decpos(deg_lat, min_lat, deg_lon, min_lon, ns, we):
+    '''Returns:
+        A tupel of floats in decimal degrees for degrees and decimal minuts positions.
+    '''
+    if ns == "S":
+        lat = -mk_deg(deg_lat, min_lat)
+    else:
+        lat = mk_deg(deg_lat, min_lat)
+    if we == "W":
+        lon = -mk_deg(deg_lon, min_lon)
+    else:
+        lon = mk_deg(deg_lon, min_lon)
+    return (lat, lon)
+
 
 
 

@@ -66,5 +66,6 @@
   "enableeventlog": false,
   "manualmode": true,
   "indexerror": 0.2,
-  "hightofeye": 2.1
+  "hightofeye": 2.1,
+  "utc_offset": 1.0
 }
