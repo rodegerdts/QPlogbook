@@ -43,7 +43,7 @@ t = ts.utc(2025, 1, 26, 15, 00)
 planets = sf.load_file(sf_dir + "/" + 'de440exc.bsp') # a shortened version of de440s.bsp without data from the past.
 
 # load star catalog
-with load.open(sf_dir + "/hip_main.dat") as f:
+with load.open(sf_dir + "/hip_bright_stars.dat") as f:
     stars = hipparcos.load_dataframe(f)
 
 # url2 = ('https://raw.githubusercontent.com/Stellarium/stellarium/master'

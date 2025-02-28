@@ -8,3 +8,4 @@ pyside6
 skyfield
 pyyamel
 requests
+pandas
