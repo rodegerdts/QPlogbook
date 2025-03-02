@@ -508,6 +508,7 @@ class EditDialog(Ui_EditDialog, QtWidgets.QDialog):
 
         self.delCrewButton.clicked.connect(self.removecrew)
         self.addCrewButton.clicked.connect(self.addcrew)
+        self.pushButton_get_place.clicked.connect(self.getplace)
 
 
     def removecrew(self):
@@ -519,6 +520,19 @@ class EditDialog(Ui_EditDialog, QtWidgets.QDialog):
         if c :
             self.crewBox.addItem(c)
             self.crewEdit.clear()
+
+    def getplace(self):
+        lon = self.spinBox_lon_deg.value() + self.doubleSpinBox_lon_min.value()/60
+        lat = self.spinBox_lat_deg.value() + self.doubleSpinBox_lat_min.value()/60
+        if self.comboBox_ns.currentText() == "S":
+            lat = -lat
+        if self.comboBox_we.currentText() == "W":
+            lon = -lon
+        time = self.dateTimeEdit.dateTime()
+        dt = datetime.fromisoformat(time.toString(format= Qt.ISODate))
+        p = Point4d(dt, lat, lon)
+        place = p.getplace()
+        self.lineEdit_place.setText(place)
 
     def update_from_SK(self):
         """Update the dialog with the current values from the SignalK server"""
@@ -790,7 +804,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["path"]["hdop"] = self.lineEdit_hdop.text()
         self.conf["path"]["fixtype"] = self.lineEdit_fix.text()
 
-        self.conf["activekeys"] = ["Time", "Position"]
+        self.conf["activekeys"] = []
         if self.checkBox_log.isChecked(): self.conf["activekeys"].append("log")
         if self.checkBox_engine.isChecked(): self.conf["activekeys"].append("enginehours")
         if self.checkBox_sog.isChecked(): self.conf["activekeys"].append("sog")
@@ -890,5 +904,7 @@ timer.timeout.connect(lambda: None)
 m_window = MainWindow()
 if conf["qplogfolder"] == "":
     m_window.firststart()
+app.setWindowIcon(QtGui.QIcon(':/icons/SVG/Sextantcolor.svg'))
+m_window.setWindowTitle("QPlLogbook")
 m_window.show()
 app.exec()

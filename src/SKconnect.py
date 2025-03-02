@@ -66,9 +66,12 @@ def getSKpath(config):
     server = config["skserver"]
     sto = config["servertimeout"]
     out = {}
-    for key in config["path"]:
+    paths = {"datetime": config["path"]["datetime"], "position": config["path"]["position"]}
+    for active in config['activekeys']:
+        paths[active] = config["path"][active]
+    for key in paths:
         try:
-            mpath = config["path"][key].replace(".", "/")
+            mpath = paths[key].replace(".", "/")
             resp = requests.get(
                 f"http://{server}/signalk/v1/api/vessels/self/{mpath}/value",
                 timeout=sto,
@@ -85,12 +88,14 @@ def getSKpath(config):
     if out == {} or out["datetime"] == None or out["position"]["longitude"] == None or out["position"]["latitude"] == None:
         nout = {"point": None}
     else:
-        out["airpressure"] = out["airpressure"]/100
-        out["airtemperature"] = out["airtemperature"] - 273.15
         out["datetime"] = datetime.fromisoformat(out["datetime"])
         point = Point4d(out["datetime"], out["position"]["latitude"], out["position"]["longitude"])
         for key in ["datetime", "position"]:
             out.pop(key)
+        if "airpressure" in out:
+            out["airpressure"] = out["airpressure"]/100
+        if "airtemperature" in out:
+            out["airtemperature"] = out["airtemperature"] - 273.15
         if "sog" in out:
             out["sog"] = round(out["sog"] * 1.94384, 1)
         if "cog" in out:

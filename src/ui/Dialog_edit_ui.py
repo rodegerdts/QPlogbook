@@ -279,6 +279,21 @@ class Ui_EditDialog(object):
 
         self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.pressureEdit)
 
+        self.label_18 = QLabel(EditDialog)
+        self.label_18.setObjectName(u"label_18")
+
+        self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.label_18)
+
+        self.airtempSpinBox = QDoubleSpinBox(EditDialog)
+        self.airtempSpinBox.setObjectName(u"airtempSpinBox")
+        self.airtempSpinBox.setDecimals(1)
+        self.airtempSpinBox.setMinimum(-99.000000000000000)
+        self.airtempSpinBox.setMaximum(98.000000000000000)
+        self.airtempSpinBox.setSingleStep(0.100000000000000)
+        self.airtempSpinBox.setValue(-99.000000000000000)
+
+        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.airtempSpinBox)
+
         self.label_17 = QLabel(EditDialog)
         self.label_17.setObjectName(u"label_17")
 
@@ -359,35 +374,30 @@ class Ui_EditDialog(object):
 
         self.formLayout_2.setWidget(9, QFormLayout.FieldRole, self.crewEdit)
 
-        self.addCrewButton = QPushButton(EditDialog)
-        self.addCrewButton.setObjectName(u"addCrewButton")
-
-        self.formLayout_2.setWidget(10, QFormLayout.FieldRole, self.addCrewButton)
-
         self.delCrewButton = QPushButton(EditDialog)
         self.delCrewButton.setObjectName(u"delCrewButton")
 
         self.formLayout_2.setWidget(10, QFormLayout.LabelRole, self.delCrewButton)
 
-        self.airtempSpinBox = QDoubleSpinBox(EditDialog)
-        self.airtempSpinBox.setObjectName(u"airtempSpinBox")
-        self.airtempSpinBox.setDecimals(1)
-        self.airtempSpinBox.setMinimum(-99.000000000000000)
-        self.airtempSpinBox.setMaximum(98.000000000000000)
-        self.airtempSpinBox.setSingleStep(0.100000000000000)
-        self.airtempSpinBox.setValue(-99.000000000000000)
+        self.addCrewButton = QPushButton(EditDialog)
+        self.addCrewButton.setObjectName(u"addCrewButton")
 
-        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.airtempSpinBox)
+        self.formLayout_2.setWidget(10, QFormLayout.FieldRole, self.addCrewButton)
 
-        self.label_18 = QLabel(EditDialog)
-        self.label_18.setObjectName(u"label_18")
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.pushButton_get_place = QPushButton(EditDialog)
+        self.pushButton_get_place.setObjectName(u"pushButton_get_place")
 
-        self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.label_18)
+        self.horizontalLayout_2.addWidget(self.pushButton_get_place)
 
         self.label_21 = QLabel(EditDialog)
         self.label_21.setObjectName(u"label_21")
 
-        self.formLayout_2.setWidget(11, QFormLayout.LabelRole, self.label_21)
+        self.horizontalLayout_2.addWidget(self.label_21)
+
+
+        self.formLayout_2.setLayout(11, QFormLayout.LabelRole, self.horizontalLayout_2)
 
         self.lineEdit_place = QLineEdit(EditDialog)
         self.lineEdit_place.setObjectName(u"lineEdit_place")
@@ -458,6 +468,7 @@ class Ui_EditDialog(object):
         self.twsEdit.setSpecialValueText("")
         self.label_11.setText(QCoreApplication.translate("EditDialog", u"True wind direction (\u00b0)", None))
         self.label_13.setText(QCoreApplication.translate("EditDialog", u"Barometric pressure (hPa)", None))
+        self.label_18.setText(QCoreApplication.translate("EditDialog", u"Air temperature (\u02daC)", None))
         self.label_17.setText(QCoreApplication.translate("EditDialog", u"Sea state", None))
         self.seastateBox.setItemText(0, QCoreApplication.translate("EditDialog", u"--", None))
         self.seastateBox.setItemText(1, QCoreApplication.translate("EditDialog", u"Calm (glassy) 0m", None))
@@ -488,10 +499,10 @@ class Ui_EditDialog(object):
 
         self.label_12.setText(QCoreApplication.translate("EditDialog", u"Crew", None))
         self.label_20.setText(QCoreApplication.translate("EditDialog", u"New Crew", None))
-        self.addCrewButton.setText(QCoreApplication.translate("EditDialog", u"Add Crew", None))
         self.delCrewButton.setText(QCoreApplication.translate("EditDialog", u"Delete Crew", None))
-        self.label_18.setText(QCoreApplication.translate("EditDialog", u"Air temperature (\u02daC)", None))
-        self.label_21.setText(QCoreApplication.translate("EditDialog", u"Place name", None))
+        self.addCrewButton.setText(QCoreApplication.translate("EditDialog", u"Add Crew", None))
+        self.pushButton_get_place.setText(QCoreApplication.translate("EditDialog", u"Get", None))
+        self.label_21.setText(QCoreApplication.translate("EditDialog", u"Placename:", None))
         self.label_14.setText(QCoreApplication.translate("EditDialog", u"Text:", None))
     # retranslateUi
 

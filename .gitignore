@@ -1,0 +1,11 @@
+Notebooks/
+playground/
+main.py
+.DS_Store
+**/__pycache__/
+log/
+test/
+src/build
+src/dist
+src/data/skyfield-data/de421.bsp
+src/data/skyfield-data/hip_main.dat

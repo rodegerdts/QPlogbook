@@ -468,6 +468,32 @@
          </property>
         </widget>
        </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>Air temperature (˚C)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QDoubleSpinBox" name="airtempSpinBox">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="minimum">
+          <double>-99.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>98.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="value">
+          <double>-99.000000000000000</double>
+         </property>
+        </widget>
+       </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_17">
          <property name="text">
@@ -669,13 +695,6 @@
          </property>
         </widget>
        </item>
-       <item row="10" column="1">
-        <widget class="QPushButton" name="addCrewButton">
-         <property name="text">
-          <string>Add Crew</string>
-         </property>
-        </widget>
-       </item>
        <item row="10" column="0">
         <widget class="QPushButton" name="delCrewButton">
          <property name="text">
@@ -683,38 +702,30 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QDoubleSpinBox" name="airtempSpinBox">
-         <property name="decimals">
-          <number>1</number>
-         </property>
-         <property name="minimum">
-          <double>-99.000000000000000</double>
-         </property>
-         <property name="maximum">
-          <double>98.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.100000000000000</double>
-         </property>
-         <property name="value">
-          <double>-99.000000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_18">
+       <item row="10" column="1">
+        <widget class="QPushButton" name="addCrewButton">
          <property name="text">
-          <string>Air temperature (˚C)</string>
+          <string>Add Crew</string>
          </property>
         </widget>
        </item>
        <item row="11" column="0">
-        <widget class="QLabel" name="label_21">
-         <property name="text">
-          <string>Place name</string>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="pushButton_get_place">
+           <property name="text">
+            <string>Get</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>Placename:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item row="11" column="1">
         <widget class="QLineEdit" name="lineEdit_place">

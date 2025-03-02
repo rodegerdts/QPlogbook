@@ -9,3 +9,5 @@ skyfield
 pyyamel
 requests
 pandas
+
+# Linux: libxcb-cursor0

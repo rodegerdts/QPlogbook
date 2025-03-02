@@ -35,13 +35,11 @@
     "airhight": "design.airHeight.value"
   },
   "activekeys": [
-    "Time",
-    "Position",
-    "log",
-    "enginehours",
     "sog",
     "cog",
-    "heading"
+    "airtemperature",
+    "airpressure",
+    "humidity"
   ],
   "showkeys": [
     "log",
@@ -49,11 +47,9 @@
     "sog",
     "cog",
     "heading",
-    "stw",
-    "tws",
-    "twd",
     "airtemperature",
     "airpressure",
+    "humidity",
     "place"
   ],
   "loginterv": 1,

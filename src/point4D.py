@@ -123,19 +123,25 @@ class Point4d:
             geolocator = Nominatim(user_agent="qpylogbooktest")
             location = geolocator.reverse(txt)
         except GeopyError:       
-            return "Geopy Error (Network?)"
+            return ""
         else:
-            if "city" in location.raw["address"]:
-                place = location.raw["address"]["city"]
-            elif "village" in location.raw["address"]:
-                place = location.raw["address"]["village"]
-            elif "hamlet" in location.raw["address"]:
-                place = location.raw["address"]["hamlet"]
-            elif "farm" in location.raw["address"]:
-                place = location.raw["address"]["farm"]
+            if location:
+                #print(location.raw)
+                if "town" in location.raw["address"]:
+                    place = location.raw["address"]["town"]
+                elif "city" in location.raw["address"]:
+                    place = location.raw["address"]["city"]
+                elif "village" in location.raw["address"]:
+                    place = location.raw["address"]["village"]
+                elif "hamlet" in location.raw["address"]:
+                    place = location.raw["address"]["hamlet"]
+                elif "farm" in location.raw["address"]:
+                    place = location.raw["address"]["farm"]               
+                else:
+                    place = location.raw["display_name"]
             else:
-                place ="No placename found"
-        
+                print("No location found")
+                place = ""
         return(place)
 
 # testing:
