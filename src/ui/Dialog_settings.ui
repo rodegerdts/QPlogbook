@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>907</width>
-    <height>602</height>
+    <width>908</width>
+    <height>679</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -270,25 +270,6 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QSpinBox" name="spinBox_track_interv">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="suffix">
-               <string>min</string>
-              </property>
-              <property name="minimum">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <number>59</number>
-              </property>
-             </widget>
-            </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_32">
               <property name="sizePolicy">
@@ -380,6 +361,25 @@
               </property>
               <property name="maximum">
                <double>12.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDoubleSpinBox" name="doubleSpinBox_track_interv">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="suffix">
+               <string>min</string>
+              </property>
+              <property name="decimals">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <double>99.000000000000000</double>
               </property>
              </widget>
             </item>
@@ -580,154 +580,10 @@
          <x>10</x>
          <y>20</y>
          <width>861</width>
-         <height>486</height>
+         <height>515</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="8" column="1">
-         <widget class="QLineEdit" name="lineEdit_stw"/>
-        </item>
-        <item row="14" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>HDOP:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="2">
-         <widget class="QCheckBox" name="checkBox_sog">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="2">
-         <widget class="QCheckBox" name="checkBox_airpressure">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_16">
-          <property name="text">
-           <string>Engine hours:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>Function</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="3">
-         <widget class="QCheckBox" name="checkBox_s_airpressure">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>Speed through water:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="lineEdit_log"/>
-        </item>
-        <item row="3" column="3">
-         <widget class="QCheckBox" name="checkBox_s_log">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="tristate">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="3">
-         <widget class="QCheckBox" name="checkBox_s_sog">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_position"/>
-        </item>
-        <item row="8" column="3">
-         <widget class="QCheckBox" name="checkBox_s_stw">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="14" column="3">
-         <widget class="QCheckBox" name="checkBox_s_hdop">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="15" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Fix Type:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="15" column="2">
-         <widget class="QCheckBox" name="checkBox_fix">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLineEdit" name="lineEdit_sog"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_15">
-          <property name="text">
-           <string>Log:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="15" column="3">
-         <widget class="QCheckBox" name="checkBox_s_fix">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="11" column="1">
-         <widget class="QLineEdit" name="lineEdit_temp"/>
-        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_13">
           <property name="layoutDirection">
@@ -735,110 +591,6 @@
           </property>
           <property name="text">
            <string>Date Time:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="1">
-         <widget class="QLineEdit" name="lineEdit_airpressure"/>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLineEdit" name="lineEdit_engine"/>
-        </item>
-        <item row="4" column="2">
-         <widget class="QCheckBox" name="checkBox_engine">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="3">
-         <widget class="QCheckBox" name="checkBox_s_engine">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="2">
-         <widget class="QCheckBox" name="checkBox_cog">
-          <property name="text">
-           <string/>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="11" column="2">
-         <widget class="QCheckBox" name="checkBox_temp">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="label_9">
-          <property name="toolTip">
-           <string>Values to be recorded from SK server</string>
-          </property>
-          <property name="toolTipDuration">
-           <number>2000</number>
-          </property>
-          <property name="text">
-           <string>active</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="3">
-         <widget class="QCheckBox" name="checkBox_s_heading">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>True Wind Direcion:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="0">
-         <widget class="QLabel" name="label_12">
-          <property name="text">
-           <string>True Wind Speed:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="13" column="3">
-         <widget class="QCheckBox" name="checkBox_s_humidity">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="3">
-         <widget class="QCheckBox" name="checkBox_s_tws">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>Heading:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
@@ -855,16 +607,47 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
-         <widget class="QLineEdit" name="lineEdit_cog"/>
-        </item>
-        <item row="14" column="1">
-         <widget class="QLineEdit" name="lineEdit_hdop"/>
-        </item>
-        <item row="11" column="3">
-         <widget class="QCheckBox" name="checkBox_s_temp">
+        <item row="9" column="2">
+         <widget class="QCheckBox" name="checkBox_tws">
           <property name="text">
            <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lineEdit_position"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Function</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="2">
+         <widget class="QCheckBox" name="checkBox_stw">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QLabel" name="label_35">
+          <property name="text">
+           <string>Others</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Air temperature:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
         </item>
@@ -875,13 +658,108 @@
           </property>
          </widget>
         </item>
-        <item row="13" column="0">
-         <widget class="QLabel" name="label_4">
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_15">
           <property name="text">
-           <string>Air humidity:</string>
+           <string>Log:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QCheckBox" name="checkBox_engine">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>True Wind Direcion:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="1">
+         <widget class="QLineEdit" name="lineEdit_humidity"/>
+        </item>
+        <item row="6" column="2">
+         <widget class="QCheckBox" name="checkBox_cog">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Speed through water:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="3">
+         <widget class="QCheckBox" name="checkBox_s_humidity">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="2">
+         <widget class="QCheckBox" name="checkBox_fix">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1">
+         <widget class="QLineEdit" name="lineEdit_twd"/>
+        </item>
+        <item row="8" column="3">
+         <widget class="QCheckBox" name="checkBox_s_stw">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="2">
+         <widget class="QCheckBox" name="checkBox_temp">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="3">
+         <widget class="QCheckBox" name="checkBox_s_tws">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="3">
+         <widget class="QCheckBox" name="checkBox_s_engine">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="3">
+         <widget class="QCheckBox" name="checkBox_s_hdop">
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
@@ -892,12 +770,25 @@
           </property>
          </widget>
         </item>
-        <item row="9" column="2">
-         <widget class="QCheckBox" name="checkBox_tws">
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_14">
           <property name="text">
-           <string/>
+           <string>Position:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QCheckBox" name="checkBox_s_visibility">
+          <property name="text">
+           <string>Visibility</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="lineEdit_log"/>
         </item>
         <item row="0" column="1">
          <widget class="QLabel" name="label_8">
@@ -915,8 +806,21 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_datetime"/>
+        <item row="1" column="4">
+         <widget class="QCheckBox" name="checkBox_s_seastate">
+          <property name="text">
+           <string>Sea State</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="lineEdit_engine"/>
+        </item>
+        <item row="7" column="1">
+         <widget class="QLineEdit" name="lineEdit_heading"/>
+        </item>
+        <item row="9" column="1">
+         <widget class="QLineEdit" name="lineEdit_tws"/>
         </item>
         <item row="3" column="2">
          <widget class="QCheckBox" name="checkBox_log">
@@ -934,54 +838,110 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="2">
-         <widget class="QCheckBox" name="checkBox_heading">
+        <item row="5" column="4">
+         <widget class="QCheckBox" name="checkBox_s_text">
+          <property name="text">
+           <string>Text</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="label_9">
+          <property name="toolTip">
+           <string>Values to be recorded from SK server</string>
+          </property>
+          <property name="toolTipDuration">
+           <number>2000</number>
+          </property>
+          <property name="text">
+           <string>active</string>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="0">
+         <widget class="QLabel" name="label_37">
+          <property name="text">
+           <string>Engine RPM</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>True Wind Speed:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="4">
+         <widget class="QCheckBox" name="checkBox_s_place">
+          <property name="text">
+           <string>Place</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="3">
+         <widget class="QCheckBox" name="checkBox_s_temp">
           <property name="text">
            <string/>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_14">
+        <item row="15" column="0">
+         <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>Position:</string>
+           <string>Fix Type:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_18">
+        <item row="10" column="2">
+         <widget class="QCheckBox" name="checkBox_twd">
           <property name="text">
-           <string>Course over Ground:</string>
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="2">
+         <widget class="QCheckBox" name="checkBox_airpressure">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="3">
+         <widget class="QCheckBox" name="checkBox_s_twd">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>Engine hours:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
         </item>
-        <item row="7" column="1">
-         <widget class="QLineEdit" name="lineEdit_heading"/>
+        <item row="12" column="1">
+         <widget class="QLineEdit" name="lineEdit_airpressure"/>
         </item>
-        <item row="9" column="1">
-         <widget class="QLineEdit" name="lineEdit_tws"/>
-        </item>
-        <item row="10" column="1">
-         <widget class="QLineEdit" name="lineEdit_twd"/>
-        </item>
-        <item row="12" column="0">
-         <widget class="QLabel" name="label_3">
+        <item row="15" column="3">
+         <widget class="QCheckBox" name="checkBox_s_fix">
           <property name="text">
-           <string>Air pressure:</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+           <string/>
           </property>
          </widget>
-        </item>
-        <item row="13" column="1">
-         <widget class="QLineEdit" name="lineEdit_humidity"/>
         </item>
         <item row="0" column="3">
          <widget class="QLabel" name="label_34">
@@ -996,65 +956,16 @@
           </property>
          </widget>
         </item>
-        <item row="11" column="0">
-         <widget class="QLabel" name="label_2">
+        <item row="6" column="1">
+         <widget class="QLineEdit" name="lineEdit_cog"/>
+        </item>
+        <item row="12" column="0">
+         <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>Air temperature:</string>
+           <string>Air pressure:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="2">
-         <widget class="QCheckBox" name="checkBox_stw">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="2">
-         <widget class="QCheckBox" name="checkBox_twd">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="3">
-         <widget class="QCheckBox" name="checkBox_s_twd">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="3">
-         <widget class="QCheckBox" name="checkBox_s_cog">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="15" column="1">
-         <widget class="QLineEdit" name="lineEdit_fix"/>
-        </item>
-        <item row="0" column="4">
-         <widget class="QLabel" name="label_35">
-          <property name="text">
-           <string>Others</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="4">
-         <widget class="QCheckBox" name="checkBox_s_seastate">
-          <property name="text">
-           <string>Sea State</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="4">
-         <widget class="QCheckBox" name="checkBox_s_cloud">
-          <property name="text">
-           <string>Cloud cover</string>
           </property>
          </widget>
         </item>
@@ -1071,24 +982,147 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="4">
-         <widget class="QCheckBox" name="checkBox_s_visibility">
+        <item row="7" column="3">
+         <widget class="QCheckBox" name="checkBox_s_heading">
           <property name="text">
-           <string>Visibility</string>
+           <string/>
           </property>
          </widget>
         </item>
-        <item row="5" column="4">
-         <widget class="QCheckBox" name="checkBox_s_text">
+        <item row="13" column="0">
+         <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>Text</string>
+           <string>Air humidity:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
           </property>
          </widget>
         </item>
-        <item row="6" column="4">
-         <widget class="QCheckBox" name="checkBox_s_place">
+        <item row="14" column="0">
+         <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>Place</string>
+           <string>HDOP:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_datetime"/>
+        </item>
+        <item row="3" column="3">
+         <widget class="QCheckBox" name="checkBox_s_log">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="tristate">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="lineEdit_sog"/>
+        </item>
+        <item row="2" column="4">
+         <widget class="QCheckBox" name="checkBox_s_cloud">
+          <property name="text">
+           <string>Cloud cover</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="3">
+         <widget class="QCheckBox" name="checkBox_s_airpressure">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="2">
+         <widget class="QCheckBox" name="checkBox_heading">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>Course over Ground:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1">
+         <widget class="QLineEdit" name="lineEdit_temp"/>
+        </item>
+        <item row="8" column="1">
+         <widget class="QLineEdit" name="lineEdit_stw"/>
+        </item>
+        <item row="6" column="3">
+         <widget class="QCheckBox" name="checkBox_s_cog">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3">
+         <widget class="QCheckBox" name="checkBox_s_sog">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="1">
+         <widget class="QLineEdit" name="lineEdit_fix"/>
+        </item>
+        <item row="5" column="2">
+         <widget class="QCheckBox" name="checkBox_sog">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="1">
+         <widget class="QLineEdit" name="lineEdit_hdop"/>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Heading:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="1">
+         <widget class="QLineEdit" name="lineEdit_rpm"/>
+        </item>
+        <item row="16" column="2">
+         <widget class="QCheckBox" name="checkBox_rpm">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="3">
+         <widget class="QCheckBox" name="checkBox_s_rpm">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="4">
+         <widget class="QCheckBox" name="checkBox_s_status">
+          <property name="text">
+           <string>Status</string>
           </property>
          </widget>
         </item>

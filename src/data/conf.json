@@ -1,12 +1,12 @@
 {
   "boat": {
-    "name": "Inua",
-    "callsign": "LJ9788",
-    "mmsi": 257074950,
-    "loa": 13.4,
-    "hight": 18.0,
-    "beam": 4.0,
-    "draft": 2.0
+    "name": "",
+    "callsign": "",
+    "mmsi": 100000000,
+    "loa": 0.0,
+    "hight": 0.0,
+    "beam": 0.0,
+    "draft": 0.0
   },
   "path": {
     "datetime": "navigation.datetime",
@@ -23,7 +23,8 @@
     "twd": "environment.wind.directionTrue",
     "tws": "environment.wind.speedOverGround",
     "log": "navigation.log",
-    "enginehours": "propulsion.*.runTime"
+    "enginehours": "propulsion.*.runTime",
+    "rpm": "propulsion.main.revolutions"
   },
   "staticpath": {
     "callsign": "communication",
@@ -35,33 +36,38 @@
     "airhight": "design.airHeight.value"
   },
   "activekeys": [
+    "enginehours",
     "sog",
     "cog",
     "airtemperature",
     "airpressure",
-    "humidity"
+    "humidity",
+    "rpm"
   ],
   "showkeys": [
     "log",
-    "enginehours",
     "sog",
     "cog",
     "heading",
     "airtemperature",
     "airpressure",
     "humidity",
-    "place"
+    "rpm",
+    "visibility",
+    "text",
+    "place",
+    "status"
   ],
   "loginterv": 1,
-  "trackinterv": 10,
+  "trackinterv": 0.1,
   "skserver": "openplotter.local:3000",
-  "servertimeout": 0.1,
-  "qplogfolder": "/Users/enno/Documents/dev/QPlogbook/log",
+  "servertimeout": 0.05,
+  "qplogfolder": "",
   "sklogfolder": "",
-  "enableauto": false,
-  "enableeventlog": false,
-  "manualmode": true,
-  "indexerror": 0.2,
-  "hightofeye": 2.1,
-  "utc_offset": 1.0
+  "enableauto": true,
+  "enableeventlog": true,
+  "manualmode": false,
+  "indexerror": 0.0,
+  "hightofeye": 0.0,
+  "utc_offset": 0.0
 }

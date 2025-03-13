@@ -30,8 +30,12 @@ import deadreconing as dr
 from to_pdf import mk_pdf 
 
 
-# Variables:
+# Global variables:
 conf_file = os.path.dirname(os.path.realpath(__file__)) + "/" + "data/conf.json"
+
+# global variable 'conf' holds the configuration dictionary
+with open(conf_file, "r") as conffile:
+        conf = orjson.loads(conffile.read())
 
 QPlog = []
 
@@ -58,12 +62,11 @@ keys_to_head = {
         "cloudcover": "Cloud\n(8th)",
         "seastate": "Sea",
         "crewNames": "Crew",
-        "place": "Place"
+        "place": "Place",
+        "rpm": "RPM",
+        "status": "Status",
 }   
 
-
-with open(conf_file, "r") as conffile:
-        conf = orjson.loads(conffile.read())
 
 
 # Functions:
@@ -92,7 +95,10 @@ auto_on = not(conf["manualmode"])
 def toheaders(conf):
     headers = ["Time", "Position"]
     for key in conf["showkeys"]:
-        headers.append(keys_to_head[key])
+        if key in keys_to_head:
+            headers.append(keys_to_head[key])
+        else:
+            headers.append(key)
     return headers
 
 def h_to_key(head):
@@ -121,8 +127,10 @@ class QPlogModel(QAbstractTableModel):
         column_key = dictkey = self._headers[column]
         if dictkey == "Time" or dictkey == "Position":
             dictkey = "point"
-        else:
+        elif dictkey in self.head_to_key:
             dictkey = self.head_to_key[dictkey]
+        else:
+            pass
 
         if role == Qt.DisplayRole:
             try:
@@ -211,7 +219,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionstartstopp.setChecked(auto_on)
         self.actionstartstopp.toggled.connect(self.toggle_autolog)
         self.scheduler = QtScheduler()
-        self.scheduler.add_job(self.auto_entry_status, id="track", trigger="cron", minute=f"*/{conf['trackinterv']}")
+        self.scheduler.add_job(self.auto_entry_status, id="track", trigger="cron", second=f"*/{int(conf['trackinterv']*60)}")
         self.scheduler.add_job(self.auto_entry, id="entry", trigger="cron", hour=f"*/{conf['loginterv']}")
         self.scheduler.start()
 
@@ -231,13 +239,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                       "Please configure some basic settings in the settings dialog", 
                                       QMessageBox.Ok)
         pref_dlg = SettingsDialog(self, conf)
-        pref_dlg.exec()
-        with open(conf_file, "w") as conffile:
-            conffile.write(orjson.dumps(conf, option=orjson.OPT_INDENT_2).decode("utf-8"))
-        del pref_dlg
-        if not os.path.exists(conf["qplogfolder"]):
-            os.makedirs(conf["qplogfolder"])
-        QPlog = loadlastlog(conf["qplogfolder"])
+        result = pref_dlg.exec()
+        if result == QtWidgets.QDialog.Rejected:
+            sys.exit()
+        if result == QtWidgets.QDialog.Accepted:
+            with open(conf_file, "w") as conffile:
+                conffile.write(orjson.dumps(conf, option=orjson.OPT_INDENT_2).decode("utf-8"))
+            del pref_dlg
+            if conf["qplogfolder"] == "":
+                sys.exit()
+            else:
+                if not os.path.exists(conf["qplogfolder"]):
+                    os.makedirs(conf["qplogfolder"])
+                QPlog = loadlastlog(conf["qplogfolder"])
 
 
     def printPDF(self):
@@ -404,8 +418,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def auto_entry(self):
         """Add a new entry to the logbook in regular interfals"""
         if auto_on and conf["enableauto"]:
-            if pb.getStatus(buffer.getdata(), status) == "moving":
-                self.addSKentry(status="auto")
+            if pb.getStatus(buffer.getdata(), status, conf) in ("moving", "motoring", "sailing"):
+                self.addSKentry()
 
     def auto_entry_status(self):
         """ Automatically adds a new entry to the logbook when the navigation status changes.
@@ -413,20 +427,32 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         if conf["enableeventlog"] and auto_on:
             global status
-            old_status = pb.getStatus(buffer.getdata(), status)
-            buffer.append(SKconnect.getSKpoint4D(conf))
-            pointlist = buffer.getdata()
-            status = pb.getStatus(pointlist, status)
-            self.status_label.setText(f" Status: {status}")
-            #print(status)
+            # old_status = pb.getStatus(buffer.getdata(), status, conf)
+            old_status = status
+            np = SKconnect.getSKpoint4D(conf)
+            if np:
+                buffer.append(np)
+                pointlist = buffer.getdata()
+                status = pb.getStatus(pointlist, status, conf)
+                self.status_label.setText(f" Status: {status}")
+                print(status)
             if status == "moving" and (old_status == "stopped" or old_status == "undefined"):
                 pt = pointlist[len(pointlist)-5]
                 self.addSKentry(status="moving", point=pt, place=pt.getplace())
-            elif status == "stopped" and old_status == "moving":
+            elif status == "stopped" and (old_status == "moving" or old_status == "motoring"):
                 pt = pointlist[len(pointlist)-1]
                 self.addSKentry(status="stopped", place=pt.getplace())
+            elif status == "motoring" and (old_status == "stopped" or old_status == "undefined"):
+                pt = pointlist[len(pointlist)-5]
+                self.addSKentry(status="motoring", place=pt.getplace())
+            elif status == "motoring" and (old_status == "sailing" or old_status == "moving"):
+                pt = pointlist[len(pointlist)-1]
+                self.addSKentry(status="motoring")
+            elif status == "sailing" and (old_status == "motoring" or old_status == "moving"):
+                pt = pointlist[len(pointlist)-1]
+                self.addSKentry(status="sailing")
             else:
-                pass
+                pass            
         else:
             pass
 
@@ -699,7 +725,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.doubleSpinBox_loa.setValue(self.conf["boat"]["loa"])
         self.doubleSpinBox_draft.setValue(self.conf["boat"]["draft"])
         self.spinBox_update_interv.setValue(self.conf["loginterv"])
-        self.spinBox_track_interv.setValue(self.conf["trackinterv"])
+        self.doubleSpinBox_track_interv.setValue(self.conf["trackinterv"])
         self.doubleSpinBox_timeout.setValue(self.conf["servertimeout"])
         self.lineEdit_qplog_dir.setText(self.conf["qplogfolder"])
         self.lineEdit_sklog_dir.setText(self.conf["sklogfolder"])
@@ -727,6 +753,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.lineEdit_humidity.setText(self.conf["path"]["humidity"])
         self.lineEdit_hdop.setText(self.conf["path"]["hdop"])
         self.lineEdit_fix.setText(self.conf["path"]["fixtype"])
+        self.lineEdit_rpm.setText(self.conf["path"]["rpm"])
 
         self.checkBox_log.setChecked(True) if "log" in self.conf["activekeys"] else self.checkBox_log.setChecked(False)
         self.checkBox_engine.setChecked(True) if "enginehours" in self.conf["activekeys"] else self.checkBox_engine.setChecked(False)
@@ -741,6 +768,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.checkBox_humidity.setChecked(True) if "humidity" in self.conf["activekeys"] else self.checkBox_humidity.setChecked(False)
         self.checkBox_hdop.setChecked(True) if "hdop" in self.conf["activekeys"] else self.checkBox_hdop.setChecked(False)
         self.checkBox_fix.setChecked(True) if "fixtype" in self.conf["activekeys"] else self.checkBox_fix.setChecked(False)
+        self.checkBox_rpm.setChecked(True) if "rpm" in self.conf["activekeys"] else self.checkBox_rpm.setChecked(False)
 
         self.checkBox_s_log.setChecked(True) if "log" in self.conf["showkeys"] else self.checkBox_s_log.setChecked(False)
         self.checkBox_s_engine.setChecked(True) if "enginehours" in self.conf["showkeys"] else self.checkBox_s_engine.setChecked(False)
@@ -755,12 +783,14 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.checkBox_s_humidity.setChecked(True) if "humidity" in self.conf["showkeys"] else self.checkBox_s_humidity.setChecked(False)
         self.checkBox_s_hdop.setChecked(True) if "hdop" in self.conf["showkeys"] else self.checkBox_s_hdop.setChecked(False)
         self.checkBox_s_fix.setChecked(True) if "fixtype" in self.conf["showkeys"] else self.checkBox_s_fix.setChecked(False)
+        self.checkBox_s_rpm.setChecked(True) if "rpm" in self.conf["showkeys"] else self.checkBox_s_rpm.setChecked(False)
         self.checkBox_s_seastate.setChecked(True) if "seastate" in self.conf["showkeys"] else self.checkBox_s_seastate.setChecked(False)
         self.checkBox_s_cloud.setChecked(True) if "cloudcover" in self.conf["showkeys"] else self.checkBox_s_cloud.setChecked(False)
         self.checkBox_s_visibility.setChecked(True) if "visibility" in self.conf["showkeys"] else self.checkBox_s_visibility.setChecked(False)
         self.checkBox_s_crew.setChecked(True) if "crewNames" in self.conf["showkeys"] else self.checkBox_s_crew.setChecked(False)
         self.checkBox_s_text.setChecked(True) if "text" in self.conf["showkeys"] else self.checkBox_s_text.setChecked(False)
         self.checkBox_s_place.setChecked(True) if "place" in self.conf["showkeys"] else self.checkBox_s_place.setChecked(False)
+        self.checkBox_s_status.setChecked(True) if "status" in self.conf["showkeys"] else self.checkBox_s_status.setChecked(False)
 
 
     def applyValues(self):
@@ -772,7 +802,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["boat"]["loa"] = self.doubleSpinBox_loa.value()
         self.conf["boat"]["draft"] = self.doubleSpinBox_draft.value()
         self.conf["loginterv"] = self.spinBox_update_interv.value()
-        self.conf["trackinterv"] = self.spinBox_track_interv.value()
+        self.conf["trackinterv"] = self.doubleSpinBox_track_interv.value()
         self.conf["servertimeout"] = self.doubleSpinBox_timeout.value()
         self.conf["qplogfolder"] = self.lineEdit_qplog_dir.text()
         self.conf["sklogfolder"] = self.lineEdit_sklog_dir.text()
@@ -782,7 +812,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["utc_offset"] = self.doubleSpinBox_UTCoffset.value()
 
 
-        m_window.scheduler.reschedule_job("track", trigger="cron", second=f"*/{conf['trackinterv']}")
+        m_window.scheduler.reschedule_job("track", trigger="cron", second=f"*/{int(conf['trackinterv']*60)}")
 
         self.conf["enableauto"] = self.checkBox_autoentry.isChecked()
         self.conf["enableeventlog"] = self.checkBox_evententrys.isChecked()
@@ -803,6 +833,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["path"]["humidity"] = self.lineEdit_humidity.text()
         self.conf["path"]["hdop"] = self.lineEdit_hdop.text()
         self.conf["path"]["fixtype"] = self.lineEdit_fix.text()
+        self.conf["path"]["rpm"] = self.lineEdit_rpm.text()
 
         self.conf["activekeys"] = []
         if self.checkBox_log.isChecked(): self.conf["activekeys"].append("log")
@@ -818,6 +849,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         if self.checkBox_humidity.isChecked(): self.conf["activekeys"].append("humidity")
         if self.checkBox_hdop.isChecked(): self.conf["activekeys"].append("hdop")
         if self.checkBox_fix.isChecked(): self.conf["activekeys"].append("fixtype")
+        if self.checkBox_rpm.isChecked(): self.conf["activekeys"].append("rpm")
 
         self.conf["showkeys"] = []
         if self.checkBox_s_log.isChecked(): self.conf["showkeys"].append("log")
@@ -833,12 +865,14 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         if self.checkBox_s_humidity.isChecked(): self.conf["showkeys"].append("humidity")
         if self.checkBox_s_hdop.isChecked(): self.conf["showkeys"].append("hdop")
         if self.checkBox_s_fix.isChecked(): self.conf["showkeys"].append("fixtype")
+        if self.checkBox_s_rpm.isChecked(): self.conf["showkeys"].append("rpm")
         if self.checkBox_s_seastate.isChecked(): self.conf["showkeys"].append("seastate")
         if self.checkBox_s_cloud.isChecked(): self.conf["showkeys"].append("cloudcover")
         if self.checkBox_s_visibility.isChecked(): self.conf["showkeys"].append("visibility")
         if self.checkBox_s_crew.isChecked(): self.conf["showkeys"].append("crewNames")
         if self.checkBox_s_text.isChecked(): self.conf["showkeys"].append("text")
         if self.checkBox_s_place.isChecked(): self.conf["showkeys"].append("place")
+        if self.checkBox_s_status.isChecked(): self.conf["showkeys"].append("status")
         self.close()
 
               

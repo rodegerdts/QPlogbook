@@ -42,7 +42,7 @@ def getSKposition(server):
             verify=False,
         )
     except ConnectionError:
-        print("Network timeout. SKserver not responding or too slow")
+        print("Network timeout. SKserver not responding or too slow POS")
         return None
     posdata = json.loads(posresp.content)
     return posdata
@@ -55,14 +55,35 @@ def getSKdecposition(server):
             verify=False,
         )
     except ConnectionError:
-        print("Network timeout. SKserver not responding or too slow")
+        print("Network timeout. SKserver not responding or too slow dPOS")
         return None
     posdata = json.loads(resp.content)
     return posdata
 
+def get_rpm(config):
+    """Returns the RPM value from the SignalK server"""
+    server = config["skserver"]
+    rpmpath = config["path"]["rpm"].replace(".", "/")
+    #print(rpmpath)
+    try:
+        resp = requests.get(
+            f"http://{server}/signalk/v1/api/vessels/self/{rpmpath}/value",
+            timeout = config["servertimeout"],
+            verify = False,
+        )
+        rpmdata = json.loads(resp.content)
+    except (ConnectionError, requests.exceptions.ReadTimeout) as e:
+        print("SKserver not responding or too slow RPM. Error in get_rpm: ", e)
+        return None
+    except ValueError:
+        print("RPM not fount on SignalK server")
+        return None
+    rpm = round(rpmdata * 60, 0)
+    return rpm
+
 
 def getSKpath(config):
-    """Returns a dictionary for all signalK paths configured in the configuratin file"""
+    """Returns a dictionary for all active signalK paths configured in the configuratin file"""
     server = config["skserver"]
     sto = config["servertimeout"]
     out = {}
@@ -114,6 +135,8 @@ def getSKpath(config):
             out["airpressure"] = round(out["airpressure"], 1)
         if "humidity" in out:
             out["humidity"] = round(out["humidity"] *100, 0)
+        if "rpm" in out:
+            out["rpm"] = round(out["rpm"] * 60, 0)
         nout = {"point": point}
         nout.update(out)
         return nout

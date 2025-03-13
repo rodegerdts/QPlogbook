@@ -7,6 +7,8 @@ from time import sleep
 from point4D import Point4d
 import json
 import requests
+
+import SKconnect as skc
 # import gpxpy
 # import gpxpy.gpx
 
@@ -88,43 +90,53 @@ def get_cog(pointlist, age=0, averaging=0):
 
 
 
-def getSKpoint4D(config):
-    server = config["server"]
-    dt = config["path"]["datetime"].replace(".", "/")
-    position = config["path"]["position"].replace(".", "/")
-    timeresp = requests.get(f"http://{server}/signalk/v1/api/vessels/self/{dt}/value", timeout=0.1, verify=False)
-    timedata = json.loads(timeresp.content)
-    time = datetime.fromisoformat(timedata)
-    posresp = requests.get(
-        f"http://{server}/signalk/v1/api/vessels/self/{position}/value",
-        timeout=0.1,
-        verify=False,
-    )
-    hdopresp = requests.get(
-        f"http://{server}/signalk/v1/api/vessels/self/{position}/value",
-        timeout=0.1,
-        verify=False,
-    )
+# def getSKpoint4D(config):
+#     server = config["server"]
+#     dt = config["path"]["datetime"].replace(".", "/")
+#     position = config["path"]["position"].replace(".", "/")
+#     timeresp = requests.get(f"http://{server}/signalk/v1/api/vessels/self/{dt}/value", timeout=0.1, verify=False)
+#     timedata = json.loads(timeresp.content)
+#     time = datetime.fromisoformat(timedata)
+#     posresp = requests.get(
+#         f"http://{server}/signalk/v1/api/vessels/self/{position}/value",
+#         timeout=0.1,
+#         verify=False,
+#     )
+#     hdopresp = requests.get(
+#         f"http://{server}/signalk/v1/api/vessels/self/{position}/value",
+#         timeout=0.1,
+#         verify=False,
+#     )
 
-    posdata = json.loads(posresp.content)
-    hdopdata = json.loads(hdopresp.content)
-    if posdata["latitude"] == 0 and posdata["longitude"] == 0 or hdopdata > 5:
-        return None
-        #print("no gps position yet")
-    else:
-        p = Point4d(time, posdata["latitude"], posdata["longitude"])
-        return p
+#     posdata = json.loads(posresp.content)
+#     hdopdata = json.loads(hdopresp.content)
+#     if posdata["latitude"] == 0 and posdata["longitude"] == 0 or hdopdata > 5:
+#         pass
+#         print("no gps position yet")
+#     else:
+#         p = Point4d(time, posdata["latitude"], posdata["longitude"])
+#         return p
   
   
 
-def getStatus(pointlist, status):
+def getStatus(pointlist, status, config):
     """ Returns the status of the vessel based on the last points in the pointlist """
+
+    rpm = skc.get_rpm(config)
+    #rpm = None
     if len(pointlist) < 3:
         pass
     elif get_sog(pointlist, 0, 0) < 0.5 and get_sog(pointlist, 1, 0) < 0.5 and get_sog(pointlist, 2, 0) < 0.5:
         status = "stopped"
     elif get_sog(pointlist, 0, 0) >= 0.5 and get_sog(pointlist, 1, 0) >= 0.5 and get_sog(pointlist, 2, 0) >= 0.5:
         status = "moving"
+    else:
+        pass
+
+    if rpm is not None and rpm > 10 and status == "moving":
+        status = "motoring"
+    elif rpm is not None and rpm < 10 and status == "moving":
+        status = "sailing"
     else:
         pass
     return status
@@ -148,7 +160,7 @@ if __name__=='__main__':
         ptime = p.time + timedelta(minutes = 1)
         p = Point4d(ptime, lat, lon)
         stat = getStatus(x.getdata(), stat)
-        #print(stat)
+        print(stat)
         sleep(1)
     for i in range(10):
         x.append(p)     
@@ -158,7 +170,7 @@ if __name__=='__main__':
         ptime = p.time + timedelta(minutes = 1)
         p = Point4d(ptime, lat, lon)
         stat = getStatus(x.getdata(), stat)
-        #print(stat)
+        print(stat)
         sleep(1)
 
     # print(x.getdata())

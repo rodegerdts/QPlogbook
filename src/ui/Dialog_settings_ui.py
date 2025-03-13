@@ -26,7 +26,7 @@ class Ui_DialogSettings(object):
     def setupUi(self, DialogSettings):
         if not DialogSettings.objectName():
             DialogSettings.setObjectName(u"DialogSettings")
-        DialogSettings.resize(907, 602)
+        DialogSettings.resize(908, 679)
         self.gridLayout_2 = QGridLayout(DialogSettings)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.buttonBox = QDialogButtonBox(DialogSettings)
@@ -179,15 +179,6 @@ class Ui_DialogSettings(object):
 
         self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_31)
 
-        self.spinBox_track_interv = QSpinBox(self.groupBox_3)
-        self.spinBox_track_interv.setObjectName(u"spinBox_track_interv")
-        sizePolicy.setHeightForWidth(self.spinBox_track_interv.sizePolicy().hasHeightForWidth())
-        self.spinBox_track_interv.setSizePolicy(sizePolicy)
-        self.spinBox_track_interv.setMinimum(1)
-        self.spinBox_track_interv.setMaximum(59)
-
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.spinBox_track_interv)
-
         self.label_32 = QLabel(self.groupBox_3)
         self.label_32.setObjectName(u"label_32")
         sizePolicy1.setHeightForWidth(self.label_32.sizePolicy().hasHeightForWidth())
@@ -235,6 +226,15 @@ class Ui_DialogSettings(object):
         self.doubleSpinBox_UTCoffset.setMaximum(12.000000000000000)
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.doubleSpinBox_UTCoffset)
+
+        self.doubleSpinBox_track_interv = QDoubleSpinBox(self.groupBox_3)
+        self.doubleSpinBox_track_interv.setObjectName(u"doubleSpinBox_track_interv")
+        sizePolicy.setHeightForWidth(self.doubleSpinBox_track_interv.sizePolicy().hasHeightForWidth())
+        self.doubleSpinBox_track_interv.setSizePolicy(sizePolicy)
+        self.doubleSpinBox_track_interv.setDecimals(1)
+        self.doubleSpinBox_track_interv.setMaximum(99.000000000000000)
+
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.doubleSpinBox_track_interv)
 
 
         self.gridLayout_3.addWidget(self.groupBox_3, 1, 2, 1, 1)
@@ -356,118 +356,10 @@ class Ui_DialogSettings(object):
         self.tab_SKkeys.setObjectName(u"tab_SKkeys")
         self.gridLayoutWidget = QWidget(self.tab_SKkeys)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 20, 861, 486))
+        self.gridLayoutWidget.setGeometry(QRect(10, 20, 861, 515))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.lineEdit_stw = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_stw.setObjectName(u"lineEdit_stw")
-
-        self.gridLayout.addWidget(self.lineEdit_stw, 8, 1, 1, 1)
-
-        self.label_5 = QLabel(self.gridLayoutWidget)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label_5, 14, 0, 1, 1)
-
-        self.checkBox_sog = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_sog.setObjectName(u"checkBox_sog")
-        self.checkBox_sog.setChecked(True)
-
-        self.gridLayout.addWidget(self.checkBox_sog, 5, 2, 1, 1)
-
-        self.checkBox_airpressure = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_airpressure.setObjectName(u"checkBox_airpressure")
-
-        self.gridLayout.addWidget(self.checkBox_airpressure, 12, 2, 1, 1)
-
-        self.label_16 = QLabel(self.gridLayoutWidget)
-        self.label_16.setObjectName(u"label_16")
-        self.label_16.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label_16, 4, 0, 1, 1)
-
-        self.label_7 = QLabel(self.gridLayoutWidget)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.gridLayout.addWidget(self.label_7, 0, 0, 1, 1)
-
-        self.checkBox_s_airpressure = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_airpressure.setObjectName(u"checkBox_s_airpressure")
-
-        self.gridLayout.addWidget(self.checkBox_s_airpressure, 12, 3, 1, 1)
-
-        self.label_11 = QLabel(self.gridLayoutWidget)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label_11, 8, 0, 1, 1)
-
-        self.lineEdit_log = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_log.setObjectName(u"lineEdit_log")
-
-        self.gridLayout.addWidget(self.lineEdit_log, 3, 1, 1, 1)
-
-        self.checkBox_s_log = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_log.setObjectName(u"checkBox_s_log")
-        self.checkBox_s_log.setTristate(False)
-
-        self.gridLayout.addWidget(self.checkBox_s_log, 3, 3, 1, 1)
-
-        self.checkBox_s_sog = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_sog.setObjectName(u"checkBox_s_sog")
-
-        self.gridLayout.addWidget(self.checkBox_s_sog, 5, 3, 1, 1)
-
-        self.lineEdit_position = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_position.setObjectName(u"lineEdit_position")
-
-        self.gridLayout.addWidget(self.lineEdit_position, 2, 1, 1, 1)
-
-        self.checkBox_s_stw = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_stw.setObjectName(u"checkBox_s_stw")
-
-        self.gridLayout.addWidget(self.checkBox_s_stw, 8, 3, 1, 1)
-
-        self.checkBox_s_hdop = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_hdop.setObjectName(u"checkBox_s_hdop")
-
-        self.gridLayout.addWidget(self.checkBox_s_hdop, 14, 3, 1, 1)
-
-        self.label_6 = QLabel(self.gridLayoutWidget)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label_6, 15, 0, 1, 1)
-
-        self.checkBox_fix = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_fix.setObjectName(u"checkBox_fix")
-
-        self.gridLayout.addWidget(self.checkBox_fix, 15, 2, 1, 1)
-
-        self.lineEdit_sog = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_sog.setObjectName(u"lineEdit_sog")
-
-        self.gridLayout.addWidget(self.lineEdit_sog, 5, 1, 1, 1)
-
-        self.label_15 = QLabel(self.gridLayoutWidget)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label_15, 3, 0, 1, 1)
-
-        self.checkBox_s_fix = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_fix.setObjectName(u"checkBox_s_fix")
-
-        self.gridLayout.addWidget(self.checkBox_s_fix, 15, 3, 1, 1)
-
-        self.lineEdit_temp = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_temp.setObjectName(u"lineEdit_temp")
-
-        self.gridLayout.addWidget(self.lineEdit_temp, 11, 1, 1, 1)
-
         self.label_13 = QLabel(self.gridLayoutWidget)
         self.label_13.setObjectName(u"label_13")
         self.label_13.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
@@ -475,15 +367,54 @@ class Ui_DialogSettings(object):
 
         self.gridLayout.addWidget(self.label_13, 1, 0, 1, 1)
 
-        self.lineEdit_airpressure = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_airpressure.setObjectName(u"lineEdit_airpressure")
+        self.label_17 = QLabel(self.gridLayoutWidget)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout.addWidget(self.lineEdit_airpressure, 12, 1, 1, 1)
+        self.gridLayout.addWidget(self.label_17, 5, 0, 1, 1)
 
-        self.lineEdit_engine = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_engine.setObjectName(u"lineEdit_engine")
+        self.checkBox_tws = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_tws.setObjectName(u"checkBox_tws")
 
-        self.gridLayout.addWidget(self.lineEdit_engine, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_tws, 9, 2, 1, 1)
+
+        self.lineEdit_position = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_position.setObjectName(u"lineEdit_position")
+
+        self.gridLayout.addWidget(self.lineEdit_position, 2, 1, 1, 1)
+
+        self.label_7 = QLabel(self.gridLayoutWidget)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_7, 0, 0, 1, 1)
+
+        self.checkBox_stw = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_stw.setObjectName(u"checkBox_stw")
+
+        self.gridLayout.addWidget(self.checkBox_stw, 8, 2, 1, 1)
+
+        self.label_35 = QLabel(self.gridLayoutWidget)
+        self.label_35.setObjectName(u"label_35")
+
+        self.gridLayout.addWidget(self.label_35, 0, 4, 1, 1)
+
+        self.label_2 = QLabel(self.gridLayoutWidget)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_2, 11, 0, 1, 1)
+
+        self.checkBox_hdop = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_hdop.setObjectName(u"checkBox_hdop")
+
+        self.gridLayout.addWidget(self.checkBox_hdop, 14, 2, 1, 1)
+
+        self.label_15 = QLabel(self.gridLayoutWidget)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_15, 3, 0, 1, 1)
 
         self.checkBox_engine = QCheckBox(self.gridLayoutWidget)
         self.checkBox_engine.setObjectName(u"checkBox_engine")
@@ -491,10 +422,16 @@ class Ui_DialogSettings(object):
 
         self.gridLayout.addWidget(self.checkBox_engine, 4, 2, 1, 1)
 
-        self.checkBox_s_engine = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_engine.setObjectName(u"checkBox_s_engine")
+        self.label = QLabel(self.gridLayoutWidget)
+        self.label.setObjectName(u"label")
+        self.label.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout.addWidget(self.checkBox_s_engine, 4, 3, 1, 1)
+        self.gridLayout.addWidget(self.label, 10, 0, 1, 1)
+
+        self.lineEdit_humidity = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_humidity.setObjectName(u"lineEdit_humidity")
+
+        self.gridLayout.addWidget(self.lineEdit_humidity, 13, 1, 1, 1)
 
         self.checkBox_cog = QCheckBox(self.gridLayoutWidget)
         self.checkBox_cog.setObjectName(u"checkBox_cog")
@@ -502,91 +439,72 @@ class Ui_DialogSettings(object):
 
         self.gridLayout.addWidget(self.checkBox_cog, 6, 2, 1, 1)
 
-        self.checkBox_temp = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_temp.setObjectName(u"checkBox_temp")
+        self.label_11 = QLabel(self.gridLayoutWidget)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout.addWidget(self.checkBox_temp, 11, 2, 1, 1)
-
-        self.label_9 = QLabel(self.gridLayoutWidget)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setToolTipDuration(2000)
-
-        self.gridLayout.addWidget(self.label_9, 0, 2, 1, 1)
-
-        self.checkBox_s_heading = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_heading.setObjectName(u"checkBox_s_heading")
-
-        self.gridLayout.addWidget(self.checkBox_s_heading, 7, 3, 1, 1)
-
-        self.label = QLabel(self.gridLayoutWidget)
-        self.label.setObjectName(u"label")
-        self.label.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label, 10, 0, 1, 1)
-
-        self.label_12 = QLabel(self.gridLayoutWidget)
-        self.label_12.setObjectName(u"label_12")
-        self.label_12.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label_12, 9, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_11, 8, 0, 1, 1)
 
         self.checkBox_s_humidity = QCheckBox(self.gridLayoutWidget)
         self.checkBox_s_humidity.setObjectName(u"checkBox_s_humidity")
 
         self.gridLayout.addWidget(self.checkBox_s_humidity, 13, 3, 1, 1)
 
+        self.checkBox_fix = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_fix.setObjectName(u"checkBox_fix")
+
+        self.gridLayout.addWidget(self.checkBox_fix, 15, 2, 1, 1)
+
+        self.lineEdit_twd = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_twd.setObjectName(u"lineEdit_twd")
+
+        self.gridLayout.addWidget(self.lineEdit_twd, 10, 1, 1, 1)
+
+        self.checkBox_s_stw = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_stw.setObjectName(u"checkBox_s_stw")
+
+        self.gridLayout.addWidget(self.checkBox_s_stw, 8, 3, 1, 1)
+
+        self.checkBox_temp = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_temp.setObjectName(u"checkBox_temp")
+
+        self.gridLayout.addWidget(self.checkBox_temp, 11, 2, 1, 1)
+
         self.checkBox_s_tws = QCheckBox(self.gridLayoutWidget)
         self.checkBox_s_tws.setObjectName(u"checkBox_s_tws")
 
         self.gridLayout.addWidget(self.checkBox_s_tws, 9, 3, 1, 1)
 
-        self.label_10 = QLabel(self.gridLayoutWidget)
-        self.label_10.setObjectName(u"label_10")
-        self.label_10.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+        self.checkBox_s_engine = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_engine.setObjectName(u"checkBox_s_engine")
 
-        self.gridLayout.addWidget(self.label_10, 7, 0, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_s_engine, 4, 3, 1, 1)
 
-        self.label_17 = QLabel(self.gridLayoutWidget)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+        self.checkBox_s_hdop = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_hdop.setObjectName(u"checkBox_s_hdop")
 
-        self.gridLayout.addWidget(self.label_17, 5, 0, 1, 1)
-
-        self.lineEdit_cog = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_cog.setObjectName(u"lineEdit_cog")
-
-        self.gridLayout.addWidget(self.lineEdit_cog, 6, 1, 1, 1)
-
-        self.lineEdit_hdop = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_hdop.setObjectName(u"lineEdit_hdop")
-
-        self.gridLayout.addWidget(self.lineEdit_hdop, 14, 1, 1, 1)
-
-        self.checkBox_s_temp = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_temp.setObjectName(u"checkBox_s_temp")
-
-        self.gridLayout.addWidget(self.checkBox_s_temp, 11, 3, 1, 1)
-
-        self.checkBox_hdop = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_hdop.setObjectName(u"checkBox_hdop")
-
-        self.gridLayout.addWidget(self.checkBox_hdop, 14, 2, 1, 1)
-
-        self.label_4 = QLabel(self.gridLayoutWidget)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label_4, 13, 0, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_s_hdop, 14, 3, 1, 1)
 
         self.checkBox_humidity = QCheckBox(self.gridLayoutWidget)
         self.checkBox_humidity.setObjectName(u"checkBox_humidity")
 
         self.gridLayout.addWidget(self.checkBox_humidity, 13, 2, 1, 1)
 
-        self.checkBox_tws = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_tws.setObjectName(u"checkBox_tws")
+        self.label_14 = QLabel(self.gridLayoutWidget)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout.addWidget(self.checkBox_tws, 9, 2, 1, 1)
+        self.gridLayout.addWidget(self.label_14, 2, 0, 1, 1)
+
+        self.checkBox_s_visibility = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_visibility.setObjectName(u"checkBox_s_visibility")
+
+        self.gridLayout.addWidget(self.checkBox_s_visibility, 3, 4, 1, 1)
+
+        self.lineEdit_log = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_log.setObjectName(u"lineEdit_log")
+
+        self.gridLayout.addWidget(self.lineEdit_log, 3, 1, 1, 1)
 
         self.label_8 = QLabel(self.gridLayoutWidget)
         self.label_8.setObjectName(u"label_8")
@@ -595,34 +513,15 @@ class Ui_DialogSettings(object):
 
         self.gridLayout.addWidget(self.label_8, 0, 1, 1, 1)
 
-        self.lineEdit_datetime = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_datetime.setObjectName(u"lineEdit_datetime")
+        self.checkBox_s_seastate = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_seastate.setObjectName(u"checkBox_s_seastate")
 
-        self.gridLayout.addWidget(self.lineEdit_datetime, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_s_seastate, 1, 4, 1, 1)
 
-        self.checkBox_log = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_log.setObjectName(u"checkBox_log")
-        self.checkBox_log.setIconSize(QSize(16, 16))
-        self.checkBox_log.setChecked(True)
+        self.lineEdit_engine = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_engine.setObjectName(u"lineEdit_engine")
 
-        self.gridLayout.addWidget(self.checkBox_log, 3, 2, 1, 1)
-
-        self.checkBox_heading = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_heading.setObjectName(u"checkBox_heading")
-
-        self.gridLayout.addWidget(self.checkBox_heading, 7, 2, 1, 1)
-
-        self.label_14 = QLabel(self.gridLayoutWidget)
-        self.label_14.setObjectName(u"label_14")
-        self.label_14.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label_14, 2, 0, 1, 1)
-
-        self.label_18 = QLabel(self.gridLayoutWidget)
-        self.label_18.setObjectName(u"label_18")
-        self.label_18.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout.addWidget(self.label_18, 6, 0, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_engine, 4, 1, 1, 1)
 
         self.lineEdit_heading = QLineEdit(self.gridLayoutWidget)
         self.lineEdit_heading.setObjectName(u"lineEdit_heading")
@@ -634,21 +533,82 @@ class Ui_DialogSettings(object):
 
         self.gridLayout.addWidget(self.lineEdit_tws, 9, 1, 1, 1)
 
-        self.lineEdit_twd = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_twd.setObjectName(u"lineEdit_twd")
+        self.checkBox_log = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_log.setObjectName(u"checkBox_log")
+        self.checkBox_log.setIconSize(QSize(16, 16))
+        self.checkBox_log.setChecked(True)
 
-        self.gridLayout.addWidget(self.lineEdit_twd, 10, 1, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_log, 3, 2, 1, 1)
 
-        self.label_3 = QLabel(self.gridLayoutWidget)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+        self.checkBox_s_text = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_text.setObjectName(u"checkBox_s_text")
 
-        self.gridLayout.addWidget(self.label_3, 12, 0, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_s_text, 5, 4, 1, 1)
 
-        self.lineEdit_humidity = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_humidity.setObjectName(u"lineEdit_humidity")
+        self.label_9 = QLabel(self.gridLayoutWidget)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setToolTipDuration(2000)
 
-        self.gridLayout.addWidget(self.lineEdit_humidity, 13, 1, 1, 1)
+        self.gridLayout.addWidget(self.label_9, 0, 2, 1, 1)
+
+        self.label_37 = QLabel(self.gridLayoutWidget)
+        self.label_37.setObjectName(u"label_37")
+        self.label_37.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_37, 16, 0, 1, 1)
+
+        self.label_12 = QLabel(self.gridLayoutWidget)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_12, 9, 0, 1, 1)
+
+        self.checkBox_s_place = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_place.setObjectName(u"checkBox_s_place")
+
+        self.gridLayout.addWidget(self.checkBox_s_place, 6, 4, 1, 1)
+
+        self.checkBox_s_temp = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_temp.setObjectName(u"checkBox_s_temp")
+
+        self.gridLayout.addWidget(self.checkBox_s_temp, 11, 3, 1, 1)
+
+        self.label_6 = QLabel(self.gridLayoutWidget)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_6, 15, 0, 1, 1)
+
+        self.checkBox_twd = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_twd.setObjectName(u"checkBox_twd")
+
+        self.gridLayout.addWidget(self.checkBox_twd, 10, 2, 1, 1)
+
+        self.checkBox_airpressure = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_airpressure.setObjectName(u"checkBox_airpressure")
+
+        self.gridLayout.addWidget(self.checkBox_airpressure, 12, 2, 1, 1)
+
+        self.checkBox_s_twd = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_twd.setObjectName(u"checkBox_s_twd")
+
+        self.gridLayout.addWidget(self.checkBox_s_twd, 10, 3, 1, 1)
+
+        self.label_16 = QLabel(self.gridLayoutWidget)
+        self.label_16.setObjectName(u"label_16")
+        self.label_16.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_16, 4, 0, 1, 1)
+
+        self.lineEdit_airpressure = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_airpressure.setObjectName(u"lineEdit_airpressure")
+
+        self.gridLayout.addWidget(self.lineEdit_airpressure, 12, 1, 1, 1)
+
+        self.checkBox_s_fix = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_fix.setObjectName(u"checkBox_s_fix")
+
+        self.gridLayout.addWidget(self.checkBox_s_fix, 15, 3, 1, 1)
 
         self.label_34 = QLabel(self.gridLayoutWidget)
         self.label_34.setObjectName(u"label_34")
@@ -656,51 +616,16 @@ class Ui_DialogSettings(object):
 
         self.gridLayout.addWidget(self.label_34, 0, 3, 1, 1)
 
-        self.label_2 = QLabel(self.gridLayoutWidget)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+        self.lineEdit_cog = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_cog.setObjectName(u"lineEdit_cog")
 
-        self.gridLayout.addWidget(self.label_2, 11, 0, 1, 1)
+        self.gridLayout.addWidget(self.lineEdit_cog, 6, 1, 1, 1)
 
-        self.checkBox_stw = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_stw.setObjectName(u"checkBox_stw")
+        self.label_3 = QLabel(self.gridLayoutWidget)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout.addWidget(self.checkBox_stw, 8, 2, 1, 1)
-
-        self.checkBox_twd = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_twd.setObjectName(u"checkBox_twd")
-
-        self.gridLayout.addWidget(self.checkBox_twd, 10, 2, 1, 1)
-
-        self.checkBox_s_twd = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_twd.setObjectName(u"checkBox_s_twd")
-
-        self.gridLayout.addWidget(self.checkBox_s_twd, 10, 3, 1, 1)
-
-        self.checkBox_s_cog = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_cog.setObjectName(u"checkBox_s_cog")
-
-        self.gridLayout.addWidget(self.checkBox_s_cog, 6, 3, 1, 1)
-
-        self.lineEdit_fix = QLineEdit(self.gridLayoutWidget)
-        self.lineEdit_fix.setObjectName(u"lineEdit_fix")
-
-        self.gridLayout.addWidget(self.lineEdit_fix, 15, 1, 1, 1)
-
-        self.label_35 = QLabel(self.gridLayoutWidget)
-        self.label_35.setObjectName(u"label_35")
-
-        self.gridLayout.addWidget(self.label_35, 0, 4, 1, 1)
-
-        self.checkBox_s_seastate = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_seastate.setObjectName(u"checkBox_s_seastate")
-
-        self.gridLayout.addWidget(self.checkBox_s_seastate, 1, 4, 1, 1)
-
-        self.checkBox_s_cloud = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_cloud.setObjectName(u"checkBox_s_cloud")
-
-        self.gridLayout.addWidget(self.checkBox_s_cloud, 2, 4, 1, 1)
+        self.gridLayout.addWidget(self.label_3, 12, 0, 1, 1)
 
         self.checkBox_s_crew = QCheckBox(self.gridLayoutWidget)
         self.checkBox_s_crew.setObjectName(u"checkBox_s_crew")
@@ -709,20 +634,121 @@ class Ui_DialogSettings(object):
 
         self.gridLayout.addWidget(self.checkBox_s_crew, 4, 4, 1, 1)
 
-        self.checkBox_s_visibility = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_visibility.setObjectName(u"checkBox_s_visibility")
+        self.checkBox_s_heading = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_heading.setObjectName(u"checkBox_s_heading")
 
-        self.gridLayout.addWidget(self.checkBox_s_visibility, 3, 4, 1, 1)
+        self.gridLayout.addWidget(self.checkBox_s_heading, 7, 3, 1, 1)
 
-        self.checkBox_s_text = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_text.setObjectName(u"checkBox_s_text")
+        self.label_4 = QLabel(self.gridLayoutWidget)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout.addWidget(self.checkBox_s_text, 5, 4, 1, 1)
+        self.gridLayout.addWidget(self.label_4, 13, 0, 1, 1)
 
-        self.checkBox_s_place = QCheckBox(self.gridLayoutWidget)
-        self.checkBox_s_place.setObjectName(u"checkBox_s_place")
+        self.label_5 = QLabel(self.gridLayoutWidget)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout.addWidget(self.checkBox_s_place, 6, 4, 1, 1)
+        self.gridLayout.addWidget(self.label_5, 14, 0, 1, 1)
+
+        self.lineEdit_datetime = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_datetime.setObjectName(u"lineEdit_datetime")
+
+        self.gridLayout.addWidget(self.lineEdit_datetime, 1, 1, 1, 1)
+
+        self.checkBox_s_log = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_log.setObjectName(u"checkBox_s_log")
+        self.checkBox_s_log.setTristate(False)
+
+        self.gridLayout.addWidget(self.checkBox_s_log, 3, 3, 1, 1)
+
+        self.lineEdit_sog = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_sog.setObjectName(u"lineEdit_sog")
+
+        self.gridLayout.addWidget(self.lineEdit_sog, 5, 1, 1, 1)
+
+        self.checkBox_s_cloud = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_cloud.setObjectName(u"checkBox_s_cloud")
+
+        self.gridLayout.addWidget(self.checkBox_s_cloud, 2, 4, 1, 1)
+
+        self.checkBox_s_airpressure = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_airpressure.setObjectName(u"checkBox_s_airpressure")
+
+        self.gridLayout.addWidget(self.checkBox_s_airpressure, 12, 3, 1, 1)
+
+        self.checkBox_heading = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_heading.setObjectName(u"checkBox_heading")
+
+        self.gridLayout.addWidget(self.checkBox_heading, 7, 2, 1, 1)
+
+        self.label_18 = QLabel(self.gridLayoutWidget)
+        self.label_18.setObjectName(u"label_18")
+        self.label_18.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_18, 6, 0, 1, 1)
+
+        self.lineEdit_temp = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_temp.setObjectName(u"lineEdit_temp")
+
+        self.gridLayout.addWidget(self.lineEdit_temp, 11, 1, 1, 1)
+
+        self.lineEdit_stw = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_stw.setObjectName(u"lineEdit_stw")
+
+        self.gridLayout.addWidget(self.lineEdit_stw, 8, 1, 1, 1)
+
+        self.checkBox_s_cog = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_cog.setObjectName(u"checkBox_s_cog")
+
+        self.gridLayout.addWidget(self.checkBox_s_cog, 6, 3, 1, 1)
+
+        self.checkBox_s_sog = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_sog.setObjectName(u"checkBox_s_sog")
+
+        self.gridLayout.addWidget(self.checkBox_s_sog, 5, 3, 1, 1)
+
+        self.lineEdit_fix = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_fix.setObjectName(u"lineEdit_fix")
+
+        self.gridLayout.addWidget(self.lineEdit_fix, 15, 1, 1, 1)
+
+        self.checkBox_sog = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_sog.setObjectName(u"checkBox_sog")
+        self.checkBox_sog.setChecked(True)
+
+        self.gridLayout.addWidget(self.checkBox_sog, 5, 2, 1, 1)
+
+        self.lineEdit_hdop = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_hdop.setObjectName(u"lineEdit_hdop")
+
+        self.gridLayout.addWidget(self.lineEdit_hdop, 14, 1, 1, 1)
+
+        self.label_10 = QLabel(self.gridLayoutWidget)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_10, 7, 0, 1, 1)
+
+        self.lineEdit_rpm = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_rpm.setObjectName(u"lineEdit_rpm")
+
+        self.gridLayout.addWidget(self.lineEdit_rpm, 16, 1, 1, 1)
+
+        self.checkBox_rpm = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_rpm.setObjectName(u"checkBox_rpm")
+
+        self.gridLayout.addWidget(self.checkBox_rpm, 16, 2, 1, 1)
+
+        self.checkBox_s_rpm = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_rpm.setObjectName(u"checkBox_s_rpm")
+
+        self.gridLayout.addWidget(self.checkBox_s_rpm, 16, 3, 1, 1)
+
+        self.checkBox_s_status = QCheckBox(self.gridLayoutWidget)
+        self.checkBox_s_status.setObjectName(u"checkBox_s_status")
+
+        self.gridLayout.addWidget(self.checkBox_s_status, 7, 4, 1, 1)
 
         self.tabWidget.addTab(self.tab_SKkeys, "")
 
@@ -763,7 +789,6 @@ class Ui_DialogSettings(object):
 #endif // QT_CONFIG(tooltip)
         self.spinBox_update_interv.setSuffix(QCoreApplication.translate("DialogSettings", u"h", None))
         self.label_31.setText(QCoreApplication.translate("DialogSettings", u"Track frequency (min):", None))
-        self.spinBox_track_interv.setSuffix(QCoreApplication.translate("DialogSettings", u"min", None))
         self.label_32.setText(QCoreApplication.translate("DialogSettings", u"Server timeout (s):", None))
         self.doubleSpinBox_timeout.setSuffix(QCoreApplication.translate("DialogSettings", u"s", None))
 #if QT_CONFIG(tooltip)
@@ -776,6 +801,7 @@ class Ui_DialogSettings(object):
         self.checkBox_evententrys.setText(QCoreApplication.translate("DialogSettings", u"Enable event entrys", None))
         self.checkBox_manualmode.setText(QCoreApplication.translate("DialogSettings", u"Start in Manual Mode", None))
         self.label_36.setText(QCoreApplication.translate("DialogSettings", u"Display Timezone UTC offset:", None))
+        self.doubleSpinBox_track_interv.setSuffix(QCoreApplication.translate("DialogSettings", u"min", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("DialogSettings", u"Paths", None))
         self.label_22.setText(QCoreApplication.translate("DialogSettings", u"QPlog directory path:", None))
         self.qplPathButton.setText(QCoreApplication.translate("DialogSettings", u"...", None))
@@ -788,67 +814,71 @@ class Ui_DialogSettings(object):
         self.label_30.setText(QCoreApplication.translate("DialogSettings", u"Height of Eye:", None))
         self.doubleSpinBox_hoe.setSuffix(QCoreApplication.translate("DialogSettings", u"m", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_generel), QCoreApplication.translate("DialogSettings", u"Settings", None))
-        self.label_5.setText(QCoreApplication.translate("DialogSettings", u"HDOP:", None))
-        self.checkBox_sog.setText("")
-        self.checkBox_airpressure.setText("")
-        self.label_16.setText(QCoreApplication.translate("DialogSettings", u"Engine hours:", None))
-        self.label_7.setText(QCoreApplication.translate("DialogSettings", u"Function", None))
-        self.checkBox_s_airpressure.setText("")
-        self.label_11.setText(QCoreApplication.translate("DialogSettings", u"Speed through water:", None))
-        self.checkBox_s_log.setText("")
-        self.checkBox_s_sog.setText("")
-        self.checkBox_s_stw.setText("")
-        self.checkBox_s_hdop.setText("")
-        self.label_6.setText(QCoreApplication.translate("DialogSettings", u"Fix Type:", None))
-        self.checkBox_fix.setText("")
-        self.label_15.setText(QCoreApplication.translate("DialogSettings", u"Log:", None))
-        self.checkBox_s_fix.setText("")
         self.label_13.setText(QCoreApplication.translate("DialogSettings", u"Date Time:", None))
-        self.checkBox_engine.setText("")
-        self.checkBox_s_engine.setText("")
-        self.checkBox_cog.setText("")
-        self.checkBox_temp.setText("")
-#if QT_CONFIG(tooltip)
-        self.label_9.setToolTip(QCoreApplication.translate("DialogSettings", u"Values to be recorded from SK server", None))
-#endif // QT_CONFIG(tooltip)
-        self.label_9.setText(QCoreApplication.translate("DialogSettings", u"active", None))
-        self.checkBox_s_heading.setText("")
-        self.label.setText(QCoreApplication.translate("DialogSettings", u"True Wind Direcion:", None))
-        self.label_12.setText(QCoreApplication.translate("DialogSettings", u"True Wind Speed:", None))
-        self.checkBox_s_humidity.setText("")
-        self.checkBox_s_tws.setText("")
-        self.label_10.setText(QCoreApplication.translate("DialogSettings", u"Heading:", None))
         self.label_17.setText(QCoreApplication.translate("DialogSettings", u"Speed over Ground:", None))
-        self.checkBox_s_temp.setText("")
-        self.checkBox_hdop.setText("")
-        self.label_4.setText(QCoreApplication.translate("DialogSettings", u"Air humidity:", None))
-        self.checkBox_humidity.setText("")
         self.checkBox_tws.setText("")
+        self.label_7.setText(QCoreApplication.translate("DialogSettings", u"Function", None))
+        self.checkBox_stw.setText("")
+        self.label_35.setText(QCoreApplication.translate("DialogSettings", u"Others", None))
+        self.label_2.setText(QCoreApplication.translate("DialogSettings", u"Air temperature:", None))
+        self.checkBox_hdop.setText("")
+        self.label_15.setText(QCoreApplication.translate("DialogSettings", u"Log:", None))
+        self.checkBox_engine.setText("")
+        self.label.setText(QCoreApplication.translate("DialogSettings", u"True Wind Direcion:", None))
+        self.checkBox_cog.setText("")
+        self.label_11.setText(QCoreApplication.translate("DialogSettings", u"Speed through water:", None))
+        self.checkBox_s_humidity.setText("")
+        self.checkBox_fix.setText("")
+        self.checkBox_s_stw.setText("")
+        self.checkBox_temp.setText("")
+        self.checkBox_s_tws.setText("")
+        self.checkBox_s_engine.setText("")
+        self.checkBox_s_hdop.setText("")
+        self.checkBox_humidity.setText("")
+        self.label_14.setText(QCoreApplication.translate("DialogSettings", u"Position:", None))
+        self.checkBox_s_visibility.setText(QCoreApplication.translate("DialogSettings", u"Visibility", None))
 #if QT_CONFIG(tooltip)
         self.label_8.setToolTip(QCoreApplication.translate("DialogSettings", u"The SK server path for the current Value", None))
 #endif // QT_CONFIG(tooltip)
         self.label_8.setText(QCoreApplication.translate("DialogSettings", u"Signal K Path", None))
+        self.checkBox_s_seastate.setText(QCoreApplication.translate("DialogSettings", u"Sea State", None))
         self.checkBox_log.setText("")
-        self.checkBox_heading.setText("")
-        self.label_14.setText(QCoreApplication.translate("DialogSettings", u"Position:", None))
-        self.label_18.setText(QCoreApplication.translate("DialogSettings", u"Course over Ground:", None))
-        self.label_3.setText(QCoreApplication.translate("DialogSettings", u"Air pressure:", None))
+        self.checkBox_s_text.setText(QCoreApplication.translate("DialogSettings", u"Text", None))
+#if QT_CONFIG(tooltip)
+        self.label_9.setToolTip(QCoreApplication.translate("DialogSettings", u"Values to be recorded from SK server", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_9.setText(QCoreApplication.translate("DialogSettings", u"active", None))
+        self.label_37.setText(QCoreApplication.translate("DialogSettings", u"Engine RPM", None))
+        self.label_12.setText(QCoreApplication.translate("DialogSettings", u"True Wind Speed:", None))
+        self.checkBox_s_place.setText(QCoreApplication.translate("DialogSettings", u"Place", None))
+        self.checkBox_s_temp.setText("")
+        self.label_6.setText(QCoreApplication.translate("DialogSettings", u"Fix Type:", None))
+        self.checkBox_twd.setText("")
+        self.checkBox_airpressure.setText("")
+        self.checkBox_s_twd.setText("")
+        self.label_16.setText(QCoreApplication.translate("DialogSettings", u"Engine hours:", None))
+        self.checkBox_s_fix.setText("")
 #if QT_CONFIG(tooltip)
         self.label_34.setToolTip(QCoreApplication.translate("DialogSettings", u"Values to show in logbook", None))
 #endif // QT_CONFIG(tooltip)
         self.label_34.setText(QCoreApplication.translate("DialogSettings", u"show", None))
-        self.label_2.setText(QCoreApplication.translate("DialogSettings", u"Air temperature:", None))
-        self.checkBox_stw.setText("")
-        self.checkBox_twd.setText("")
-        self.checkBox_s_twd.setText("")
-        self.checkBox_s_cog.setText("")
-        self.label_35.setText(QCoreApplication.translate("DialogSettings", u"Others", None))
-        self.checkBox_s_seastate.setText(QCoreApplication.translate("DialogSettings", u"Sea State", None))
-        self.checkBox_s_cloud.setText(QCoreApplication.translate("DialogSettings", u"Cloud cover", None))
+        self.label_3.setText(QCoreApplication.translate("DialogSettings", u"Air pressure:", None))
         self.checkBox_s_crew.setText(QCoreApplication.translate("DialogSettings", u"Crew", None))
-        self.checkBox_s_visibility.setText(QCoreApplication.translate("DialogSettings", u"Visibility", None))
-        self.checkBox_s_text.setText(QCoreApplication.translate("DialogSettings", u"Text", None))
-        self.checkBox_s_place.setText(QCoreApplication.translate("DialogSettings", u"Place", None))
+        self.checkBox_s_heading.setText("")
+        self.label_4.setText(QCoreApplication.translate("DialogSettings", u"Air humidity:", None))
+        self.label_5.setText(QCoreApplication.translate("DialogSettings", u"HDOP:", None))
+        self.checkBox_s_log.setText("")
+        self.checkBox_s_cloud.setText(QCoreApplication.translate("DialogSettings", u"Cloud cover", None))
+        self.checkBox_s_airpressure.setText("")
+        self.checkBox_heading.setText("")
+        self.label_18.setText(QCoreApplication.translate("DialogSettings", u"Course over Ground:", None))
+        self.checkBox_s_cog.setText("")
+        self.checkBox_s_sog.setText("")
+        self.checkBox_sog.setText("")
+        self.label_10.setText(QCoreApplication.translate("DialogSettings", u"Heading:", None))
+        self.checkBox_rpm.setText("")
+        self.checkBox_s_rpm.setText("")
+        self.checkBox_s_status.setText(QCoreApplication.translate("DialogSettings", u"Status", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_SKkeys), QCoreApplication.translate("DialogSettings", u"Signal K Paths", None))
     # retranslateUi
 
