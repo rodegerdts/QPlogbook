@@ -119,6 +119,7 @@ class Point4d:
     def getplace(self):
         """Returns a placename for use in a logbook entry (not always entirely akkurate, requires internet)"""
         txt = f"{self.lat}, {self.lon}"
+        print(txt)
         try:
             geolocator = Nominatim(user_agent="qpylogbooktest")
             location = geolocator.reverse(txt)
@@ -140,7 +141,7 @@ class Point4d:
                 else:
                     place = location.raw["display_name"]
             else:
-                print("No location found")
+                #print("No location found")
                 place = ""
         return(place)
 

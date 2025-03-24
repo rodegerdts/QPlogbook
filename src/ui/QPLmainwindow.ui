@@ -61,6 +61,9 @@
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
+   <property name="statusTip">
+    <string>Open a new logfile and add the contens to the current log.</string>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -89,6 +92,9 @@
    <property name="text">
     <string>New Entry</string>
    </property>
+   <property name="toolTip">
+    <string>Create new empty Entry</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
@@ -103,6 +109,9 @@
    </property>
    <property name="text">
     <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a logfile replacing the current log.</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -119,6 +128,9 @@
    <property name="text">
     <string>Preferences</string>
    </property>
+   <property name="toolTip">
+    <string>Open Preferences</string>
+   </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
    </property>
@@ -130,6 +142,9 @@
    </property>
    <property name="text">
     <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save the log into monthly files</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -147,7 +162,7 @@
     <string>AddEntry</string>
    </property>
    <property name="toolTip">
-    <string>Add new entry from SK</string>
+    <string>Add new entry with values from from SK server</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
@@ -162,7 +177,10 @@
     <string>Astro</string>
    </property>
    <property name="toolTip">
-    <string>Celestial Navigation</string>
+    <string>Open Celestial Navigation dialog</string>
+   </property>
+   <property name="whatsThis">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Celestial Navigation&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Provides a dialog create a new logbook entry based on Sextant measurements.&lt;/p&gt;&lt;p&gt;You will need a basic understanding of navigation by the stars for this to be usefull.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
@@ -177,7 +195,7 @@
     <string>Edit</string>
    </property>
    <property name="toolTip">
-    <string>Edit Entry</string>
+    <string>Edit Log Entry</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
@@ -221,7 +239,7 @@
     <string>Add</string>
    </property>
    <property name="toolTip">
-    <string>Add document</string>
+    <string>Add Logbook file to the current log</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>

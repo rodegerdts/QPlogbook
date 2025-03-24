@@ -37,8 +37,8 @@ class Ui_DialogSight(object):
 
         self.dateTimeEdit_sight = QDateTimeEdit(DialogSight)
         self.dateTimeEdit_sight.setObjectName(u"dateTimeEdit_sight")
-        self.dateTimeEdit_sight.setDateTime(QDateTime(QDate(1999, 12, 31), QTime(19, 0, 0)))
-        self.dateTimeEdit_sight.setMaximumDateTime(QDateTime(QDate(9999, 12, 28), QTime(17, 59, 59)))
+        self.dateTimeEdit_sight.setDateTime(QDateTime(QDate(1999, 12, 31), QTime(18, 0, 0)))
+        self.dateTimeEdit_sight.setMaximumDateTime(QDateTime(QDate(9999, 12, 28), QTime(16, 59, 59)))
         self.dateTimeEdit_sight.setCurrentSection(QDateTimeEdit.Section.DaySection)
         self.dateTimeEdit_sight.setTimeSpec(Qt.TimeSpec.UTC)
 
@@ -116,7 +116,7 @@ class Ui_DialogSight(object):
         self.doubleSpinBox_alt_min = QDoubleSpinBox(DialogSight)
         self.doubleSpinBox_alt_min.setObjectName(u"doubleSpinBox_alt_min")
         self.doubleSpinBox_alt_min.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.UpDownArrows)
-        self.doubleSpinBox_alt_min.setDecimals(1)
+        self.doubleSpinBox_alt_min.setDecimals(2)
         self.doubleSpinBox_alt_min.setMaximum(59.899999999999999)
 
         self.horizontalLayout.addWidget(self.doubleSpinBox_alt_min)
@@ -289,6 +289,9 @@ class Ui_DialogSight(object):
         self.spinBox_Hs_deg.setSuffix(QCoreApplication.translate("DialogSight", u"\u02da", None))
         self.doubleSpinBox_Hs_min.setSuffix(QCoreApplication.translate("DialogSight", u"\u00b4", None))
         self.button_Hs_to_Hc.setText(QCoreApplication.translate("DialogSight", u"Hs -> Ho", None))
+#if QT_CONFIG(tooltip)
+        self.label_2.setToolTip(QCoreApplication.translate("DialogSight", u"Hs corrected for IE, Dip, refraction and semidiameter (but not paralax!)", None))
+#endif // QT_CONFIG(tooltip)
         self.label_2.setText(QCoreApplication.translate("DialogSight", u"Altitude (Ho):", None))
         self.spinBox_alt_deg.setSuffix(QCoreApplication.translate("DialogSight", u"\u02da", None))
         self.doubleSpinBox_alt_min.setSuffix(QCoreApplication.translate("DialogSight", u"\u00b4", None))

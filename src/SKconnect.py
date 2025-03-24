@@ -28,7 +28,7 @@ def getSKpoint4D(config):
     time = datetime.fromisoformat(timedata)
     posdata = json.loads(posresp.content)
     if posdata["latitude"] == 0 and posdata["longitude"] == 0:
-        print("no gps position yet")
+        #print("no gps position yet")
         return None
     else:
         p = Point4d(time, posdata["latitude"], posdata["longitude"])

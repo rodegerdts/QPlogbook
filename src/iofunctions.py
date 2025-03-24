@@ -1,6 +1,6 @@
 
 import yaml
-import orjson
+import json
 import glob
 import os
 import math
@@ -106,23 +106,24 @@ def serialize_log(log: list) -> str:
     """Serializes the log til JSON"""
     lg = deepcopy(log)
     for i in lg:
-        i["point"] = {"time": i["point"].time, "lat": i["point"].lat, "lon": i["point"].lon}
+        i["point"] = {"time": i["point"].time.isoformat(), "lat": i["point"].lat, "lon": i["point"].lon}
         #i.update({"point": spoint})
-    ojs = orjson.dumps(lg, option=orjson.OPT_INDENT_2)
-    return ojs.decode("utf-8")
+    ojs = json.dumps(lg, indent=4)
+    return ojs
 
 def serialize_entry(entry: dict) -> str:
     """Serializes a single log entry to JSON"""
-    entry["point"] = {"time": entry["point"].time, "lat": entry["point"].lat, "lon": entry["point"].lon}
-    ojs = orjson.dumps(entry, option=orjson.OPT_INDENT_2)
-    return ojs.decode("utf-8")
+    entry["point"] = {"time": entry["point"].time.isoformat(), "lat": entry["point"].lat, "lon": entry["point"].lon}
+    ojs = json.dumps(entry, indent=4)
+    return ojs
 
 
 
-def deserialize_log(json: str) -> dict:
+def deserialize_log(jn: str) -> dict:
     """Reads a JSON string and returns a list of dictionarys"""
-    log = orjson.loads(json)
+    log = json.loads(jn)
     for i in log:
+        i["point"]["time"] = datetime.fromisoformat(i["point"]["time"])
         i["point"] = Point4d(i["point"]["time"], i["point"]["lat"], i["point"]["lon"])
     return log
 
@@ -319,16 +320,11 @@ if __name__=='__main__':
     
     # serial = serialize_log(d)
 
-    # print(orjson.loads(serial))
+    # print(json.loads(serial))
     # log = deserialize_log(serial)
     # print(serial)
     # print("di: ", di[1]["point"])
     # print("log: ", log[1]["point"])
     # print(di == log)
 
-    # d.sort(key=operator.itemgetter('datetime'))
-    # orjson_file = serialize_log(d)
-    # # orjson_file = orjson.dumps(di, option=orjson.OPT_INDENT_2)
-    # print(d)
-    # print(orjson_file.decode("utf-8"))
     print(dic)

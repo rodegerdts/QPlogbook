@@ -6,7 +6,8 @@ from point4D import Point4d
 import os
 import pandas as pd
 import math
-import orjson
+import json
+from copy import copy
 
 from PySide6.QtCore import Qt, QAbstractListModel, QDateTime
 from PySide6.QtWidgets import QWidget, QDialog, QApplication, QMessageBox, QFileDialog
@@ -63,7 +64,7 @@ for star in star_names:
 conf_file = os.path.dirname(os.path.realpath(__file__)) + "/" + "data/conf.json"
 
 with open(conf_file, "r") as conffile:
-        conf = orjson.loads(conffile.read())
+        conf = json.loads(conffile.read())
 
 astro_folder = conf["qplogfolder"] + "/astro/"
 
@@ -88,7 +89,7 @@ def dr_pos(sog, cog, t1, t2, lat, lon):
 
 
 def corrections(Hs, hoe=0, temp=15, press=1013, ie=0):
-    """Corect sekstant alitude Hs for index error, dip and refraction.
+    """Correct sekstant alitude Hs for index error, dip and refraction.
     No paralax rorrection needed since this is calculated by the skyfield library"""
     D = 0.0293 * math.sqrt(hoe) # dip
     #print(f"D: {D}")
@@ -96,7 +97,7 @@ def corrections(Hs, hoe=0, temp=15, press=1013, ie=0):
     R0 = 0.0167 / math.tan(math.radians(H + 7.32 / (H + 4.32))) # standart refraction
     R = R0 * ( 0.28 * press / (273 + temp)) # correction for temperature and pressure
     #print(f"R0: {R0} R: {R}")
-    return H - R # corrected altitude Ho
+    return H - R # corrected altitude 
 
 
 
@@ -107,44 +108,44 @@ def serialize_sights(sights):
     s = []
     for si in sights:
         d = {}
-        d["time"] = si.time
+        d["time"] = si.time.isoformat()
         d["lat"] = si.lat
         d["lon"] = si.lon
         d["body"] = si.body
         d["Hs"] = si.Hs
-        d["Ha"] = si.Ha
+        d["Ho"] = si.Ho
         d["ie"] = si.ie
         d["hoe"] = si.hoe
         d["temperature"] = si.temperature
         d["pressure"] = si.pressure
         s.append(d)
-    ojs = orjson.dumps(s, option=orjson.OPT_INDENT_2)
-    return ojs.decode("utf-8")
+    ojs = json.dumps(s, indent=4)
+    return ojs
 
 
-def deserialize_sights(json):
+def deserialize_sights(js):
     '''Returns:
         A list of sight objects.
     '''
-    s = orjson.loads(json)
+    #s = json.loads(js)
     sights = []
-    for si in s:
-        sights.append(Sight(datetime.fromisoformat(si["time"]), si["lat"], si["lon"], si["body"], si["Hs"], si["Ha"], si["ie"], si["hoe"], si["temperature"], si["pressure"]))
+    for si in js:
+        sights.append(Sight(datetime.fromisoformat(si["time"]), si["lat"], si["lon"], si["body"], si["Hs"], si["Ho"], si["ie"], si["hoe"], si["temperature"], si["pressure"]))
     return sights
 
 
 # classes ######################################################################
 
 class Sight:
-    def __init__(self, time, lat, lon, body, Hs, Ha, ie, hoe, temp, press):
+    def __init__(self, time, lat, lon, body, Hs, Ho, ie, hoe, temp, press):
         """A class to hold a sigle sight.
-        Calculates and stores the intercept"""
+        Calculates the intercept"""
         self.time = time
         self.lat = lat
         self.lon = lon
         self.body = body
         self.Hs = Hs
-        self.Ha = Ha
+        self.Ho = Ho
         self.ie = ie
         self.hoe = hoe
         self.temperature = temp
@@ -153,10 +154,6 @@ class Sight:
         self.ts = sf.load.timescale()
         self.t = ts.from_datetime(self.time)
 
-    def __str__(self):
-        return f"{self.body} {self.time.strftime('%H:%M:%S')}  Alt: {iofunctions.dg_mi(self.Ha)}"
-
-    def get_ic_az(self):
         if self.body in starnames:
             #print(f"Star: {self.body}")
             self.star = sf.Star.from_dataframe(stars.loc[starnames[self.body]])
@@ -167,28 +164,60 @@ class Sight:
             self.astrometric = self.ap.at(self.t).observe(self.star)
         elif self.body in pl:
             self.earth, self.bo = planets['earth'], planets[pl[self.body]]
-            self.ap = self.earth + sf.Topos(latitude_degrees=self.lat, longitude_degrees=self.lon)
+            self.ap = self.earth + sf.wgs84.latlon(latitude_degrees=self.lat, longitude_degrees=self.lon)
             self.astrometric = self.ap.at(self.t).observe(self.bo)
             if self.body != "SunUL" and self.body != "SunLL" and self.body != "MoonUL" and self.body != "MoonLL":
-                self.magnitude = planetary_magnitude(self.astrometric)
+                self.magnitude = float(planetary_magnitude(self.astrometric))
+                self.magnitude = round(self.magnitude, 2)
         self.Hc, self.az, self.d = self.astrometric.apparent().altaz()
+
+
         if self.body == "SunLL" or self.body == "SunUL":
             self.magnitude = -26.74
             self.semidiameter = math.degrees(math.asin(1392700 / self.d.km)/2)
-            # if self.body == "SunUL":
-            #     self.intercept = self.Ha - self.Hc.degrees
-            # else:
-            #     self.intercept = self.Ha - self.Hc.degrees - self.semidiameter
-        elif self.body == "MoonLL" or self.body == "MoonUL":
+
+        if self.body == "MoonLL" or self.body == "MoonUL":
             self.magnitude = -12.74
             self.semidiameter = math.degrees(math.asin(3474.8 / self.d.km)/2)
-            # if self.body == "MoonUL":
-            #     self.intercept = self.Ha - self.Hc.degrees
-            # else:
-            #     self.intercept = self.Ha - self.Hc.degrees
+
+        
+
+    def __str__(self):
+        return f"{self.body} {self.time.strftime('%H:%M:%S')}  Alt: {iofunctions.dg_mi(self.Ho)} Az:{math.trunc(self.az.degrees)}°"
+
+    def get_ic_az(self):
+        # if self.body in starnames:
+        #     #print(f"Star: {self.body}")
+        #     self.star = sf.Star.from_dataframe(stars.loc[starnames[self.body]])
+        #     star_data = stars.loc[starnames[self.body]]
+        #     self.magnitude = star_data['magnitude'] 
+        #     self.earth = planets['earth']
+        #     self.ap = self.earth + sf.wgs84.latlon(self.lat, self.lon)
+        #     self.astrometric = self.ap.at(self.t).observe(self.star)
+        # elif self.body in pl:
+        #     self.earth, self.bo = planets['earth'], planets[pl[self.body]]
+        #     self.ap = self.earth + sf.Topos(latitude_degrees=self.lat, longitude_degrees=self.lon)
+        #     self.astrometric = self.ap.at(self.t).observe(self.bo)
+        #     if self.body != "SunUL" and self.body != "SunLL" and self.body != "MoonUL" and self.body != "MoonLL":
+        #         self.magnitude = planetary_magnitude(self.astrometric)
+        # self.Hc, self.az, self.d = self.astrometric.apparent().altaz()
+        # if self.body == "SunLL" or self.body == "SunUL":
+        #     # self.magnitude = -26.74
+        #     # self.semidiameter = math.degrees(math.asin(1392700 / self.d.km)/2)
+        #     if self.body == "SunUL":
+        #         self.intercept = self.Ho - self.Hc.degrees - self.semidiameter
+        #     else:
+        #         self.intercept = self.Ho - self.Hc.degrees + self.semidiameter
+        # elif self.body == "MoonLL" or self.body == "MoonUL":
+        #     # self.magnitude = -12.74
+        #     # self.semidiameter = math.degrees(math.asin(3474.8 / self.d.km)/2)
+        #     if self.body == "MoonUL":
+        #         self.intercept = self.Ho - self.Hc.degrees - self.semidiameter
+        #     else:
+        #         self.intercept = self.Ho - self.Hc.degrees + self.semidiameter
         # else:
-        self.intercept = self.Ha - self.Hc.degrees
-        # print(f"{self.t.utc_iso()} {self.body}: Hc:{self.Hc.degrees} Azimut: {self.az.degrees} Intercept:{self.intercept} magnitude:{self.magnitude}")
+        self.intercept = self.Ho - self.Hc.degrees
+        #print(f"time:{self.t.utc_iso()} \nlon:{self.lon} \nlat:{self.lat} \n body:{self.body}: \n Hc:{self.Hc.degrees} \n Azimut: {self.az.degrees} \nIntercept:{self.intercept} \nmagnitude:{self.magnitude}")
         return (self.intercept, self.az.degrees, self.Hc.degrees, self.magnitude)
 
 
@@ -197,7 +226,12 @@ class Fix:
     """A class to hold and calculate a running fix based on a list of sights 
      as described in the nautical almanac"""
     def __init__(self, sights, sog=0, cog=0):
-        self.sights = sights
+        self.sights = []
+
+        for si in sights:
+            nsi = copy(si)
+            self.sights.append(nsi)
+
         self.sights.sort(key=lambda x: x.time, reverse=True)
         self.fix = None
         self.lon = math.radians(self.sights[0].lon)
@@ -215,7 +249,7 @@ class Fix:
                     s.lat = runningpos[0]
                 #print(f"{s.body} {s.time} {dg_mi(s.lat)} {dg_mi(s.lon)}")
 
-        for i in range(10):
+        for i in range(20):
             update_sights(self)
             A = B = C = D = E = 0.0
             for s in self.sights:
@@ -234,7 +268,7 @@ class Fix:
             #print(f"d: {distance} lat:{self.lat} lon:{self.lon} Li:{Li} Bi:{Bi}")
             self.lon = Li
             self.lat = Bi
-            if distance < 0.00001:
+            if distance < 0.000001:
                 update_sights(self)
                 break
                 
@@ -364,7 +398,7 @@ class CelNavUi(QWidget, Ui_CelNavigation):
         index = self.listView_sights.currentIndex().row()
         self.dialog = DialogSight(time=self.sights[index].time, lat=self.sights[index].lat, lon=self.sights[index].lon, body=self.sights[index].body, hoe=self.sights[index].hoe,
                                    pressure=self.sights[index].pressure, temperature=self.sights[index].temperature,
-                                     alt=self.sights[index].Ha, ie=self.sights[index].ie, hs=self.sights[index].Hs)
+                                     alt=self.sights[index].Ho, ie=self.sights[index].ie, hs=self.sights[index].Hs)
         if self.dialog.exec() == QDialog.Accepted:
             self.sights[index] = self.dialog.sight
             self.sights_model.layoutChanged.emit()
@@ -402,9 +436,23 @@ class CelNavUi(QWidget, Ui_CelNavigation):
 
     def save_astro(self):
         """Save the sights ad Fix to a file"""
-        sights = serialize_sights(self.sights)
+        sts = []
+        for si in self.sights:
+            d = {}
+            d["time"] = si.time.isoformat()
+            d["lat"] = si.lat
+            d["lon"] = si.lon
+            d["body"] = si.body
+            d["Hs"] = si.Hs
+            d["Ho"] = si.Ho
+            d["ie"] = si.ie
+            d["hoe"] = si.hoe
+            d["temperature"] = si.temperature
+            d["pressure"] = si.pressure
+            sts.append(d)
+        #sights = serialize_sights(self.sights)
         safe_dict = {}
-        safe_dict["sights"] = sights
+        safe_dict["sights"] = sts
         safe_dict["sog"] = self.sog
         safe_dict["cog"] = self.cog
         safe_dict["indexerror"] = self.indexerror
@@ -413,12 +461,12 @@ class CelNavUi(QWidget, Ui_CelNavigation):
         safe_dict["hoe"] = self.hoe
         safe_dict["latitude"] = self.lat
         safe_dict["longitude"] = self.lon
-        out = orjson.dumps(safe_dict, option=orjson.OPT_INDENT_2)
+        out = json.dumps(safe_dict, indent=4)
 
         filename = self.sights[0].time.strftime("%Y-%m-%d_%H-%M") + "_sights.json"
         os.makedirs(astro_folder, exist_ok=True) 
         with open(astro_folder + filename, "w") as sightsfile:
-            sightsfile.write(out.decode("utf-8"))
+            sightsfile.write(out)
 
     def open_astro(self):
         """Open a file with sights and Fix"""
@@ -427,7 +475,7 @@ class CelNavUi(QWidget, Ui_CelNavigation):
         self.activefolder = os.path.dirname(filename[0])
         with open(filename[0], "r") as infile:
             read_in = infile.read()
-        in_dict = orjson.loads(read_in)
+        in_dict = json.loads(read_in)
         self.sog = in_dict["sog"]
         self.doubleSpinBox_sog.setValue(self.sog)
         self.cog = in_dict["cog"]
@@ -447,7 +495,12 @@ class CelNavUi(QWidget, Ui_CelNavigation):
         self.spinBox_lon_deg.setValue(math.trunc(abs(self.lon)))
         self.doubleSpinBox_lon_min.setValue((abs(self.lon) - math.trunc(abs(self.lon))) * 60)
         self.sights.clear()
-        self.sights.extend(deserialize_sights(in_dict["sights"]))
+
+        sts = []
+        for si in in_dict["sights"]:
+            sts.append(Sight(datetime.fromisoformat(si["time"]), si["lat"], si["lon"], si["body"], si["Hs"], si["Ho"], si["ie"], si["hoe"], si["temperature"], si["pressure"]))
+    
+        self.sights.extend(sts)
         self.sights_model.layoutChanged.emit()
         
 
@@ -458,21 +511,22 @@ class CelNavUi(QWidget, Ui_CelNavigation):
 
 
 class DialogSight(QDialog, Ui_DialogSight):
+    """A dialog for entering  for a single sight"""
     def __init__(self, parent=None, time=datetime.now(), lat=0, lon=0, body="SunUL", hoe = 2, pressure=1013, temperature=25, alt=0, ie=0, hs=0):
         super().__init__(parent)
         self.setupUi(self)
         self.time = time
         self.qtime = QDateTime.fromString(self.time.isoformat(), Qt.ISODate)
-        self.lat = lat
-        self.lon = lon
-        self.body = body
-        self.hs = hs
-        self.alt = alt
-        self.ie = ie
-        self.hc = None
-        self.pressure = pressure
-        self.temperature = temperature
-        self.hoe = hoe
+        self.lat = lat              # asumed position latitude
+        self.lon = lon              # asumed position longitude
+        self.body = body            # celestial body
+        self.hs = hs                # sextant altitude
+        self.alt = alt              # observed altitude
+        self.ie = ie                # index error
+        self.hc = None              # calculated altitude
+        self.pressure = pressure    # air pressure
+        self.temperature = temperature # air temperature
+        self.hoe = hoe              # height of eye
 
         self.dateTimeEdit_sight.setDateTime(self.qtime)
         self.comboBox_body.addItems(nav_obj)
@@ -483,8 +537,8 @@ class DialogSight(QDialog, Ui_DialogSight):
         self.doubleSpinBox_Hs_min.setValue((self.hs - math.trunc(self.hs)) * 60) 
 
 
-        self.buttonBox.accepted.connect(self.accept)
-        self.buttonBox.rejected.connect(self.close)
+        #self.buttonBox.accepted.connect(self.accept)
+        #self.buttonBox.rejected.connect(self.close)
         self.dateTimeEdit_sight.dateTimeChanged.connect(self.body_changed)
         self.comboBox_body.currentTextChanged.connect(self.body_changed)
         self.spinBox_alt_deg.valueChanged.connect(self.alt_changed)
@@ -543,6 +597,8 @@ class DialogSight(QDialog, Ui_DialogSight):
             sd = self.sight.semidiameter
         elif self.body == "SunUL" or self.body == "MoonUL":
             sd = 0 - self.sight.semidiameter
+        else:
+            sd = 0
         self.alt = corrections(self.hs+sd, self.hoe, self.temperature, self.pressure, self.ie)
         #print(f"Corrected altitude: {self.alt}")
         deg = math.trunc(self.alt)
@@ -570,18 +626,23 @@ class DialogSight(QDialog, Ui_DialogSight):
         #     self.hc = self.hc - self.sight.semidiameter
         #     print(f"UL: {self.hc} {self.sight.semidiameter}")
         self.label_az.setText(f" Az: {math.trunc(az)}˚")
-        self.label_hc.setText(f" Hc: {iofunctions.dg_mi(self.hc)} mag:{mag}")
+        if self.body == "SunLL" or self.body == "MoonLL" or self.body == "SunUL" or self.body == "MoonUL":
+            self.label_hc.setText(f" Hc: {iofunctions.dg_mi(self.hc)} m:{mag} sd:{int(self.sight.semidiameter*60)}'")
+        else:
+            self.label_hc.setText(f" Hc: {iofunctions.dg_mi(self.hc)} m:{mag}" )
+        if self.hc < 10 or self.hc > 70 or mag > 3:
+            self.label_hc.setStyleSheet("color: red")
+        elif self.hc < 20 or self.hc > 65 or mag > 2:
+            self.label_hc.setStyleSheet("color: orange")
+        else:
+            self.label_hc.setStyleSheet("color: green")
 
     def actoalt(self):
         #self.Hc = self.sight.get_ic_az()[2]
         if self.hc:
-            #print(f"actoalt clicked {math.trunc(self.hc)}")
             self.spinBox_alt_deg.setValue(math.trunc(self.hc))
-            self.spinBox_Hs_deg.setValue(math.trunc(self.hc))
             self.doubleSpinBox_alt_min.setValue((self.hc - math.trunc(self.hc)) * 60)
-            self.doubleSpinBox_Hs_min.setValue((self.hc - math.trunc(self.hc)) * 60)
         else:
-
             msg = QMessageBox.information(self, "Warning", "No altitude calculated")
 
 
@@ -601,8 +662,9 @@ class DialogSight(QDialog, Ui_DialogSight):
             self.sight = Sight(self.time, self.lat, self.lon, self.comboBox_body.currentText(), hs, alt, self.ie, self.hoe, self.temperature, self.pressure)
             QDialog.accept(self)
         else:
-            print("Invalid input")
             QDialog.reject(self)
+            QMessageBox.information(self, "Warning", "Invalid altitude or body")
+            print("Invalid input")
 
 
 

@@ -27,7 +27,7 @@
       <widget class="QDateTimeEdit" name="dateTimeEdit_sight">
        <property name="dateTime">
         <datetime>
-         <hour>19</hour>
+         <hour>18</hour>
          <minute>0</minute>
          <second>0</second>
          <year>1999</year>
@@ -37,7 +37,7 @@
        </property>
        <property name="maximumDateTime">
         <datetime>
-         <hour>17</hour>
+         <hour>16</hour>
          <minute>59</minute>
          <second>59</second>
          <year>9999</year>
@@ -140,6 +140,9 @@
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="label_2">
+       <property name="toolTip">
+        <string>Hs corrected for IE, Dip, refraction and semidiameter (but not paralax!)</string>
+       </property>
        <property name="text">
         <string>Altitude (Ho):</string>
        </property>
@@ -175,7 +178,7 @@
           <string>´</string>
          </property>
          <property name="decimals">
-          <number>1</number>
+          <number>2</number>
          </property>
          <property name="maximum">
           <double>59.899999999999999</double>

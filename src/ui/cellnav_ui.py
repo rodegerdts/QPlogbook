@@ -25,7 +25,7 @@ class Ui_CelNavigation(object):
     def setupUi(self, CelNavigation):
         if not CelNavigation.objectName():
             CelNavigation.setObjectName(u"CelNavigation")
-        CelNavigation.resize(528, 520)
+        CelNavigation.resize(569, 521)
         self.verticalLayout = QVBoxLayout(CelNavigation)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.gridLayout = QGridLayout()
@@ -283,6 +283,7 @@ class Ui_CelNavigation(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.listView_sights = QListView(self.groupBox_4)
         self.listView_sights.setObjectName(u"listView_sights")
+        self.listView_sights.setMinimumSize(QSize(250, 0))
 
         self.verticalLayout_2.addWidget(self.listView_sights)
 

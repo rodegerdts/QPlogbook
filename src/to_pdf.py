@@ -298,11 +298,11 @@ def  mk_pdf(qplog, conf, fontsize, filename):
 
 if __name__=='__main__':
     import os
-    import orjson
+    import json
     qplog = iofunctions.getQPlog("/Users/enno/Documents/dev/QPlogbook/log/2024-08.json")
     
     conf_file = os.path.dirname(os.path.realpath(__file__)) + "/" + "data/conf.json"
     with open(conf_file, "r") as conffile:
-        conf = orjson.loads(conffile.read())
+        conf = json.loads(conffile.read())
 
     mk_pdf(qplog, conf, 8, "test.pdf")

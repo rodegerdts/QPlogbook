@@ -40,11 +40,11 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='QPLmainwindow',
+    name='QPlogbook',
 )
 app = BUNDLE(
     coll,
-    name='QPLmainwindow.app',
+    name='QPlogbook.app',
     icon=None,
     bundle_identifier=None,
 )

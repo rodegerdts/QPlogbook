@@ -188,15 +188,6 @@ class Ui_DialogSettings(object):
 
         self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_32)
 
-        self.doubleSpinBox_timeout = QDoubleSpinBox(self.groupBox_3)
-        self.doubleSpinBox_timeout.setObjectName(u"doubleSpinBox_timeout")
-        sizePolicy.setHeightForWidth(self.doubleSpinBox_timeout.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox_timeout.setSizePolicy(sizePolicy)
-        self.doubleSpinBox_timeout.setSingleStep(0.010000000000000)
-        self.doubleSpinBox_timeout.setValue(0.100000000000000)
-
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.doubleSpinBox_timeout)
-
         self.checkBox_autoentry = QCheckBox(self.groupBox_3)
         self.checkBox_autoentry.setObjectName(u"checkBox_autoentry")
         self.checkBox_autoentry.setToolTipDuration(1500)
@@ -227,14 +218,22 @@ class Ui_DialogSettings(object):
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.doubleSpinBox_UTCoffset)
 
-        self.doubleSpinBox_track_interv = QDoubleSpinBox(self.groupBox_3)
-        self.doubleSpinBox_track_interv.setObjectName(u"doubleSpinBox_track_interv")
-        sizePolicy.setHeightForWidth(self.doubleSpinBox_track_interv.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox_track_interv.setSizePolicy(sizePolicy)
-        self.doubleSpinBox_track_interv.setDecimals(1)
-        self.doubleSpinBox_track_interv.setMaximum(99.000000000000000)
+        self.doubleSpinBox_timeout = QDoubleSpinBox(self.groupBox_3)
+        self.doubleSpinBox_timeout.setObjectName(u"doubleSpinBox_timeout")
+        sizePolicy.setHeightForWidth(self.doubleSpinBox_timeout.sizePolicy().hasHeightForWidth())
+        self.doubleSpinBox_timeout.setSizePolicy(sizePolicy)
+        self.doubleSpinBox_timeout.setSingleStep(0.010000000000000)
+        self.doubleSpinBox_timeout.setValue(0.100000000000000)
 
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.doubleSpinBox_track_interv)
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.doubleSpinBox_timeout)
+
+        self.spinBox_track_interv = QSpinBox(self.groupBox_3)
+        self.spinBox_track_interv.setObjectName(u"spinBox_track_interv")
+        sizePolicy.setHeightForWidth(self.spinBox_track_interv.sizePolicy().hasHeightForWidth())
+        self.spinBox_track_interv.setSizePolicy(sizePolicy)
+        self.spinBox_track_interv.setMaximum(59)
+
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.spinBox_track_interv)
 
 
         self.gridLayout_3.addWidget(self.groupBox_3, 1, 2, 1, 1)
@@ -759,7 +758,7 @@ class Ui_DialogSettings(object):
         self.buttonBox.accepted.connect(DialogSettings.accept)
         self.buttonBox.rejected.connect(DialogSettings.reject)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(DialogSettings)
@@ -790,7 +789,6 @@ class Ui_DialogSettings(object):
         self.spinBox_update_interv.setSuffix(QCoreApplication.translate("DialogSettings", u"h", None))
         self.label_31.setText(QCoreApplication.translate("DialogSettings", u"Track frequency (min):", None))
         self.label_32.setText(QCoreApplication.translate("DialogSettings", u"Server timeout (s):", None))
-        self.doubleSpinBox_timeout.setSuffix(QCoreApplication.translate("DialogSettings", u"s", None))
 #if QT_CONFIG(tooltip)
         self.checkBox_autoentry.setToolTip(QCoreApplication.translate("DialogSettings", u"Enable autoentrys at startup", None))
 #endif // QT_CONFIG(tooltip)
@@ -801,7 +799,7 @@ class Ui_DialogSettings(object):
         self.checkBox_evententrys.setText(QCoreApplication.translate("DialogSettings", u"Enable event entrys", None))
         self.checkBox_manualmode.setText(QCoreApplication.translate("DialogSettings", u"Start in Manual Mode", None))
         self.label_36.setText(QCoreApplication.translate("DialogSettings", u"Display Timezone UTC offset:", None))
-        self.doubleSpinBox_track_interv.setSuffix(QCoreApplication.translate("DialogSettings", u"min", None))
+        self.doubleSpinBox_timeout.setSuffix(QCoreApplication.translate("DialogSettings", u"s", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("DialogSettings", u"Paths", None))
         self.label_22.setText(QCoreApplication.translate("DialogSettings", u"QPlog directory path:", None))
         self.qplPathButton.setText(QCoreApplication.translate("DialogSettings", u"...", None))

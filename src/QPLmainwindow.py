@@ -2,7 +2,7 @@ from multiprocessing import Value
 import os
 import sys, signal
 import yaml
-import orjson
+import json
 import math
 import copy
 from datetime import datetime, timezone, timedelta
@@ -35,7 +35,7 @@ conf_file = os.path.dirname(os.path.realpath(__file__)) + "/" + "data/conf.json"
 
 # global variable 'conf' holds the configuration dictionary
 with open(conf_file, "r") as conffile:
-        conf = orjson.loads(conffile.read())
+        conf = json.loads(conffile.read())
 
 QPlog = []
 
@@ -219,7 +219,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionstartstopp.setChecked(auto_on)
         self.actionstartstopp.toggled.connect(self.toggle_autolog)
         self.scheduler = QtScheduler()
-        self.scheduler.add_job(self.auto_entry_status, id="track", trigger="cron", second=f"*/{int(conf['trackinterv']*60)}")
+        self.scheduler.add_job(self.auto_entry_status, id="track", trigger="cron", minute=f"*/{int(conf['trackinterv'])}")
         self.scheduler.add_job(self.auto_entry, id="entry", trigger="cron", hour=f"*/{conf['loginterv']}")
         self.scheduler.start()
 
@@ -244,7 +244,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             sys.exit()
         if result == QtWidgets.QDialog.Accepted:
             with open(conf_file, "w") as conffile:
-                conffile.write(orjson.dumps(conf, option=orjson.OPT_INDENT_2).decode("utf-8"))
+                conffile.write(json.dumps(conf, indent=4))
             del pref_dlg
             if conf["qplogfolder"] == "":
                 sys.exit()
@@ -395,7 +395,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         pref_dlg = SettingsDialog(self, conf)
         pref_dlg.exec()
         with open(conf_file, "w") as conffile:
-            conffile.write(orjson.dumps(conf, option=orjson.OPT_INDENT_2).decode("utf-8"))
+            conffile.write(json.dumps(conf, indent=4))
         del pref_dlg
         self.model = QPlogModel(QPlog, toheaders(conf))
         self.logTableView.setModel(self.model)
@@ -462,6 +462,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         entry = SKconnect.getSKpath(conf)        
         if entry:
             entry.update(kwargs)
+            place = entry["point"].getplace()
+            entry["place"] = place
             QPlog.append(entry)
             self.model.layoutChanged.emit()
         else:
@@ -573,7 +575,7 @@ class EditDialog(Ui_EditDialog, QtWidgets.QDialog):
     def updatevalues(self):
         """Update the dialog with the values from the current entry"""
         if isinstance(self.entry["point"], Point4d):
-            print(self.entry["point"].time)
+            #print(self.entry["point"].time)
             qtime = QDateTime.fromString(self.entry["point"].time.isoformat(), Qt.ISODate)
             self.dateTimeEdit.setDateTime(qtime)
             st = self.dateTimeEdit.dateTime()
@@ -725,7 +727,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.doubleSpinBox_loa.setValue(self.conf["boat"]["loa"])
         self.doubleSpinBox_draft.setValue(self.conf["boat"]["draft"])
         self.spinBox_update_interv.setValue(self.conf["loginterv"])
-        self.doubleSpinBox_track_interv.setValue(self.conf["trackinterv"])
+        self.spinBox_track_interv.setValue(self.conf["trackinterv"])
         self.doubleSpinBox_timeout.setValue(self.conf["servertimeout"])
         self.lineEdit_qplog_dir.setText(self.conf["qplogfolder"])
         self.lineEdit_sklog_dir.setText(self.conf["sklogfolder"])
@@ -802,7 +804,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["boat"]["loa"] = self.doubleSpinBox_loa.value()
         self.conf["boat"]["draft"] = self.doubleSpinBox_draft.value()
         self.conf["loginterv"] = self.spinBox_update_interv.value()
-        self.conf["trackinterv"] = self.doubleSpinBox_track_interv.value()
+        self.conf["trackinterv"] = self.spinBox_track_interv.value()
         self.conf["servertimeout"] = self.doubleSpinBox_timeout.value()
         self.conf["qplogfolder"] = self.lineEdit_qplog_dir.text()
         self.conf["sklogfolder"] = self.lineEdit_sklog_dir.text()
@@ -812,7 +814,8 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["utc_offset"] = self.doubleSpinBox_UTCoffset.value()
 
 
-        m_window.scheduler.reschedule_job("track", trigger="cron", second=f"*/{int(conf['trackinterv']*60)}")
+        m_window.scheduler.reschedule_job("track", trigger="cron", minute=f"*/{int(conf['trackinterv'])}")
+        m_window.scheduler.reschedule_job("entry", trigger="cron", hour=f"*/{conf['loginterv']}")
 
         self.conf["enableauto"] = self.checkBox_autoentry.isChecked()
         self.conf["enableeventlog"] = self.checkBox_evententrys.isChecked()
@@ -939,6 +942,6 @@ m_window = MainWindow()
 if conf["qplogfolder"] == "":
     m_window.firststart()
 app.setWindowIcon(QtGui.QIcon(':/icons/SVG/Sextantcolor.svg'))
-m_window.setWindowTitle("QPlLogbook")
+m_window.setWindowTitle("QPLogbook")
 m_window.show()
 app.exec()
