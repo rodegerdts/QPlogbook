@@ -54,6 +54,7 @@ k_to_h = {
         "seastate": "Sea",
         "crewNames": "Crew",
         "place": "Place",
+        "rpm": "RPM",
 }  
 
 # qplog = iofunctions.getQPlog("/Users/enno/Documents/dev/QPlogbook/log/2024-08.json")
@@ -64,6 +65,12 @@ def mk_table(log, conf, keys_to_head):
     data = []
     header = []
     text = ""
+    if "text" in keys:
+        for entry in log:
+            if "text" in entry:
+                text = text + entry["text"] + "\n"
+                #entry.pop("text")
+        keys.remove("text")
     for key in keys:    
         header.append(keys_to_head[key])
     data.append(header)
@@ -81,9 +88,6 @@ def mk_table(log, conf, keys_to_head):
             else:
                 row.append("")
         data.append(row)
-    for entry in log:
-        if "text" in entry:
-            text = text + entry["text"] + "\n"
     return (data, text)
 
 
@@ -277,7 +281,7 @@ class PDF(PDFtable):
 
 def  mk_pdf(qplog, conf, fontsize, filename):
     #headers = ["Time", "Position"] + conf["showkeys"]
-    qplog = iofunctions.splitdayly(qplog)
+    qplog = iofunctions.split_dayly(qplog)
     pdf = PDF()
     pdf.add_page()
     pdf.set_font("Times", size=fontsize)

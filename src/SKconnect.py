@@ -137,6 +137,8 @@ def getSKpath(config):
             out["humidity"] = round(out["humidity"] *100, 0)
         if "rpm" in out:
             out["rpm"] = round(out["rpm"] * 60, 0)
+        if "log" in out:
+            out["log"] = round(out["log"] / 1852, 1)
         nout = {"point": point}
         nout.update(out)
         return nout

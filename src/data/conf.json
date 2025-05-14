@@ -52,16 +52,15 @@
         "airtemperature",
         "airpressure",
         "humidity",
-        "fixtype",
         "rpm",
         "visibility",
-        "text",
-        "place"
+        "place",
+        "status"
     ],
     "loginterv": 1,
     "trackinterv": 1,
-    "skserver": "openplotter.local:3000",
-    "servertimeout": 0.09,
+    "skserver": "demo.signalk.org/:3000",
+    "servertimeout": 0.5,
     "qplogfolder": "/Users/enno/Documents/dev/QPlogbook/log",
     "sklogfolder": "",
     "enableauto": true,
@@ -69,5 +68,5 @@
     "manualmode": false,
     "indexerror": 1.0,
     "hightofeye": 0.0,
-    "utc_offset": 1.0
+    "utc_offset": 2.0
 }

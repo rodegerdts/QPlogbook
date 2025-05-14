@@ -136,7 +136,7 @@ def getQPlog(path):
     return QPlog
 
 
-def splitmonthly(log):
+def splitmonthly(log: list) -> dict:
     """Splits a logbook into a dictionary of monthly logs"""
     logs = {}
     for i in log:
@@ -148,15 +148,15 @@ def splitmonthly(log):
     return logs
         
 
-def splitdayly(log):
-    """Splits a logbook into a dictionary of monthly logs"""
+def split_dayly(log):
+    """Splits a logbook into a dictionary of dayly logs"""
     logs = {}
     for i in log:
-        month = i["point"].time.strftime("%Y-%m-%d")
-        if month in logs:
-            logs[month].append(i)
+        day = i["point"].time.strftime("%Y-%m-%d")
+        if day in logs:
+            logs[day].append(i)
         else:
-            logs[month] = [i]
+            logs[day] = [i]
     return logs
 
 
