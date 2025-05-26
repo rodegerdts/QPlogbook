@@ -204,6 +204,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionPrintPDF.triggered.connect(self.printPDF)
         self.actionOpen.triggered.connect(self.openDialog)
         self.actionAdd.triggered.connect(self.addDialog)
+        self.actionImportSKlogbook.triggered.connect(self.addSKLdir)
         self.actionPreferences.triggered.connect(self.openSettings)
         self.actionEdit.triggered.connect(self.openEdit)
         self.logTableView.doubleClicked.connect(self.openEdit)
@@ -229,7 +230,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timezone_label = QtWidgets.QLabel(f"   Timezone: UTC{math.trunc(conf['utc_offset']):+03}:{(abs(conf['utc_offset']-math.trunc(conf['utc_offset']))*60):02.0f} ")
         self.statusbar.addWidget(self.status_label)
         self.statusbar.addWidget(self.timezone_label)
-        self.statusbar.addPermanentWidget(self.auto_entry_label)
+        self.statusbar.addPermanentWidget(self.auto_entry_label) 
         
 
 
@@ -263,7 +264,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
 
     def closeEvent(self, event):
-        """code to clean up on closing the main window"""
+        """Code to clean up on closing the main window"""
         cl = self.save_QPlog()
         if cl == 1:
             event.ignore()
@@ -303,6 +304,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         QPlog.extend(log)
         self.model.layoutChanged.emit() 
 
+    def addSKLdir(self):
+        sklogs = iofunctions.importdir(conf["sklogfolder"])
+        log = iofunctions.logmap(sklogs, iofunctions.keymap)
+        QPlog.extend(log)
+        self.sortandclean()
 
     def openDR(self):
         """Open the Dead Reckoning Dialog"""

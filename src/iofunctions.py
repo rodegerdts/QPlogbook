@@ -294,7 +294,7 @@ def mk_decpos(deg_lat, min_lat, deg_lon, min_lon, ns, we):
 # ----------------------------------------------------------
 # testing:
 
-if __name__=='__main__':
+#if __name__=='__main__':
     # d1 =  {"a": 1, "b": 2, "c": 3, "g": {"e": 5, "f": 6}, "k": ["Karin", "Enno", "Steffi"]}
     # d2 =  {"a": 1.1, "b": 2.2, "d": 4.4, "i": {"e": 5.5, "h": 7.7, "n": ""}, "j": {}, "k": ["Karin", "Enno", "Klaus"], "l": {"m": ""}}
     # time1 = datetime.fromisoformat('2024-10-27T12:48:47.000Z')
@@ -306,11 +306,13 @@ if __name__=='__main__':
     # d1["point"] = pp
     # d2["point"] = ppp
     # list1 = [d1, d2]
+
     # basedir = os.getcwd()
-    # # print(basedir)
-    # # dic = importdir(basedir)
+    # print(basedir)
+    # dic = importdir(basedir)
+
     # # dic = getSKlog("/Users/enno/Documents/dev/VScode/VSCpython/testlog.yml")
-    dic = getQPlog("/Users/enno/Documents/dev/QPlogbook/log/2024-08.json")
+    # dic = getQPlog("/Users/enno/Documents/dev/QPlogbook/log/2024-08.json")
     # # dic = merge_entrys(d1, d2)
     # # di = flatten(dic[2])
     # # di = logmap(dic, keymap)
@@ -327,4 +329,4 @@ if __name__=='__main__':
     # print("log: ", log[1]["point"])
     # print(di == log)
 
-    print(dic)
+    # print(dic)

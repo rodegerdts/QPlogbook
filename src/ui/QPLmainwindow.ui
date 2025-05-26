@@ -37,6 +37,7 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionImportSKlogbook"/>
     <addaction name="actionNew_Entry"/>
     <addaction name="actionSave"/>
     <addaction name="actionPreferences"/>
@@ -46,6 +47,9 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <addaction name="actionEdit"/>
+    <addaction name="actionDelete_Entry"/>
+    <addaction name="actionSort"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -352,6 +356,17 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionImportSKlogbook">
+   <property name="text">
+    <string>Import SKlogbook</string>
+   </property>
+   <property name="toolTip">
+    <string>import SignalK loogbook directory</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>

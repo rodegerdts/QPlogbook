@@ -758,7 +758,7 @@ class Ui_DialogSettings(object):
         self.buttonBox.accepted.connect(DialogSettings.accept)
         self.buttonBox.rejected.connect(DialogSettings.reject)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(DialogSettings)
