@@ -1,7 +1,6 @@
 from multiprocessing import Value
 import os
 import sys, signal
-import yaml
 import json
 import math
 import copy
@@ -78,12 +77,12 @@ def loadlastlog(logdir):
     if len(loglist) == 0:
         return []
     elif len(loglist) == 1:
-        return iofunctions.getQPlog(loglist[0])
+        lastlog = iofunctions.getQPlog(loglist[0])
+        return iofunctions.cleanup(lastlog)
     else:
         lastlog = iofunctions.getQPlog(loglist[len(loglist)-1])
         lastlog.extend(iofunctions.getQPlog(loglist[len(loglist)-2]))
-        iofunctions.cleanup(lastlog)
-        return lastlog
+        return iofunctions.cleanup(lastlog)
 
 
 
@@ -197,8 +196,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.cellnav_window = None
         self.model = QPlogModel(QPlog, toheaders(conf))
         self.logTableView.setModel(self.model)
-        self.logTableView.resizeRowsToContents()
         self.logTableView.resizeColumnsToContents()
+        self.logTableView.resizeRowsToContents()
 
         self.actionSave.triggered.connect(self.save_QPlog)
         self.actionPrintPDF.triggered.connect(self.printPDF)
@@ -470,6 +469,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             entry.update(kwargs)
             place = entry["point"].getplace()
             entry["place"] = place
+            if status:
+                entry["status"] = status
             QPlog.append(entry)
             self.model.layoutChanged.emit()
         else:

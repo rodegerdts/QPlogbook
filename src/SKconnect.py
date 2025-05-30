@@ -139,6 +139,8 @@ def getSKpath(config):
             out["rpm"] = round(out["rpm"] * 60, 0)
         if "log" in out:
             out["log"] = round(out["log"] / 1852, 1)
+        if "enginehours" in out:
+            out["enginehours"] = round(out["enginehours"] / 3600, 1)
         nout = {"point": point}
         nout.update(out)
         return nout
