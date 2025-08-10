@@ -47,13 +47,13 @@ keys_to_head = {
         "enginehours": "Engine\n(h)",
         "cog": "COG",
         "sog": "SOG\n(kts)",
-        "stw": "STW",
-        "heading": "Heading",
+        "stw": "STW\n(kts)",
+        "heading": "HDG",
         "airpressure": "Baro \n(hPa)",
-        "airtemperature": "Airtemp \n(°C)",
+        "airtemperature": "Temp. \n(°C)",
         "twd": "TWD",
         "tws": "TWS\n(kts)",
-        "humidity": "Humidity\n(%)",
+        "humidity": "RH\n(%)",
         "text": "text",
         "fixtype": "Fix",
         "hdop": "HDOP\n(m)",
@@ -145,7 +145,25 @@ class QPlogModel(QAbstractTableModel):
                 return logtime.strftime("%H:%M")
             
             elif column_key == "Position":             
-                return f"{value.getDMpos()[0]} \n {value.getDMpos()[1]}"
+                return f"{value.getDMpos()[0]}\n{value.getDMpos()[1]}"
+            
+            elif column_key == "Log\n(nm)" or column_key == "Engine\n(h)" or column_key == "SOG\n(kts)" or column_key == "Airtemp \n(°C)" or column_key == "STW\n(kts)":
+                return "{:.1f}".format(value)
+            
+            elif column_key == "TWS\n(kts)":
+                return ("{:.1f}".format(value)).zfill(4)
+
+            elif column_key == "Baro \n(hPa)":
+                return ("{:.1f}".format(value)).zfill(6)
+            
+            elif column_key == "COG" or column_key == "HDG":
+                return ("{:.0f}".format(value)).zfill(3)
+            
+            elif column_key == "Temp. \n(°C)":
+                return ("{:.1f}".format(value)).zfill(4)
+            
+            elif column_key == "RPM":
+                return ("{:.0f}".format(value)).zfill(4)
             
             elif isinstance(value, list):
                 s = ""
@@ -164,8 +182,10 @@ class QPlogModel(QAbstractTableModel):
             return font
         
         if role == Qt.TextAlignmentRole:
-            if column_key == "Position":
-                return Qt.AlignVCenter + Qt.AlignRight
+            if column_key != "Place":
+            #     return Qt.AlignVCenter + Qt.AlignCenter
+            # if column_key == "RPM" or column_key == "Cloud\n(8th)" or column_key == "Vis." or column_key == "Sea" or column_key == "Position":
+                return Qt.AlignCenter
 
 
     def rowCount(self, index):
@@ -219,7 +239,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionstartstopp.setChecked(auto_on)
         self.actionstartstopp.toggled.connect(self.toggle_autolog)
         self.scheduler = QtScheduler()
-        self.scheduler.add_job(self.auto_entry_status, id="track", trigger="cron", minute=f"*/{int(conf['trackinterv'])}")
+        self.scheduler.add_job(self.auto_entry_status, id="track", trigger="cron", second=f"*/{int(conf['trackinterv'])}")
         self.scheduler.add_job(self.auto_entry, id="entry", trigger="cron", hour=f"*/{conf['loginterv']}")
         self.scheduler.start()
 
@@ -443,17 +463,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 print(status)
             if status == "moving" and (old_status == "stopped" or old_status == "undefined"):
                 pt = pointlist[len(pointlist)-5]
-                self.addSKentry(status="moving", point=pt, place=pt.getplace())
+                self.addSKentry(status="moving")
             elif status == "stopped" and (old_status == "moving" or old_status == "motoring"):
                 pt = pointlist[len(pointlist)-1]
-                self.addSKentry(status="stopped", place=pt.getplace())
+                self.addSKentry(status="stopped")
             elif status == "motoring" and (old_status == "stopped" or old_status == "undefined"):
                 pt = pointlist[len(pointlist)-5]
-                self.addSKentry(status="motoring", place=pt.getplace())
-            elif status == "motoring" and (old_status == "sailing" or old_status == "moving"):
+                self.addSKentry(status="motoring")
+            elif status == "motoring" and (old_status == "sailing" or old_status == "moving" or old_status == "undefined"):
                 pt = pointlist[len(pointlist)-1]
                 self.addSKentry(status="motoring")
-            elif status == "sailing" and (old_status == "motoring" or old_status == "moving"):
+            elif status == "sailing" and (old_status == "motoring" or old_status == "moving" or old_status == "undefined"):
                 pt = pointlist[len(pointlist)-1]
                 self.addSKentry(status="sailing")
             else:
@@ -821,7 +841,7 @@ class SettingsDialog(Ui_DialogSettings, QtWidgets.QDialog):
         self.conf["utc_offset"] = self.doubleSpinBox_UTCoffset.value()
 
 
-        m_window.scheduler.reschedule_job("track", trigger="cron", minute=f"*/{int(conf['trackinterv'])}")
+        m_window.scheduler.reschedule_job("track", trigger="cron", second=f"*/{int(conf['trackinterv'])}")
         m_window.scheduler.reschedule_job("entry", trigger="cron", hour=f"*/{conf['loginterv']}")
 
         self.conf["enableauto"] = self.checkBox_autoentry.isChecked()
@@ -908,6 +928,7 @@ def save_and_merge():
     Raises:
         FileNotFoundError: If the specified log file is not found.
     """
+    #print("SM executing")
     to_save = iofunctions.splitmonthly(QPlog)
     for key in to_save:
         try:
@@ -928,21 +949,25 @@ def save_and_merge():
                 file.write(iofunctions.serialize_log(to_save[key]))
 
 
-def sig_handler(*args):
+def sig_handler(signum, frame):
     """Handler for the SIGINT and SIGTERM signals"""
-    save_and_merge()
+    # print(f"Signal {signum} received, quitting Qt event loop.")
+    # save_and_merge() # cleanup ist handled by QT aboutToQuit
     QtWidgets.QApplication.exit()
 
-signal.signal(signal.SIGINT, sig_handler) # Register the handler for the SIGINT signal
-signal.signal(signal.SIGTERM, sig_handler) # Register the handler for the SIGTERM signal
+signal.signal(signal.SIGINT, sig_handler) # Register the handler
+signal.signal(signal.SIGTERM, sig_handler) 
+signal.signal(signal.SIGHUP, sig_handler) 
 
 
 # Main Loop:
 app = QtWidgets.QApplication(sys.argv)
 
+app.aboutToQuit.connect(save_and_merge) #handle extern shutdown gracefully
+
 # Timer to let the Python interpreter run form time to time to catch signals:
 timer = QTimer()
-timer.start(500)  
+timer.start(100)  
 timer.timeout.connect(lambda: None)
 
 m_window = MainWindow()

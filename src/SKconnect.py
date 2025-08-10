@@ -114,33 +114,33 @@ def getSKpath(config):
         for key in ["datetime", "position"]:
             out.pop(key)
         if "airpressure" in out:
-            out["airpressure"] = out["airpressure"]/100
+            out["airpressure"] = float("%.1f" % (out["airpressure"]/100))
         if "airtemperature" in out:
-            out["airtemperature"] = out["airtemperature"] - 273.15
+            out["airtemperature"] = float("%.1f" % (out["airtemperature"] - 273.15))
         if "sog" in out:
-            out["sog"] = round(out["sog"] * 1.94384, 1)
+            out["sog"] = float("%.1f" % (out["sog"] * 1.94384))
         if "cog" in out:
             out["cog"] = round(out["cog"] * 57.2957, 0)
         if "stw" in out:
-            out["stw"] = round(out["stw"] * 1.94384, 1)
+            out["stw"] = float("%.1f" % (out["stw"] * 1.94384))
         if "heading" in out:
             out["heading"] = round(out["heading"] * 57.2957, 0)
         if "tws" in out:
-            out["tws"] = round(out["tws"] * 1.94384, 1)
+            out["tws"] = float("%.1f" % (out["tws"] * 1.94384))
         if "twd" in out:
             out["twd"] = round(out["twd"] * 57.2957, 0)
         if "airtemperature" in out:
-            out["airtemperature"] = round(out["airtemperature"], 1)
+            out["airtemperature"] = float("%.1f" % (out["airtemperature"]))
         if "airpressure" in out:
-            out["airpressure"] = round(out["airpressure"], 1)
+            out["airpressure"] = float("%.1f" % (out["airpressure"]))
         if "humidity" in out:
             out["humidity"] = round(out["humidity"] *100, 0)
         if "rpm" in out:
             out["rpm"] = round(out["rpm"] * 60, 0)
         if "log" in out:
-            out["log"] = round(out["log"] / 1852, 1)
+            out["log"] = float("%.1f" % (out["log"] / 1852))
         if "enginehours" in out:
-            out["enginehours"] = round(out["enginehours"] / 3600, 1)
+            out["enginehours"] = float("%.1f" % (out["enginehours"] / 3600))
         nout = {"point": point}
         nout.update(out)
         return nout

@@ -69,15 +69,6 @@ class Ui_EditDialog(object):
 
         self.formLayout.setWidget(4, QFormLayout.LabelRole, self.label_5)
 
-        self.logEdit = QSpinBox(EditDialog)
-        self.logEdit.setObjectName(u"logEdit")
-        self.logEdit.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.UpDownArrows)
-        self.logEdit.setMinimum(-1)
-        self.logEdit.setMaximum(10000000)
-        self.logEdit.setValue(-1)
-
-        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.logEdit)
-
         self.label_7 = QLabel(EditDialog)
         self.label_7.setObjectName(u"label_7")
 
@@ -227,6 +218,14 @@ class Ui_EditDialog(object):
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.formLayout.setItem(11, QFormLayout.FieldRole, self.verticalSpacer)
+
+        self.logEdit = QDoubleSpinBox(EditDialog)
+        self.logEdit.setObjectName(u"logEdit")
+        self.logEdit.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.UpDownArrows)
+        self.logEdit.setDecimals(1)
+        self.logEdit.setMaximum(100000.000000000000000)
+
+        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.logEdit)
 
 
         self.horizontalLayout.addLayout(self.formLayout)

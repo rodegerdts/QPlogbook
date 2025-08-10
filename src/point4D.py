@@ -137,7 +137,11 @@ class Point4d:
                 elif "hamlet" in location.raw["address"]:
                     place = location.raw["address"]["hamlet"]
                 elif "farm" in location.raw["address"]:
-                    place = location.raw["address"]["farm"]               
+                    place = location.raw["address"]["farm"]
+                elif "suburb" in location.raw["address"]:
+                    place = location.raw["address"]["suburb"]
+                elif "municipality" in location.raw["address"]:
+                    place = f"{location.raw["address"]["municipality"]} municipality"               
                 else:
                     place = location.raw["display_name"]
             else:

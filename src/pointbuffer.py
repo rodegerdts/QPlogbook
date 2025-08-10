@@ -124,7 +124,7 @@ def getStatus(pointlist, status, config):
 
     rpm = skc.get_rpm(config)
     #rpm = None
-    if len(pointlist) < 3:
+    if len(pointlist) < 5:
         pass
     elif get_sog(pointlist, 0, 0) < 0.5 and get_sog(pointlist, 1, 0) < 0.5 and get_sog(pointlist, 2, 0) < 0.5:
         status = "stopped"

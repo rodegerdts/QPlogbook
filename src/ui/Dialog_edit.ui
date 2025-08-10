@@ -63,22 +63,6 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QSpinBox" name="logEdit">
-         <property name="buttonSymbols">
-          <enum>QAbstractSpinBox::ButtonSymbols::UpDownArrows</enum>
-         </property>
-         <property name="minimum">
-          <number>-1</number>
-         </property>
-         <property name="maximum">
-          <number>10000000</number>
-         </property>
-         <property name="value">
-          <number>-1</number>
-         </property>
-        </widget>
-       </item>
        <item row="5" column="0">
         <widget class="QLabel" name="label_7">
          <property name="text">
@@ -373,6 +357,19 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="4" column="1">
+        <widget class="QDoubleSpinBox" name="logEdit">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::ButtonSymbols::UpDownArrows</enum>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>100000.000000000000000</double>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

@@ -55,6 +55,7 @@ k_to_h = {
         "crewNames": "Crew",
         "place": "Place",
         "rpm": "RPM",
+        "status": "Status"
 }  
 
 # qplog = iofunctions.getQPlog("/Users/enno/Documents/dev/QPlogbook/log/2024-08.json")
